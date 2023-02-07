@@ -8,10 +8,13 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Link to='/'>Home</Link>
-      <Link to='/set1'>Set1</Link>
-      <Link to='/set2'>Set2</Link>
-      <Link to='/set3'>Set3</Link>
+      <div className="nav-bar">
+        <Link to='/' id='nav'>Home</Link>
+        <Link to='/set1' id='nav'>Set1</Link>
+        <Link to='/set2' id='nav'>Set2</Link>
+        <Link to='/set3' id='nav'>Set3</Link>
+      </div>
+      
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/set1" element={<Set1 />}></Route>

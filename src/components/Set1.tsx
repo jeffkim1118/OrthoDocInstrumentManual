@@ -1,4 +1,4 @@
-import adjustmentKit from '../images/adjustmentKit.jpg'
+import adjustmentKit from '../images/adjustmentKit.jpg';
 
 export default function Set1(){
     return (
