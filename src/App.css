@@ -1,4 +1,37 @@
+body{
+    margin: 0px;
+}
+
+.App{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(79, 150, 150);
+}
+
+.nav-bar{
+    display: block;
+    color: white;
+    padding: 14px 14px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 #nav{
     text-decoration: none;
-    margin: 10px;
+    color: black;
+    margin: 20px;
+    font-size: 20px;
+    height: 100px;
+}
+
+
+
+#nav:hover{
+    color: rgb(216, 230, 230);
 }
