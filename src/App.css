@@ -30,8 +30,10 @@ ul{
     height: 100px;
 }
 
-
-
 #nav:hover{
     color: rgb(216, 230, 230);
+}
+
+img{
+    width: 600px;
 }

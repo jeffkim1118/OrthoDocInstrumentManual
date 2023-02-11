@@ -1,9 +1,9 @@
 import adjustmentKit from '../images/adjustment/adjustmentKit.jpg';
 
-export default function Set3(){
-    return(
+export default function Adjustment(){
+    return (
         <div>
-            <h1>This is set 3</h1>
+            <h1>Adjustment Kit</h1>
             <img src={adjustmentKit} alt='adjustment kit'></img>
         </div>
     )
