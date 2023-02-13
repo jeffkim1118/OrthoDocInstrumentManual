@@ -6,6 +6,26 @@ body{
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+header{
+    margin: 20px;
+}
+
+.nav-container{
+    display: flex;
+}
+
+.nav-logo{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 30px;
+}
+
+.nav-bar{
+    display: grid;
+    border-radius: 10px;
+}
+
 ul{
     list-style-type: none;
     margin: 0;
