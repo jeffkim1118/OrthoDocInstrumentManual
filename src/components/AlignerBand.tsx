@@ -8,16 +8,16 @@ import aligner2 from '../images/alignerBanding/noButton/IMG-4382.jpg';
 
 export default function AlignerBand(){
     return (
-        <div>
+        <div id='kit'>
             <h2>Aligner Banding &#40;With Bracket &#41;</h2>
-            <img src={btnAligner1} alt='btnAligner1'></img>
-            <img src={btnAligner2} alt='btnAligner2'></img>
-            <img src={btnAligner3} alt='btnAligner3'></img>
-            <img src={btnAligner4} alt='btnAligner4'></img>
+            <img src={btnAligner1} alt='btnAligner1' id='pic'></img>
+            <img src={btnAligner2} alt='btnAligner2' id='pic'></img>
+            <img src={btnAligner3} alt='btnAligner3' id='pic'></img>
+            <img src={btnAligner4} alt='btnAligner4' id='pic'></img>
 
             <h2>Aligner Banding &#40;Without Bracket &#41;</h2>
-            <img src={aligner1} alt='aligner1'></img>
-            <img src={aligner2} alt='aligner2'></img>
+            <img src={aligner1} alt='aligner1' id='pic'></img>
+            <img src={aligner2} alt='aligner2' id='pic'></img>
         </div>
     )
 }
