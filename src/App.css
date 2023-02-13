@@ -3,6 +3,7 @@ html{
 }
 
 body{
+    font-family: 'Karla', sans-serif;
     margin: 0px;
 }
 
@@ -47,16 +48,15 @@ ul{
 .nav-bar{
     display: block;
     color: white;
-    padding: 14px 14px;
+    padding: 20px 15px;
     text-decoration: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #nav{
     text-decoration: none;
     color: black;
     margin: 20px;
-    font-size: 20px;
+    font-size: 19px;
     height: 100px;
 }
 
@@ -80,4 +80,15 @@ img{
 #pic:hover{
     transition: transform 0.5s;
     transform: scale(1.5);
+}
+
+
+#table-content-link{
+    text-decoration: none;
+    color: black;
+}
+
+#table-content-link:hover{
+    background-color: rgb(79, 150, 150);
+    text-decoration: underline;
 }
