@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <header>
         <div className="nav-container">
-          <img className="nav-logo" src={Logo} alt='logo'></img>
+          <a href='/'><img className="nav-logo" src={Logo} alt='logo'></img></a>
           <ul className='nav-bar'>
             <Link to='/' id='nav'>Home</Link>
             <Link to='/adjustment' id='nav'>Adjustment</Link>
