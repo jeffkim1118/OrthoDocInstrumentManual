@@ -7,36 +7,6 @@ body{
     margin: 0px;
 }
 
-/* header{
-    margin: 20px;
-} */
-
-/* .nav-container{
-    width: 100%;
-    display: grid;
-    grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
-    grid-template-rows: [row1-start] 35%
-} */
-
-.nav-logo{
-    width: 60px;
-    height: auto;
-    border-radius: 10px;
-    margin-right: 30px;
-    grid-column-start: 1;
-    grid-column-end: line2;
-    grid-row-start: row1-start;
-    grid-row-end: row1-end;
-}
-
-/* .nav-bar{
-    border-radius: 10px;
-    grid-column-start: 3;
-    grid-column-end: five;
-    grid-row-start: row1-start;
-    grid-row-end: row1-end;
-} */
-
 ul{
     list-style-type: none;
     margin: 0;
@@ -45,31 +15,13 @@ ul{
     background-color: rgb(79, 150, 150);
 }
 
-/* .nav-bar{
-    display: block;
-    color: white;
-    padding: 20px 15px;
-    text-decoration: none;
-} */
-
-/* #nav{
-    text-decoration: none;
-    color: black;
-    margin: 20px;
-    font-size: 19px;
-    height: 100px;
+#pic{
+    width: 500px;
 }
 
-#nav:hover{
-    color: rgb(216, 230, 230);
-} */
-
-/* img{
-    width: 400px;
-} */
-
-#pic{
-    width: 300px;
+#modal-pic{
+    width: auto;
+    height: auto;
 }
 
 .main-page{
