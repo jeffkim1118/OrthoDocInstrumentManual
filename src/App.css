@@ -7,16 +7,16 @@ body{
     margin: 0px;
 }
 
-header{
+/* header{
     margin: 20px;
-}
+} */
 
-.nav-container{
+/* .nav-container{
     width: 100%;
     display: grid;
     grid-template-columns: [first] 40px [line2] 50px [line3] auto [col4-start] 50px [five] 40px [end];
     grid-template-rows: [row1-start] 35%
-}
+} */
 
 .nav-logo{
     width: 60px;
@@ -29,13 +29,13 @@ header{
     grid-row-end: row1-end;
 }
 
-.nav-bar{
+/* .nav-bar{
     border-radius: 10px;
     grid-column-start: 3;
     grid-column-end: five;
     grid-row-start: row1-start;
     grid-row-end: row1-end;
-}
+} */
 
 ul{
     list-style-type: none;
@@ -45,14 +45,14 @@ ul{
     background-color: rgb(79, 150, 150);
 }
 
-.nav-bar{
+/* .nav-bar{
     display: block;
     color: white;
     padding: 20px 15px;
     text-decoration: none;
-}
+} */
 
-#nav{
+/* #nav{
     text-decoration: none;
     color: black;
     margin: 20px;
@@ -62,11 +62,11 @@ ul{
 
 #nav:hover{
     color: rgb(216, 230, 230);
-}
+} */
 
-img{
+/* img{
     width: 400px;
-}
+} */
 
 
 .main-page{
@@ -77,12 +77,6 @@ img{
     padding-left: 20px;
 }
 
-#pic:hover{
-    transition: transform 0.5s;
-    transform: scale(1.5);
-}
-
-
 #table-content-link{
     text-decoration: none;
     color: black;
@@ -91,4 +85,8 @@ img{
 #table-content-link:hover{
     background-color: rgb(79, 150, 150);
     text-decoration: underline;
+}
+
+#logoIcon{
+    border-radius: 50%;
 }
