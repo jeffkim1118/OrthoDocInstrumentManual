@@ -5,7 +5,7 @@ import BtnAlignerBand from './BtnAlignerBand';
 export default function AlignerBand(){
     
     return (
-        <div id='kit'>
+        <div id='kit' style={{display:"flex", flexDirection:"column"}}>
             <NoBtnAlginerBand />
             <BtnAlignerBand />
         </div>     

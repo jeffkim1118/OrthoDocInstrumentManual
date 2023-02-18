@@ -8,7 +8,7 @@ export default function ModalP({v}:any){
     const handleShow = () => setShow(true);
     return(
         <div>
-            <img src={v} id='pic'onClick={handleShow} alt='instrument-pic'></img>
+            <img src={v} id='pic'onClick={handleShow} alt='instrument-pic' className='modal-image'></img>
 
             <Modal show={show} onHide={handleClose} size='lg'>
             <Modal.Header closeButton>

@@ -8,9 +8,7 @@ export default function Home(){
             
             <div className="table-content-container">
                 <Content />
-                
             </div>
-            
         </div>
     )
 }

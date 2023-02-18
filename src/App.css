@@ -16,26 +16,53 @@ ul{
 }
 
 .Nav-bar{
-    width: 100%;
-   
-    position: fixed;
+    width: 100%; 
+    /* position: fixed; */
 }
 
-#pic{
-    width: 500px;
-}
 
-#modal-pic{
+
+/* #modal-pic{
     width: auto;
     height: auto;
-}
+} */
 
 .main-page{
-    padding: 120px;
+    padding: 5%;
 }
 
 #kit{
-    padding: 120px;
+    padding: 5%;
+    display: grid;
+    /* grid-template-columns: [first] 40px [line2] 20% [line3] auto [col4-start] 20% [five] 40px [end];
+    grid-template-rows: [row1-start] 25% [row1-end] 100px [third-line] auto [last-line]; */
+    grid-template-columns: 30% 20% 20% 10%;
+    grid-template-rows: auto;
+    
+    grid-template-areas: 
+    "header header header header"
+    ". pic pic desc"
+    "footer footer footer footer";
+}
+
+#kit h1{
+    /* grid-column-start: 3;
+    grid-column-end: line3;
+    grid-row-start: row1-start;
+    grid-row-end: row1-start; */
+    grid-area: header;
+}
+
+#pic{
+    grid-area: pic;
+    max-width: 400px;
+    min-width: 300px;
+    /* grid-column-start: 3;
+    grid-column-end: col4-start; */
+}
+
+.modal-image{
+    width: 100px;
 }
 
 #table-content-link{
