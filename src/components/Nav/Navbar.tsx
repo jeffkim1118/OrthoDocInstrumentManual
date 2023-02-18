@@ -7,6 +7,7 @@ import Logo from './logo.png';
 
 export default function Navb(){
     return(
+    <div className='Nav-bar'>
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="/"><img
@@ -33,6 +34,7 @@ export default function Navb(){
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    </div>
     );
 
 }

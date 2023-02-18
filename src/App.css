@@ -15,6 +15,12 @@ ul{
     background-color: rgb(79, 150, 150);
 }
 
+.Nav-bar{
+    width: 100%;
+   
+    position: fixed;
+}
+
 #pic{
     width: 500px;
 }
@@ -25,7 +31,7 @@ ul{
 }
 
 .main-page{
-    padding: 100px;
+    padding: 120px;
 }
 
 #kit{
