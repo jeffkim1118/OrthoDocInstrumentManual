@@ -78,3 +78,9 @@ ul{
 #logoIcon{
     border-radius: 50%;
 }
+
+.home-card-content{
+    margin: 5px;
+    display: flex;
+    float: left;
+}
