@@ -6,7 +6,18 @@ export default function Adjustment(){
         <div id='kit'>
             <h1>Adjustment Kit</h1>
             <ModalP v={adjustmentKit}/>
-            <p>Hello</p>
+            <div>
+                <ul>
+                    <li>Hammer Head</li>
+                    <li>Half Hammer Head</li>
+                    <li>Mouth Mirror</li>
+                    <li>Hook</li>
+                    <li>Wire Cutter</li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
         </div>
     )
 }
