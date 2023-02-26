@@ -7,8 +7,9 @@ export default function Adjustment(){
             <h1>Adjustment Kit</h1>
             <ModalP v={adjustmentKit}/>
             <div>
-                <ul>
-                    <li>Hammer Head</li>
+                <h4>Preparation:</h4>
+                <ul id="instrument-list">
+                    <li >Hammer Head</li>
                     <li>Half Hammer Head</li>
                     <li>Mouth Mirror</li>
                     <li>Hook</li>

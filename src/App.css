@@ -17,15 +17,7 @@ ul{
 
 .Nav-bar{
     width: 100%; 
-    /* position: fixed; */
 }
-
-
-
-/* #modal-pic{
-    width: auto;
-    height: auto;
-} */
 
 .main-page{
     padding: 5%;
@@ -73,6 +65,10 @@ ul{
 #table-content-link:hover{
     background-color: rgb(79, 150, 150);
     text-decoration: underline;
+}
+
+#instrument-list{
+    background-color: white;
 }
 
 #logoIcon{
