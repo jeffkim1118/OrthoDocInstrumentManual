@@ -6,12 +6,12 @@ import Debanding from "../images/deband/IMG-4372.jpg";
 import Hawley from "../images/hawley/IMG-0444.jpg";
 
 export default function Content() {
-  const images = [Adjustment, AlignerBand, Debanding, Hawley];
+  const images = [Adjustment, AlignerBand, Debanding, Hawley, 'empty1', 'empty2', 'empty3', 'empty4', 'empty5'];
 
   return (
     <div>
       <h2>Table of Contents:</h2>
-      <ol>
+      <ol className="content-list">
         <li>
           <Link id="table-content-link" to={"/adjustment"}>
             Adjustment Kit

@@ -20,7 +20,18 @@ ul{
 }
 
 .main-page{
-    padding: 5%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: [first] 20px [line2] 20px [line3] auto [col4-start] 20px [five] 20px [end];
+    grid-template-rows: [row1-start] 200px [row1-end] 100px [third-line] auto [last-line];
+}
+
+.hero-msg{
+    grid-column-start: 3;
+    grid-column-end: col4-start;
+    grid-row-start: row1-end;
+    grid-row-end: last-line;
+    text-align: center;
 }
 
 #kit{
