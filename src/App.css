@@ -33,6 +33,10 @@ ul{
     grid-row-end: last-line;
     text-align: center;
 }
+#hero{
+    font-family: 'Satisfy', cursive;
+    font-size: 48px;
+}
 
 #kit{
     padding: 5%;
@@ -87,7 +91,8 @@ ul{
 }
 
 .home-card-content{
-    margin: 5px;
+    margin: 10px;
     display: flex;
     float: left;
+    
 }

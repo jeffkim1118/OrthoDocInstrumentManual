@@ -7,7 +7,7 @@ export default function CardDisplay({image, indx}:any){
     // console.log(Object.keys(image))
     return (
       <div className='home-card-content'>
-        <Card style={{ width: "18rem" }}>
+        <Card style={{ width: "18rem", display: "flex"}}>
           <Card.Img variant="top" src={image}/>
           <Card.Body>
             <Card.Title>{names[indx]}</Card.Title>

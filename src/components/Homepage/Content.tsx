@@ -10,7 +10,7 @@ export default function Content() {
 
   return (
     <div>
-      <h2>Table of Contents:</h2>
+      {/* <h2>Table of Contents:</h2>
       <ol className="content-list">
         <li>
           <Link id="table-content-link" to={"/adjustment"}>
@@ -32,7 +32,7 @@ export default function Content() {
             Hawley "Retainer" Check
           </Link>
         </li>
-      </ol>
+      </ol> */}
 
       {images.map((image,indx) => {
         return <Card image={image} indx={indx} key={indx}/>;
