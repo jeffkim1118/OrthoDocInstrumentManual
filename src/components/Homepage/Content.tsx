@@ -4,8 +4,8 @@ import setUps from "./Setups";
 
 export default function Content() {
   return (
-    <div id="content">
-      <h2>Here are our necessary kits</h2>
+    <div id="content" className="content">
+      <h2 style={{color:'whitesmoke',textAlign:'center', padding:'100px'}}><em>Here are our necessary kits</em></h2>
       
       {setUps.map((setUp,indx) => {
         return <Card setUp={setUp} indx={indx} key={indx}/>
