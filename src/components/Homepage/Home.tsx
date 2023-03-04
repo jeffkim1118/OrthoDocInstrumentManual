@@ -1,11 +1,16 @@
 import Content from "./Content"
 import landingPage from "../images/landingPage.jpg";
 
+
 export default function Home(){
+    const handleClickScroll = () => {
+        const element = document.getElementById('content');
+        if(element){
+            element.scrollIntoView({behavior:'smooth'})
+        }
+    }
     return (
         <div className="main-page">
-
-
             <div className="hero-background" style={{background: `url(${landingPage})`,
                 backgroundRepeat:'no-repeat',
                 backgroundSize:'cover',
@@ -17,7 +22,8 @@ export default function Home(){
                 <h4 id="hero" style={{fontSize:'50px'}}>Explore instrument set ups for Orthodontist.</h4>
 
                 <div className="arrow-container">
-                    <div className="arrow">
+                    
+                    <div className="arrow" onClick={handleClickScroll}>
                         <span></span>
                         <span></span>
                         <span></span>
