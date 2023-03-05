@@ -11,7 +11,7 @@ export default function CardDisplay({setUp}:any){
             <Card.Text>
               <em>{setUp['desc']}</em>
             </Card.Text>
-            <Button variant="primary">Go</Button>
+            <Button variant="primary" style={{fontFamily:'Fira Sans, sans-serif'}} href={setUp['link']}>Go</Button>
           </Card.Body>
         </Card>
       </div>

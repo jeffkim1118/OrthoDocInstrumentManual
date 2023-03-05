@@ -2,7 +2,6 @@ import Content from "./Content"
 import Footer from "./Footer";
 import landingPage from "../images/landingPage.jpg";
 
-
 export default function Home(){
     const handleClickScroll = () => {
         const element = document.getElementById('content');
@@ -11,7 +10,6 @@ export default function Home(){
         }
     }
     return (
-        
         <div className="main-page">
             <div className="hero-background" style={{background: `url(${landingPage})`,
                 minHeight: '500px',

@@ -20,6 +20,9 @@ body{
 }
 
 /* landing page */
+.main-page{
+    background-color: rgb(24, 24, 24);
+}
 
 .hero-msg{
     /* grid-column-start: 3;

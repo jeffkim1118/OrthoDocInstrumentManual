@@ -8,51 +8,61 @@ const setUps = [
       "name":"Adjustment",
       "image": Adjustment,
       "desc":"This is for adjustment.",
+      "link":'/adjustment'
     },
     {
       "name":"Aligner band",
       "image": AlignerBand,
       "desc":"This is for bonding aligner.",
+      "link":'/alignerband'
     },
     {
       "name":"Deband",
       "image": Deband,
       "desc":"This is for Taking off braces.",
+      "link":'/deband'
     },
     {
       "name":"Hawley check",
       "image": Hawley,
-      "desc":"This is for retainer check."
+      "desc":"This is for retainer check.",
+      "link":'/hawley'
     },
     {
       "name":"empty",
       "image": "",
-      "desc":"empty"
+      "desc":"empty",
+      "link":'/adjustment'
     },
     {
       "name":"empty",
       "image": "",
-      "desc":"empty"
+      "desc":"empty",
+      "link":'/adjustment'
     },
     {
       "name":"empty",
       "image": "",
-      "desc":"empty"
+      "desc":"empty",
+      "link":'/adjustment'
     },
     {
       "name":"empty",
       "image": "",
-      "desc":"empty"
+      "desc":"empty",
+      "link":'/adjustment'
     },
     {
       "name":"empty",
       "image": "",
-      "desc":"empty"
+      "desc":"empty",
+      "link":'/adjustment'
     },
     {
       "name":"empty",
       "image": "",
-      "desc":"empty"
+      "desc":"empty",
+      "link":'/adjustment'
     }
 ]
 export default setUps;
