@@ -29,9 +29,15 @@ const setUps = [
       "link":'/hawley'
     },
     {
-      "name":"empty",
+      "name":"MSE Check",
       "image": "",
-      "desc":"empty",
+      "desc":"This is for checking MSE expander.",
+      "link":'/adjustment'
+    },
+    {
+      "name":"Appliance Check",
+      "image": "",
+      "desc":"This is for checking appliance.",
       "link":'/adjustment'
     },
     {
@@ -52,17 +58,5 @@ const setUps = [
       "desc":"empty",
       "link":'/adjustment'
     },
-    {
-      "name":"empty",
-      "image": "",
-      "desc":"empty",
-      "link":'/adjustment'
-    },
-    {
-      "name":"empty",
-      "image": "",
-      "desc":"empty",
-      "link":'/adjustment'
-    }
 ]
 export default setUps;

@@ -1,4 +1,4 @@
-const kits = [
+const sets = [
     {
         'id': 0,
         'name': 'Adjustment Kit',
@@ -21,4 +21,4 @@ const kits = [
     },
 ]
 
-export default kits;
+export default sets;
