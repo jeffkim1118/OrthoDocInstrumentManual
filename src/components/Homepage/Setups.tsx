@@ -40,23 +40,5 @@ const setUps = [
       "desc":"This is for checking appliance.",
       "link":'/adjustment'
     },
-    {
-      "name":"empty",
-      "image": "",
-      "desc":"empty",
-      "link":'/adjustment'
-    },
-    {
-      "name":"empty",
-      "image": "",
-      "desc":"empty",
-      "link":'/adjustment'
-    },
-    {
-      "name":"empty",
-      "image": "",
-      "desc":"empty",
-      "link":'/adjustment'
-    },
 ]
 export default setUps;

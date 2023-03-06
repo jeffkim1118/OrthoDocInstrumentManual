@@ -27,7 +27,7 @@ function App() {
       </Routes>
       {/* <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path='/sets' element={<SetDetail/>}></Route>
+      <Route path='/sets' element={Sets/>}></Route>
       <Route path='sets/:id' element={<SetDetail/>}></Route>
       </Routes> */}
     </div>

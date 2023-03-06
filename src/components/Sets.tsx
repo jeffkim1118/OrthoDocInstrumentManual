@@ -1,3 +1,4 @@
+
 const sets = [
     {
         'id': 0,
@@ -19,6 +20,16 @@ const sets = [
         'name': 'Hawley Check',
         'desc': 'empty'
     },
+    {
+        'id': 4,
+        'name': 'MSE Check',
+        'desc': 'empty'
+    },
+    {
+        'id': 5,
+        'name': 'Appliance Check',
+        'desc': 'empty'
+    }
 ]
 
 export default sets;
