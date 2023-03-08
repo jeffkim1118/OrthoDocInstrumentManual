@@ -1,5 +1,4 @@
 import Content from "./Content"
-import Footer from "./Footer";
 import landingPage from "../images/landingPage.jpg";
 
 export default function Home(){
@@ -36,9 +35,7 @@ export default function Home(){
 
             <div className="table-content-container">
                 <Content /> 
-                
             </div>
-            <Footer/>
         </div>
     )
 }

@@ -6,11 +6,13 @@ export default function Deband(){
     const debandingKits = [deband1, deband2]; 
 
     return(
-        <div id='kit'>
+        <div id='kit-container'>
+            <div id='kit'>
             <h1>Debanding Kit</h1>
             {debandingKits.map((debandingKit, indx) => (
                 <ModalP v={debandingKit} key={indx}/>
             ))}
+            </div>
         </div>
     )
 }

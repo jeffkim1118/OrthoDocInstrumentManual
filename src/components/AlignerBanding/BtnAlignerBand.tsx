@@ -8,7 +8,7 @@ import btnAligner4 from '../images/alignerBanding/button/IMG-4387.jpg';
 export default function BtnAlignerBand(){
     const btnAligners = [btnAligner1,btnAligner2,btnAligner3,btnAligner4];
     return(
-        <div>
+        <div style={{display:'flex'}}>
             <h1>Aligner Banding &#40;with buttons&#41;</h1>
             {btnAligners.map((v, indx) => (
                 <ModalP v={v} key={indx}/>

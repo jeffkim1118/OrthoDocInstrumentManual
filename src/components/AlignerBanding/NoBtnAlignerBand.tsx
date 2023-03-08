@@ -7,7 +7,7 @@ import aligner2 from '../images/alignerBanding/noButton/IMG-4382.jpg';
 export default function NoBtnAlginerBand(){
     const aligner = [aligner1,aligner2]
     return(
-        <div>
+        <div style={{display:'flex'}}>
             <h1>Aligner Banding</h1>
             {aligner.map((v, indx) => (
                 <ModalP v={v} key={indx}/>     

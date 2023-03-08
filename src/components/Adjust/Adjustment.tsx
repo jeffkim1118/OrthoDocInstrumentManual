@@ -3,6 +3,7 @@ import ModalP from '../ModalPopup/ModalP';
 
 export default function Adjustment(){ 
     return (
+        <div id="kit-container">
         <div id='kit'>
             <h1>Adjustment Kit</h1>
             <ModalP v={adjustmentKit}/>
@@ -19,6 +20,7 @@ export default function Adjustment(){
                     <li></li>
                 </ul>
             </div>
+        </div>
         </div>
     )
 }
