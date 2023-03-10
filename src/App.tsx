@@ -7,8 +7,7 @@ import HawleyCheck from './components/Hawley/HawleyCheck';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
 import './App.css';
-import Sets from './components/Sets'
-import SetDetail from './components/SetDetails';
+import Page from './components/page';
 
 function App() {
   return (
@@ -19,17 +18,12 @@ function App() {
      
       <Routes>
         <Route path="/" index element={<Home />}></Route>
-        <Route path="/adjustment" element={<Adjustment />}></Route>
-        <Route path="/alignerband" element={<AlignerBand />}></Route>
-        <Route path="/deband" element={<Deband />}></Route>
-        <Route path="/hawley" element={<HawleyCheck />}></Route>
+        {/* <Route path="/adjustment" element={<Adjustment />}></Route> */}
+        <Route path="/adjustment" element={<Page />}></Route>
+        <Route path="/alignerband" element={<Page />}></Route>
+        <Route path="/deband" element={<Page />}></Route>
+        <Route path="/hawley" element={<Page />}></Route>
       </Routes>
-
-      {/* <Routes>
-      <Route path="/" element={<Home />}></Route>
-      <Route path='/sets' element={<Sets/>}></Route>
-      <Route path='sets/:id' element={<SetDetail/>}></Route>
-      </Routes> */}
 
       <footer>
         <Footer />
