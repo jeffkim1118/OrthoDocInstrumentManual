@@ -27,6 +27,10 @@ export default function Navb(){
               <NavDropdown.Item href="/alignerband">Aligner Banding Kit</NavDropdown.Item>
               <NavDropdown.Item href="/deband">Debanding Kit</NavDropdown.Item>
               <NavDropdown.Item href="/hawley">Hawley Check</NavDropdown.Item>
+              <NavDropdown.Item href="/aligneripr">Aligner IPR</NavDropdown.Item>
+              <NavDropdown.Item href="/appliancecheck">Appliance Check</NavDropdown.Item>
+              <NavDropdown.Item href="/mse">MSE Check</NavDropdown.Item>
+              <NavDropdown.Item href="/scan">Scan</NavDropdown.Item>
               {/* <NavDropdown.Divider /> */}
               {/* <NavDropdown.Item href="/">Separated link</NavDropdown.Item> */}
             </NavDropdown>

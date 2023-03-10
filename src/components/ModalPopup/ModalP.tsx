@@ -7,7 +7,7 @@ export default function ModalP({v}:any){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return(
-        <div>
+        <div className="pic-container">
             <img src={v} id='pic'onClick={handleShow} alt='instrument-pic' className='modal-image'></img>
 
             <Modal show={show} onHide={handleClose} size='lg'>

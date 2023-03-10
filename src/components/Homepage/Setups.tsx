@@ -53,7 +53,7 @@ const setUps = [
     {
       "name":"Scan",
       "image": Scan,
-      "desc":"This is for scanning patients teeth to order new aligners.",
+      "desc":"This is for scanning patients teeth.",
       "link":'/adjustment'
     },
 ]

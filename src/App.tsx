@@ -1,9 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Homepage/Home';
-import Adjustment from './components/Adjust/Adjustment';
-import AlignerBand from './components/AlignerBanding/AlignerBand';
-import Deband from './components/Debanding/Deband';
-import HawleyCheck from './components/Hawley/HawleyCheck';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
 import './App.css';
@@ -23,6 +19,10 @@ function App() {
         <Route path="/alignerband" element={<Page />}></Route>
         <Route path="/deband" element={<Page />}></Route>
         <Route path="/hawley" element={<Page />}></Route>
+        <Route path='/aligneripr' element={<Page />}></Route>
+        <Route path='/appliancecheck' element={<Page />}></Route>
+        <Route path='/mse' element={<Page />}></Route>
+        <Route path='/scan' element={<Page />}></Route>
       </Routes>
 
       <footer>
