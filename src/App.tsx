@@ -4,6 +4,8 @@ import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
 import './App.css';
 import Page from './components/page';
+import Login from './components/Account/Login';
+import SignUp from './components/Account/SignUp';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path='/appliancecheck' element={<Page />}></Route>
         <Route path='/mse' element={<Page />}></Route>
         <Route path='/scan' element={<Page />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp/>}></Route>
       </Routes>
 
       <footer>

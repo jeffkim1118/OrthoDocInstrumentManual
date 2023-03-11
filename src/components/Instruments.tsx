@@ -24,7 +24,7 @@ const obj:any = {
         '/alignerband': {
             "name": "Aligner Banding",
             "image": [BtnAlignerBand1, BtnAlignerBand2, BtnAlignerBand3, BtnAlignerBand4, AlignerBand1, AlignerBand2],
-            "desc": 'This is for bonding aligner.',
+            "desc": 'This is for bonding aligner. There are two different set ups for two different situations: the one with braces button and the one without it.',
         },
         '/deband': {
             "name": "Debanding",
@@ -39,7 +39,7 @@ const obj:any = {
         '/aligneripr': {
           "name": "Aligner IPR",
           "image": [AlignerIPR],
-          "desc": 'This is for checking MSE expander.',
+          "desc": 'This is for IPR treatment.',
         },
         '/appliancecheck': {
           "name": "Appliance Check",
@@ -49,7 +49,7 @@ const obj:any = {
         '/mse': {
           "name": "MSE Check",
           "image": [MSECheck],
-          "desc": 'This is for IPR treatment.',
+          "desc": 'This is for checking MSE expander.',
         },
         '/scan': {
           "name": "Scan",
