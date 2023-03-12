@@ -7,7 +7,7 @@ export default function Login() {
       <div className="login-container" style={{padding:'250px'}}>
         <form
           className="login-form"
-          style={{ display: "flex", flexDirection: "column", width: "500px", backgroundColor:'white', margin:'auto',borderRadius:'10px',padding:'35px'}}
+          style={{ display: "flex", flexDirection: "column", width: "500px", backgroundColor:'white', margin:'auto',borderRadius:'10px',padding:'35px', boxShadow:'8px 7px 5px 5px black'}}
         >  
             <h1 style={{margin:'auto'}}><em>Login</em></h1>
           <Form.Group className="mb-3" controlId="formBasicEmail">
