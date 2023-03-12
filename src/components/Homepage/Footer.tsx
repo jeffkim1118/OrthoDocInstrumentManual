@@ -1,7 +1,7 @@
 
 export default function Footer(){
     return(
-        <div className="footer" style={{color:'whitesmoke', textDecoration:'none', textAlign:'center'}}>
+        <div className="footer" style={{color:'whitesmoke', textDecoration:'none', textAlign:'center', padding:'30px'}}>
             <h1>Orthodontic Harmony</h1>
             <a href="https://www.orthodonticharmony.com/" target="_blank" rel="noreferrer" style={{textDecoration:'none', color:'whitesmoke'}}>Website</a><br/>
             <a href="tel:(914) 923-5089" style={{textDecoration:'none', color:'whitesmoke'}}> (914) 923-5089</a><br/>
