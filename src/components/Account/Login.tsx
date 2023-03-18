@@ -22,7 +22,11 @@ export default function Login({setCurrentUser}:any) {
       },
       body:JSON.stringify(loggingInUser)
     }).then(res => res.json())
-    .then(data => setCurrentUser(data))
+    .then(data => {
+      localStorage.setItem('token', data.token)
+      setCurrentUser(data.user);
+    })
+
   }
 
   return (

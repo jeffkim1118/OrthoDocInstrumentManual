@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from './logo.png';
 
-export default function Navb({currentUser, setCurrentUser}:any){
+export default function Navb(){
 
   const handleLogout = () => {
     fetch(`http://localhost:3000/logout`,{
@@ -13,7 +13,7 @@ export default function Navb({currentUser, setCurrentUser}:any){
         "Content-Type" : 'application/json'
       }
     });
-    localStorage.setItem('token', JSON.stringify(""))
+    localStorage.setItem('token', "")
   }
 
     return(
@@ -42,9 +42,8 @@ export default function Navb({currentUser, setCurrentUser}:any){
               <NavDropdown.Item href="/mse">MSE Check</NavDropdown.Item>
               <NavDropdown.Item href="/scan">Scan</NavDropdown.Item>
             </NavDropdown>
-            {/* <Nav.Link href="/login">Login</Nav.Link> */}
-            {currentUser ? <Nav.Link href="/login">Login</Nav.Link> : <button onClick={handleLogout}>Logout</button>}
-            
+            <Nav.Link href="/login">Login</Nav.Link>
+            <button onClick={handleLogout}>Logout</button>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Home from './components/Homepage/Home';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
@@ -10,22 +10,14 @@ import SignUp from './components/Account/SignUp';
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
-  
-  useEffect(() =>{
-    fetch(`http://localhost:3000/api/users`)
-    .then((r) => {
-      if(r.ok){
-        r.json().then((user) => setCurrentUser(user))
-      }
-    })
-  },[])
 
+  const[currentUser, setCurrentUser] = useState()  
 
+  console.log(currentUser)
   return (
     <div className="App">
       <header>
-        <Navbar currentUser = {currentUser} setCurrentUser={setCurrentUser}/>
+        <Navbar />
       </header>
      
       <Routes>
@@ -40,7 +32,7 @@ function App() {
         <Route path='/mse' element={<Page />}></Route>
         <Route path='/scan' element={<Page />}></Route>
         <Route path='/login' element={<Login setCurrentUser={setCurrentUser}/>}></Route>
-        <Route path='/signup' element={<SignUp setCurrentUser={setCurrentUser}/>}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
       </Routes>
 
       <footer>
