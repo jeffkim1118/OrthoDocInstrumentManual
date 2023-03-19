@@ -3,17 +3,22 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from './logo.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout,selectUser } from '../../features/userSlice';
 
 export default function Navb(){
-
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+  
   const handleLogout = () => {
+    dispatch(logout())
     fetch(`http://localhost:3000/logout`,{
       method: "DELETE",
       headers: {
         "Content-Type" : 'application/json'
       }
     });
-    localStorage.setItem('token', "")
+    localStorage.removeItem('token')
   }
 
     return(

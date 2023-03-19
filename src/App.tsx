@@ -7,10 +7,12 @@ import './App.css';
 import Page from './components/page';
 import Login from './components/Account/Login';
 import SignUp from './components/Account/SignUp';
+import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
 
 
 function App() {
-
+  const user = useSelector(selectUser);
   const[currentUser, setCurrentUser] = useState()  
   // const token = localStorage.getItem('token');
   // let base64Payload : any = token?.split('.')[1];
@@ -20,8 +22,6 @@ function App() {
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       
-
-      
     }
   }, [])
  
@@ -29,6 +29,7 @@ function App() {
     <div className="App">
       <header>
         <Navbar />
+        {user ? <h1>loggedin</h1> : <h2>not loggedin</h2>}
       </header>
      
       <Routes>

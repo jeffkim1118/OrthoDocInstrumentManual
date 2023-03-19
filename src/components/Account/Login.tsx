@@ -1,14 +1,19 @@
 import {useState} from 'react';
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/userSlice';
 import { Link } from "react-router-dom";
+
 export default function Login({setCurrentUser}:any) {
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const dispatch = useDispatch();
+
   const handleLogin = (e:any) => {
     e.preventDefault();
+    
     const loggingInUser = {
       username,
       password
@@ -24,7 +29,16 @@ export default function Login({setCurrentUser}:any) {
     }).then(res => res.json())
     .then(data => {
       localStorage.setItem('token', data.token)
-      setCurrentUser(data.user);
+      console.log(data.user)
+      dispatch(login({
+          id: data.user.id,
+          username: data.user.username,
+          first_name: data.user.first_name,
+          last_name: data.user.last_name,
+          email:data.user.email,
+          loggedIn:true
+        })
+      )
     })
 
   }
