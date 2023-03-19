@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import Home from './components/Homepage/Home';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
@@ -12,8 +12,19 @@ import SignUp from './components/Account/SignUp';
 function App() {
 
   const[currentUser, setCurrentUser] = useState()  
+  // const token = localStorage.getItem('token');
+  // let base64Payload : any = token?.split('.')[1];
+  // let payloadBuffer = Buffer.from(base64Payload, 'base64');
+  // console.log(JSON.parse(payloadBuffer.toString()))
 
-  console.log(currentUser)
+  useEffect(() => {
+    if (!!localStorage.getItem('token')) {
+      
+
+      
+    }
+  }, [])
+ 
   return (
     <div className="App">
       <header>
