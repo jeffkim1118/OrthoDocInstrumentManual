@@ -23,7 +23,18 @@ function App() {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       let decoded:any = token?.split('.')[1];
-      let decodedObj:any = JSON.parse(decoded);
+      let decodedUser = JSON.parse(atob(decoded))
+
+      fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `${token}`
+        }
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
     }
   }, [])
  
