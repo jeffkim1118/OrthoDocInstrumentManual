@@ -21,7 +21,9 @@ function App() {
 
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
-      
+      const token = localStorage.getItem('token');
+      let decoded:any = token?.split('.')[1];
+      let decodedObj:any = JSON.parse(decoded);
     }
   }, [])
  
