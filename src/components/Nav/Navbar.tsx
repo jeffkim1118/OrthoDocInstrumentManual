@@ -5,11 +5,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from './logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout,selectUser } from '../../features/userSlice';
+import { useNavigate } from "react-router-dom";
 
-export default function Navb(){
-  const user = useSelector(selectUser);
+export default function Navb({user}:any){
+  // const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(logout())
     fetch(`http://localhost:3000/logout`,{
@@ -19,6 +20,7 @@ export default function Navb(){
       }
     });
     localStorage.removeItem('token')
+    navigate('/login')
   }
 
     return(
@@ -47,8 +49,8 @@ export default function Navb(){
               <NavDropdown.Item href="/mse">MSE Check</NavDropdown.Item>
               <NavDropdown.Item href="/scan">Scan</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <button onClick={handleLogout}>Logout</button>
+            {user ? <Nav.Link href="/profile">Profile</Nav.Link>: null}
+            {user ? <button onClick={handleLogout}>Logout</button>:<Nav.Link href="/login">Login</Nav.Link>}
           </Nav>
         </Navbar.Collapse>
       </Container>

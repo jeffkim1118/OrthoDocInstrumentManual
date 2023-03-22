@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import Home from './components/Homepage/Home';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
@@ -7,24 +7,18 @@ import './App.css';
 import Page from './components/page';
 import Login from './components/Account/Login';
 import SignUp from './components/Account/SignUp';
-import { useSelector } from 'react-redux';
-import { selectUser } from './features/userSlice';
-
+import { useSelector,useDispatch } from 'react-redux';
+import { selectUser,login } from './features/userSlice';
+import Profile from './components/Profile';
 
 function App() {
   const user = useSelector(selectUser);
-  const[currentUser, setCurrentUser] = useState()  
-  // const token = localStorage.getItem('token');
-  // let base64Payload : any = token?.split('.')[1];
-  // let payloadBuffer = Buffer.from(base64Payload, 'base64');
-  // console.log(JSON.parse(payloadBuffer.toString()))
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       let decoded:any = token?.split('.')[1];
       let decodedUser = JSON.parse(atob(decoded))
-
       fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
         method: 'GET',
         headers: {
@@ -34,15 +28,26 @@ function App() {
         }
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then((data) => {
+      dispatch(login({
+          id: data.id,
+          username: data.username,
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email:data.email,
+          loggedIn:true
+        })
+      )
+      })
     }
   }, [])
  
   return (
     <div className="App">
       <header>
-        <Navbar />
-        {user ? <h1>loggedin</h1> : <h2>not loggedin</h2>}
+        {user ?  <Navbar user={user}/>:<Navbar />}
+        {/* <Navbar /> */}
+        {user ? <h1 style={{color:'white'}}>loggedin</h1> : <h2 style={{color:'white'}}>not loggedin</h2>}
       </header>
      
       <Routes>
@@ -56,8 +61,10 @@ function App() {
         <Route path='/appliancecheck' element={<Page />}></Route>
         <Route path='/mse' element={<Page />}></Route>
         <Route path='/scan' element={<Page />}></Route>
-        <Route path='/login' element={<Login setCurrentUser={setCurrentUser}/>}></Route>
+        <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
+        {user ? <Route path='/profile' element={<Profile user={user}/>}></Route> : null}
+        
       </Routes>
 
       <footer>

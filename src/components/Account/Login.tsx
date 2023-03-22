@@ -1,24 +1,23 @@
 import {useState} from 'react';
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { useDispatch } from 'react-redux';
-import { login } from '../../features/userSlice';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from 'react-redux';
+import { selectUser,login } from '../../features/userSlice';
 
-export default function Login({setCurrentUser}:any) {
-  
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleLogin = (e:any) => {
     e.preventDefault();
-    
     const loggingInUser = {
       username,
       password
     }
-    console.log(loggingInUser)
+
     fetch(`http://localhost:3000/login`, {
       method:"POST",
       headers: {
@@ -26,23 +25,22 @@ export default function Login({setCurrentUser}:any) {
         'Content-Type': 'application/json'
       },
       body:JSON.stringify(loggingInUser)
-    }).then(res => res.json())
-    .then(data => {
-      localStorage.setItem('token', data.token)
-      console.log(data.user)
-      dispatch(login({
-          id: data.user.id,
-          username: data.user.username,
-          first_name: data.user.first_name,
-          last_name: data.user.last_name,
-          email:data.user.email,
-          loggedIn:true
-        })
-      )
     })
-
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem('token', data.token);
+      dispatch(login({
+        id: data.id,
+        username: data.username,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        email:data.email,
+        loggedIn:true
+      })
+    )
+    })
+    navigate('/')
   }
-
   return (
     <div className="background">
       <div className="login-container" style={{padding:'250px'}}>
@@ -60,9 +58,7 @@ export default function Login({setCurrentUser}:any) {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Login
-          </Button>
+          <Button variant="primary" type="submit">Login</Button>
           <Link to={'/signup'} style={{padding:'10px',margin:'auto'}}>Don't have an account?</Link>
           <Link to={'/'} style={{margin:'auto'}}>Forgot your password?</Link>
         </form>
