@@ -47,12 +47,11 @@ function App() {
       <header>
         {user ?  <Navbar user={user}/>:<Navbar />}
         {/* <Navbar /> */}
-        {user ? <h1 style={{color:'white'}}>loggedin</h1> : <h2 style={{color:'white'}}>not loggedin</h2>}
       </header>
      
       <Routes>
         <Route path="/" index element={<Home />}></Route>
-        {/* <Route path="/adjustment" element={<Adjustment />}></Route> */}
+        
         <Route path="/adjustment" element={<Page />}></Route>
         <Route path="/alignerband" element={<Page />}></Route>
         <Route path="/deband" element={<Page />}></Route>

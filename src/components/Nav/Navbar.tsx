@@ -49,8 +49,8 @@ export default function Navb({user}:any){
               <NavDropdown.Item href="/mse">MSE Check</NavDropdown.Item>
               <NavDropdown.Item href="/scan">Scan</NavDropdown.Item>
             </NavDropdown>
-            {user ? <Nav.Link href="/profile">Profile</Nav.Link>: null}
-            {user ? <button onClick={handleLogout}>Logout</button>:<Nav.Link href="/login">Login</Nav.Link>}
+            {user ? <Nav.Link href="/profile">{user.first_name}</Nav.Link>: null}
+            {user ? <Nav.Link onClick={handleLogout}>Logout</Nav.Link>:<Nav.Link href="/login">Login</Nav.Link>}
           </Nav>
         </Navbar.Collapse>
       </Container>
