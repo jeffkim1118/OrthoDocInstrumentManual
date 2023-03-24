@@ -1,15 +1,20 @@
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/userSlice";
 
-export default function SignUp({setCurrentUser}:any) {
+
+export default function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (e:any) => {
     e.preventDefault()
 
@@ -30,7 +35,8 @@ export default function SignUp({setCurrentUser}:any) {
       body: JSON.stringify({user: newUser})
     }).then((response) => response.json())
     .then(data => {localStorage.setItem("token", data.token)
-    setCurrentUser(data);
+    dispatch(login(data))
+    navigate('/profile')
   })
   }
 

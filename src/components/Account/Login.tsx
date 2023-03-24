@@ -11,6 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const handleLogin = (e:any) => {
     e.preventDefault();
     const loggingInUser = {
@@ -29,17 +30,9 @@ export default function Login() {
     .then(res => res.json())
     .then(data => {
       localStorage.setItem('token', data.token);
-      dispatch(login({
-        id: data.id,
-        username: data.username,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email:data.email,
-        loggedIn:true
-      })
-    )
+      dispatch(login(data.user))
     })
-    navigate('/')
+    navigate('/profile')
   }
   return (
     <div className="background">

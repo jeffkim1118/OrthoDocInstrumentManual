@@ -29,29 +29,19 @@ function App() {
       })
       .then(res => res.json())
       .then((data) => {
-      dispatch(login({
-          id: data.id,
-          username: data.username,
-          first_name: data.first_name,
-          last_name: data.last_name,
-          email:data.email,
-          loggedIn:true
-        })
-      )
+      dispatch(login(data))
       })
     }
   }, [])
  
   return (
     <div className="App">
-      <header>
-        {user ?  <Navbar user={user}/>:<Navbar />}
-        {/* <Navbar /> */}
+      <header>  
+        <Navbar />
       </header>
      
       <Routes>
         <Route path="/" index element={<Home />}></Route>
-        
         <Route path="/adjustment" element={<Page />}></Route>
         <Route path="/alignerband" element={<Page />}></Route>
         <Route path="/deband" element={<Page />}></Route>
@@ -62,7 +52,7 @@ function App() {
         <Route path='/scan' element={<Page />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
-        {user ? <Route path='/profile' element={<Profile user={user}/>}></Route> : null}
+        {user ? <Route path='/profile' element={<Profile/>}></Route> : null}
         
       </Routes>
 
