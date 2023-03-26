@@ -39,8 +39,6 @@ export default function SignUp() {
     navigate('/profile')
   })
   }
-
-
   return (
     <div className="background">
       <div className="signup-container" style={{padding:'220px'}}>
