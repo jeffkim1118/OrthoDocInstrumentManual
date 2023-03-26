@@ -199,6 +199,9 @@ body {
 }
 
 /* Account */
+#icons{
+  display: flex;
+}
 
 .background {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -288,7 +291,7 @@ body {
   margin: auto;
   /* margin: 200px auto; */
   border: 1px solid #dddd;
-  border-radius: 18px;
+  border-radius: 18px 120px;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
+import accountIcon from '../../components/images/account.png';
+import padLock from '../../components/images/padlock.png';
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -55,30 +57,35 @@ export default function Login() {
           <div className="box-2 d-flex flex-column h-100">
             <div className="mt-5" />
             <form className="login-form" onSubmit={(e) => handleLogin(e)}>
-              <h1 style={{ paddingBottom: "10px", textAlign:'center'}}>
+              <h1 style={{ paddingBottom: "10px", textAlign: "center" }}>
                 <em>Login</em>
               </h1>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label style={{ fontSize: "14px" }}>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  style={{ border: "1px solid black" }}
-                ></Form.Control>
+                <div id="icons">
+                  <img src={accountIcon} alt="account-icon" style={{width:"20px",height:'20px',margin:'auto 5px'}}></img>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    style={{ border: "1px solid black" }}
+                  ></Form.Control>
+                </div>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label style={{ fontSize: "14px" }}>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  style={{ border: "1px solid black" }}
-                />
+                <div id="icons">
+                  <img src={padLock} alt="password-icon" style={{width:"20px",height:'20px',margin:'auto 5px'}}></img>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={{ border: "1px solid black" }}
+                  />
+                </div>
               </Form.Group>
-
               <Button
                 variant="primary"
                 type="submit"
@@ -91,7 +98,7 @@ export default function Login() {
                 Login
               </Button>
               <br />
-              <div style={{textAlign:'center'}}>
+              <div style={{ textAlign: "center" }}>
                 <Link to={"/signup"}>Don't have an account?</Link>
                 <br />
                 <Link to={"/"}>Forgot your password?</Link>
