@@ -12,15 +12,15 @@ export default function Login() {
   const [loginStatus, setLoginStatus] = useState(Boolean);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleLogin = (e: any) => {
     e.preventDefault();
-    if(username && password){
+    if (username && password) {
       const loggingInUser = {
         username,
         password,
       };
-  
+
       fetch(`http://localhost:3000/login`, {
         method: "POST",
         headers: {
@@ -36,62 +36,70 @@ export default function Login() {
         });
       setLoginStatus(true);
       navigate("/profile");
-    }else if(!username || !password){
-      setLoginStatus(false)
+    } else if (!username || !password) {
+      setLoginStatus(false);
     }
   };
   return (
     <div className="background">
-    <div className="form-container">
-      <div className="form d-md-flex align-items-center justify-content-between">
-        <div className="box-1 mt-md-0 mt-5">
-          <img
-            src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-            className=""
-            alt=""
-          />
-        </div>
+      <div className="form-container">
+        <div className="form d-md-flex align-items-center justify-content-between">
+          <div className="box-1 mt-md-0 mt-5">
+            <img
+              src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+              className=""
+              alt=""
+            />
+          </div>
 
-        <div className="box-2 d-flex flex-column h-100">
-          <div className="mt-5" />
-          <form className="login-form" onSubmit={(e) => handleLogin(e)}>
-            <h1 style={{ paddingBottom:'10px' }}>
-              <em>Login</em>
-            </h1>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label style={{fontSize:'14px'}}>Username</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                style={{border:'1px solid black'}}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label style={{fontSize:'14px'}}>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                style={{border:'1px solid black'}}
-              />
-            </Form.Group>
+          <div className="box-2 d-flex flex-column h-100">
+            <div className="mt-5" />
+            <form className="login-form" onSubmit={(e) => handleLogin(e)}>
+              <h1 style={{ paddingBottom: "10px", textAlign:'center'}}>
+                <em>Login</em>
+              </h1>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label style={{ fontSize: "14px" }}>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  style={{ border: "1px solid black" }}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label style={{ fontSize: "14px" }}>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={{ border: "1px solid black" }}
+                />
+              </Form.Group>
 
-            <Button variant="primary" type="submit" style={{marginTop:'10px', marginBottom:'10px', width:'340px'}}>
-              Login
-            </Button><br/>
-            <Link to={"/signup"} >
-              Don't have an account?
-            </Link><br/>
-            <Link to={"/"}>
-              Forgot your password?
-            </Link>
-          </form>
+              <Button
+                variant="primary"
+                type="submit"
+                style={{
+                  marginTop: "10px",
+                  marginBottom: "10px",
+                  width: "340px",
+                }}
+              >
+                Login
+              </Button>
+              <br />
+              <div style={{textAlign:'center'}}>
+                <Link to={"/signup"}>Don't have an account?</Link>
+                <br />
+                <Link to={"/"}>Forgot your password?</Link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
