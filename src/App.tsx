@@ -9,7 +9,7 @@ import './App.css';
 import Page from './components/page';
 import Login from './components/Account/Login';
 import SignUp from './components/Account/SignUp';
-import Profile from './components/Profile';
+import Profile from './components/Profile/Profile';
 import Dashboard from './components/Profile/Dashboard';
 import Update from './components/Profile/Update';
 
@@ -56,8 +56,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         {user ? <Route path='profile' element={<Profile/>}>
-          <Route path='dashboard' index element={<Dashboard/>}></Route>
-          <Route path="analytic"></Route>
+          <Route path='dashboard' element={<Dashboard/>}></Route>
           <Route path="update" element={<Update/>}></Route>
         </Route> : null}
         

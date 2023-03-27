@@ -234,8 +234,7 @@ body {
   width: 100%;
   display: grid;
   grid-template-columns: [line1] 10% [line2] 15% [line3] auto [line4] 30% [line5] 10% [line6];
-  grid-template-rows: [row1] 15% [row2] 5% [row3] 15% [row4] auto [row5] 10% [end];
-  
+  grid-template-rows: [row1] 10% [row2] 5% [row3] 15% [row4] auto [row5] 10% [end];
 }
 
 .profile-picture{
@@ -243,7 +242,7 @@ body {
   grid-column-end: line3;
   grid-row-start: row2;
   grid-row-end: row4;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .side-bar{
@@ -251,7 +250,7 @@ body {
   grid-column-end: line3;
   grid-row-start: row4;
   grid-row-end: row5;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   z-index: 600;
   height: fit-content;
 }
@@ -270,10 +269,98 @@ body {
   grid-row-end: row5;
   background-color: whitesmoke;
   margin-left: 15px;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
-  
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  max-height: 900px;
 }
 
+.user-content{
+  width: 80%;
+  max-height: 500px;
+  margin: 30px auto;
+}
+
+.user-content h1{
+  margin-bottom: 30px;
+}
+
+.user-content p{
+  color: rgb(116, 116, 116);
+}
+
+/* Update profile */
+.update{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+.update-form-container{
+  margin: 100px;
+}
+
+.update-form-container form input{
+  width: 100%;
+  color: rgb(36, 35, 42);
+  font-size: 16px;
+  line-height: 20px;
+  min-height: 28px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 10px auto;
+  border: 2px solid transparent;
+  box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+  background: rgb(251, 251, 251);
+  transition: all 0.1s ease 0s;
+}
+
+.update-form-container form input:focus{
+  border: 2px solid rgb(124, 138, 255);
+}
+
+.update-form-container form button{
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: #000000;
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 14px 24px 16px;
+  margin: 10px auto;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 200ms,background 200ms;
+}
+
+.update-form-container form button:hover{
+  transform: translateY(-2px);
+}
+
+.delete{
+  width: 40%;
+  margin: 100px auto;
+}
+
+.delete-account{
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: #da0c0c;
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 14px 24px 16px;
+  margin: 10px auto;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 200ms,background 200ms;
+}
+
+.delete-account:hover{
+  transform: translateY(-2px);
+}
 
 /* Login page */
 .background {
