@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
-import accountIcon from '../../components/images/account.png';
-import padLock from '../../components/images/padlock.png';
+import accountIcon from '../../components/images/account/account.png';
+import padLock from '../../components/images/account/padlock.png';
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -53,7 +53,6 @@ export default function Login() {
               alt=""
             />
           </div>
-
           <div className="box-2 d-flex flex-column h-100">
             <div className="mt-5" />
             <form className="login-form" onSubmit={(e) => handleLogin(e)}>

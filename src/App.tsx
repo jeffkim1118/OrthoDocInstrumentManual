@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import {useEffect} from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { selectUser,login } from './features/userSlice';
 import Home from './components/Homepage/Home';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
@@ -7,13 +9,14 @@ import './App.css';
 import Page from './components/page';
 import Login from './components/Account/Login';
 import SignUp from './components/Account/SignUp';
-import { useSelector,useDispatch } from 'react-redux';
-import { selectUser,login } from './features/userSlice';
 import Profile from './components/Profile';
+import Dashboard from './components/Profile/Dashboard';
+import Update from './components/Profile/Update';
 
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
@@ -32,7 +35,7 @@ function App() {
       dispatch(login(data))
       })
     }
-  }, [])
+  },[])
  
   return (
     <div className="App">
@@ -52,7 +55,11 @@ function App() {
         <Route path='/scan' element={<Page />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
-        {user ? <Route path='/profile' element={<Profile/>}></Route> : null}
+        {user ? <Route path='profile' element={<Profile/>}>
+          <Route path='dashboard' index element={<Dashboard/>}></Route>
+          <Route path="analytic"></Route>
+          <Route path="update" element={<Update/>}></Route>
+        </Route> : null}
         
       </Routes>
 

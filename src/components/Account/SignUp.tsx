@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
-import accountIcon from "../../components/images/account.png";
-import padLock from "../../components/images/padlock.png";
-import emailIcon from "../../components/images/email.png";
+import accountIcon from "../../components/images/account/account.png";
+import padLock from "../../components/images/account/padlock.png";
+import emailIcon from "../../components/images/account/email.png";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
