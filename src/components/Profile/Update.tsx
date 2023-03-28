@@ -1,8 +1,34 @@
 import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/userSlice";
 
 export default function Update() {
   const user: any = useSelector(selectUser);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    if(!!localStorage.getItem('token')){
+      const token = localStorage.getItem('token');
+      fetch(`http://localhost:3000/api/users/${user.id}`, {
+      method:'DELETE',
+      headers: {
+        'Authorization': `${token}`
+      },
+    })
+    .then(res => res.json())
+    .then(data => {
+      localStorage.removeItem('token')
+      console.log(data)
+      dispatch(logout())
+      navigate('/login')
+    })
+    .catch(error => console.log(error))
+    }
+    
+  }
 
   return (
     <div className="update">
@@ -30,7 +56,7 @@ export default function Update() {
             If you delete this account, you will not be able to recover this
             account and you need to create a new account.
           </p>
-          <button className="delete-account">Delete Account</button>
+          <button className="delete-account" onClick={handleDelete}>Delete Account</button>
         </div>
     </div>
   );
