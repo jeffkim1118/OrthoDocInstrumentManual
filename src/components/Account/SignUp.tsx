@@ -45,7 +45,7 @@ export default function SignUp() {
   };
   return (
     <div className="background">
-      <div className="signup-container" style={{ padding: "220px" }}>
+      <div className="signup-container" style={{ padding: "130px" }}>
         <form
           onSubmit={(e) => handleSubmit(e)}
           style={{

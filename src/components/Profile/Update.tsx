@@ -3,11 +3,47 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../features/userSlice";
+import { useState } from "react";
 
 export default function Update() {
   const user: any = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [newUsername, setNewUsername] = useState('');
+  const [newFirstName, setNewFirstName] = useState('');
+  const [newLastName, setNewLastName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+
+
+  const handleUpdate = (e:any) => {
+    e.preventDefault();
+
+    const updatedUserData = {
+      username: newUsername,
+      first_name: newFirstName,
+      last_name: newLastName,
+      password: newPassword,
+      email: newEmail,
+    }
+
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/api/users/${user.id}`, {
+      method:'PATCH',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify({ user: updatedUserData})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      navigate('/profile')
+    })
+  }
 
   const handleDelete = () => {
     if(!!localStorage.getItem('token')){
@@ -34,22 +70,26 @@ export default function Update() {
     <div className="update">
       <div className="update-form-container">
         <h1>Update</h1>
-        <form>
+        <form onSubmit={(e) => handleUpdate(e)}>
+          <label>{user.username}</label>
+          <input placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
+          <br />
           <label>{user.first_name}</label>
-          <input placeholder="First Name"></input>
+          <input placeholder="First Name"value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
           <br />
           <label>{user.last_name}</label>
-          <input placeholder="Last Name"></input>
+          <input placeholder="Last Name" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
           <br />
           <label>{user.email}</label>
-          <input placeholder="Email"></input>
+          <input placeholder="Email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
           <br />
           <label>************</label>
-          <input placeholder="Password"></input>
+          <input placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
           <br />
           <button type="submit">Update</button>
         </form>  
       </div>
+
       <div className="delete">
           <h3>Account Delete</h3>
           <p>
