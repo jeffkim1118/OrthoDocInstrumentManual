@@ -11,7 +11,7 @@ import padLock from '../../components/images/account/padlock.png';
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState(Boolean);
+  const [loginInputStatus, setLoginInputStatus] = useState(Boolean);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,10 +36,10 @@ export default function Login() {
           localStorage.setItem("token", data.token);
           dispatch(login(data.user));
         });
-      setLoginStatus(true);
+      setLoginInputStatus(true);
       navigate("/profile");
-    } else if (!username || !password) {
-      setLoginStatus(false);
+    } else {
+      setLoginInputStatus(false);
     }
   };
   return (
@@ -61,7 +61,7 @@ export default function Login() {
               </h1>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label style={{ fontSize: "14px" }}>Username</Form.Label>
-                <div id="icons">
+                <div className="icons">
                   <img src={accountIcon} alt="account-icon" style={{width:"20px",height:'20px',margin:'auto 5px'}}></img>
                   <Form.Control
                     type="text"
@@ -74,7 +74,7 @@ export default function Login() {
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label style={{ fontSize: "14px" }}>Password</Form.Label>
-                <div id="icons">
+                <div className="icons">
                   <img src={padLock} alt="password-icon" style={{width:"20px",height:'20px',margin:'auto 5px'}}></img>
                   <Form.Control
                     type="password"

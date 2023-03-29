@@ -46,29 +46,16 @@ export default function SignUp() {
   return (
     <div className="background">
       <div className="signup-container" style={{ padding: "130px" }}>
-        <form
-          onSubmit={(e) => handleSubmit(e)}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "500px",
-            backgroundColor: "white",
-            margin: "auto",
-            borderRadius: "10px",
-            padding: "35px",
-            boxShadow: "8px 7px 5px 5px black",
-          }}
-        >
-          <h1 style={{ margin: "auto" }}>
+        <form className="signup-form" onSubmit={(e) => handleSubmit(e)}>
+          <h1 className="signup-form-heading">
             <em>Sign Up</em>
           </h1>
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>First Name</Form.Label>
-            <div id="icons">
+            <div className="icons">
               <img
                 src={accountIcon}
                 alt="account-icon"
-                style={{ width: "20px", height: "20px", margin: "auto 5px" }}
               ></img>
               <Form.Control
                 type="text"
@@ -80,11 +67,10 @@ export default function SignUp() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>Last Name</Form.Label>
-            <div id="icons">
+            <div className="icons">
               <img
                 src={accountIcon}
                 alt="account-icon"
-                style={{ width: "20px", height: "20px", margin: "auto 5px" }}
               ></img>
               <Form.Control
                 type="text"
@@ -96,11 +82,10 @@ export default function SignUp() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>Username</Form.Label>
-            <div id="icons">
+            <div className="icons">
               <img
                 src={accountIcon}
                 alt="account-icon"
-                style={{ width: "20px", height: "20px", margin: "auto 5px" }}
               ></img>
               <Form.Control
                 type="text"
@@ -113,11 +98,10 @@ export default function SignUp() {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <br />
-            <div id="icons">
+            <div className="icons">
               <img
                 src={emailIcon}
                 alt="email-icon"
-                style={{ width: "20px", height: "20px", margin: "auto 5px" }}
               ></img>
               <Form.Control
                 type="email"
@@ -129,11 +113,10 @@ export default function SignUp() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <div id="icons">
+            <div className="icons">
               <img
                 src={padLock}
                 alt="password-icon"
-                style={{ width: "20px", height: "20px", margin: "auto 5px" }}
               ></img>
               <Form.Control
                 type="password"
