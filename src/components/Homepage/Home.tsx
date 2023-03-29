@@ -10,7 +10,7 @@ export default function Home(){
     }
     return (
         <div className="main-page">
-            <div className="hero-background" style={{background: `url(${landingPage})`,
+            <div className="hero-background" style={{backgroundImage: `url(https://images.pexels.com/photos/16092760/pexels-photo-16092760.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load)`,
                 minHeight: '500px',
                 backgroundPosition: 'center',
                 backgroundRepeat:'no-repeat',

@@ -8,18 +8,7 @@ function Page(){
 
     return(
         <div id="kit-container">
-            {/* <div className="bg"></div>
-            <div className="bg bg2"></div>
-            <div className="bg bg3"></div>
-            <div className="content">
-                <h1>Sliding Diagonals Background Effect</h1>
-            </div> */}
-
             <div className="d-flex flex-column justify-content-center w-100 h-100"></div>
-
-
-
-
             <div id="kit">
                 <h1>{name}</h1>
                 <div className="test">
