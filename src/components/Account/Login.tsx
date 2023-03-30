@@ -5,15 +5,25 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
-import accountIcon from '../../components/images/account/account.png';
-import padLock from '../../components/images/account/padlock.png';
+import accountIcon from "../../components/images/account/account.png";
+import padLock from "../../components/images/account/padlock.png";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginInputStatus, setLoginInputStatus] = useState(Boolean);
+
+  const [verifyUsername, setVerifyUsername] = useState(true);
+  const [verifyPassword, setVerifyPassword] = useState(true);
+
+  const inputBorderStyle = { border:'1px solid black'}
+  console.log(verifyUsername)
+  console.log(verifyPassword)
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const usernameInput:any = document.getElementsByClassName('username-input');
+  const passwordInput:any = document.getElementsByClassName('password-input');
+
 
   const handleLogin = (e: any) => {
     e.preventDefault();
@@ -36,12 +46,24 @@ export default function Login() {
           localStorage.setItem("token", data.token);
           dispatch(login(data.user));
         });
-      setLoginInputStatus(true);
       navigate("/profile");
-    } else {
-      setLoginInputStatus(false);
-    }
+    } else if (!username && !password){
+      setVerifyUsername(false);
+      setVerifyPassword(false);
+    } else if (!username) {
+      setVerifyUsername(false);
+    } else if (!password) {
+      setVerifyPassword(false);
+    } 
   };
+  // if(verifyUsername === false){
+  //   usernameInput[0].style.border='1px solid red';
+  // }else if(verifyPassword === false){
+  //   passwordInput[0].style.border='1px solid red';
+  // }else{
+  //   usernameInput[0].style.border='1px solid black';
+  //   passwordInput[0].style.border='1px solid black';
+  // }
   return (
     <div className="background">
       <div className="form-container">
@@ -60,30 +82,50 @@ export default function Login() {
                 <em>Login</em>
               </h1>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label style={{ fontSize: "14px" }}>Username</Form.Label>
+                <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Username</Form.Label>
                 <div className="icons">
-                  <img src={accountIcon} alt="account-icon" style={{width:"20px",height:'20px',margin:'auto 5px'}}></img>
+                  <img
+                    src={accountIcon}
+                    alt="account-icon"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      margin: "auto 5px",
+                    }}
+                  ></img>
                   <Form.Control
+                    className="username-input"
                     type="text"
                     placeholder="Enter Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    style={{ border: "1px solid black" }}
+                    style={inputBorderStyle}
                   ></Form.Control>
                 </div>
+                {verifyUsername === false ? (<p style={{ fontSize: "12px", color:'red' }}>Invalid username</p>) : null}
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label style={{ fontSize: "14px" }}>Password</Form.Label>
+                <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Password</Form.Label>
                 <div className="icons">
-                  <img src={padLock} alt="password-icon" style={{width:"20px",height:'20px',margin:'auto 5px'}}></img>
+                  <img
+                    src={padLock}
+                    alt="password-icon"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      margin: "auto 5px",
+                    }}
+                  ></img>
                   <Form.Control
+                    className="password-input"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    style={{ border: "1px solid black" }}
+                    style={inputBorderStyle}
                   />
                 </div>
+                {verifyPassword === false ? (<p style={{ fontSize: "12px", color:'red', margin:'0px',border:'none',padding:'none' }}>Invalid password</p>) : null}
               </Form.Group>
               <Button
                 variant="primary"

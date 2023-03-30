@@ -40,8 +40,9 @@ export default function SignUp() {
       .then((data) => {
         localStorage.setItem("token", data.token);
         dispatch(login(data));
+        navigate('/profile')
       });
-      navigate('/profile')
+      
   };
   return (
     <div className="background">

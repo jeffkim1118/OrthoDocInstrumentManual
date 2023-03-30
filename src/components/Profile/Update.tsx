@@ -2,7 +2,7 @@ import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../features/userSlice";
+import { login, logout } from "../../features/userSlice";
 import { useState } from "react";
 
 export default function Update() {
@@ -36,11 +36,12 @@ export default function Update() {
         "Content-Type": "application/json",
         'Authorization': `${token}`
       },
-      body: JSON.stringify({ user: updatedUserData})
+      body: JSON.stringify({ user: updatedUserData })
     })
     .then(res => res.json())
     .then(data => {
       console.log(data)
+      dispatch(login(data))
       navigate('/profile')
     })
   }
@@ -72,19 +73,19 @@ export default function Update() {
         <h1>Update</h1>
         <form onSubmit={(e) => handleUpdate(e)}>
           <label>{user.username}</label>
-          <input placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
+          <input placeholder="Username" type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
           <br />
           <label>{user.first_name}</label>
-          <input placeholder="First Name"value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
+          <input placeholder="First Name" type="text" value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
           <br />
           <label>{user.last_name}</label>
-          <input placeholder="Last Name" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
+          <input placeholder="Last Name" type="text" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
           <br />
           <label>{user.email}</label>
-          <input placeholder="Email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
+          <input placeholder="Email" type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
           <br />
           <label>************</label>
-          <input placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+          <input placeholder="Password" type="current-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
           <br />
           <button type="submit">Update</button>
         </form>  
