@@ -15,15 +15,8 @@ export default function Login() {
   const [verifyUsername, setVerifyUsername] = useState(true);
   const [verifyPassword, setVerifyPassword] = useState(true);
 
-  const inputBorderStyle = { border:'1px solid black'}
-  console.log(verifyUsername)
-  console.log(verifyPassword)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const usernameInput:any = document.getElementsByClassName('username-input');
-  const passwordInput:any = document.getElementsByClassName('password-input');
-
 
   const handleLogin = (e: any) => {
     e.preventDefault();
@@ -56,14 +49,33 @@ export default function Login() {
       setVerifyPassword(false);
     } 
   };
-  // if(verifyUsername === false){
-  //   usernameInput[0].style.border='1px solid red';
-  // }else if(verifyPassword === false){
-  //   passwordInput[0].style.border='1px solid red';
-  // }else{
-  //   usernameInput[0].style.border='1px solid black';
-  //   passwordInput[0].style.border='1px solid black';
-  // }
+
+  const handleBlur = () => {
+    const usernameInput:any = document.getElementsByClassName('username-input')[0];
+    const passwordInput:any = document.getElementsByClassName('password-input')[0];
+    if(!usernameInput.value){
+      usernameInput.style.border = '1px solid red'
+      setVerifyUsername(false);
+    }
+    if(!passwordInput.value){
+      passwordInput.style.border = '1px solid red'
+      setVerifyPassword(false);
+    }
+  }
+
+  const handleFocus = () => {
+    const usernameInput:any = document.getElementsByClassName('username-input')[0];
+    const passwordInput:any = document.getElementsByClassName('password-input')[0];
+    if(usernameInput.value){
+      usernameInput.style.border = '1px solid black';
+      setVerifyUsername(true);
+    }
+    if(passwordInput.value){
+      passwordInput.style.border = '1px solid black'
+      setVerifyPassword(true);
+    }
+  }
+
   return (
     <div className="background">
       <div className="form-container">
@@ -99,7 +111,8 @@ export default function Login() {
                     placeholder="Enter Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    style={inputBorderStyle}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
                   ></Form.Control>
                 </div>
                 {verifyUsername === false ? (<p style={{ fontSize: "12px", color:'red' }}>Invalid username</p>) : null}
@@ -122,7 +135,8 @@ export default function Login() {
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    style={inputBorderStyle}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
                   />
                 </div>
                 {verifyPassword === false ? (<p style={{ fontSize: "12px", color:'red', margin:'0px',border:'none',padding:'none' }}>Invalid password</p>) : null}
