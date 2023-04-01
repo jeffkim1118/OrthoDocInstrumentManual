@@ -14,6 +14,7 @@ export default function Login() {
 
   const [verifyUsername, setVerifyUsername] = useState(true);
   const [verifyPassword, setVerifyPassword] = useState(true);
+  const [invalidAccount, checkAccount] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,8 +39,13 @@ export default function Login() {
         .then((data) => {
           localStorage.setItem("token", data.token);
           dispatch(login(data.user));
+          navigate("/profile");
+        })
+        .catch(error => {
+          console.log(error)
+          checkAccount(false)
         });
-      navigate("/profile");
+        
     } else if (!username && !password){
       setVerifyUsername(false);
       setVerifyPassword(false);
@@ -90,10 +96,11 @@ export default function Login() {
           <div className="box-2 d-flex flex-column h-100">
             <div className="mt-5" />
             <form className="login-form" onSubmit={(e) => handleLogin(e)}>
-              <h1 style={{ paddingBottom: "10px", textAlign: "center" }}>
+              <h1 style={{  textAlign: "center" }}>
                 <em>Login</em>
-              </h1>
+              </h1> 
               <Form.Group className="mb-3" controlId="formBasicEmail">
+              {!invalidAccount ? <p style={{ fontSize: "12px", color:'red', margin:'0px'}}>The account doesn't exist. Please check your username or password.</p> : null}
                 <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Username</Form.Label>
                 <div className="icons">
                   <img
@@ -115,7 +122,7 @@ export default function Login() {
                     onFocus={handleFocus}
                   ></Form.Control>
                 </div>
-                {verifyUsername === false ? (<p style={{ fontSize: "12px", color:'red' }}>Invalid username</p>) : null}
+                {!verifyUsername ? (<p style={{ fontSize: "12px", color:'red' }}>Invalid username</p>) : null}
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Password</Form.Label>
@@ -139,7 +146,7 @@ export default function Login() {
                     onFocus={handleFocus}
                   />
                 </div>
-                {verifyPassword === false ? (<p style={{ fontSize: "12px", color:'red', margin:'0px',border:'none',padding:'none' }}>Invalid password</p>) : null}
+                {!verifyPassword ? (<p style={{ fontSize: "12px", color:'red', margin:'0px',border:'none',padding:'none' }}>Invalid password</p>) : null}
               </Form.Group>
               <Button
                 variant="primary"
