@@ -14,6 +14,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
+  const [registrationStatus, setRegistrationStatus] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,6 +42,10 @@ export default function SignUp() {
         localStorage.setItem("token", data.token);
         dispatch(login(data));
         navigate('/profile')
+      })
+      .catch(error => {
+        console.log(error);
+        setRegistrationStatus(false);
       });
       
   };

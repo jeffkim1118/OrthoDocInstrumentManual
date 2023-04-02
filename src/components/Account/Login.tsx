@@ -45,7 +45,7 @@ export default function Login() {
           console.log(error)
           checkAccount(false)
         });
-        
+
     } else if (!username && !password){
       setVerifyUsername(false);
       setVerifyPassword(false);
@@ -53,7 +53,7 @@ export default function Login() {
       setVerifyUsername(false);
     } else if (!password) {
       setVerifyPassword(false);
-    } 
+    }
   };
 
   const handleBlur = () => {
@@ -89,8 +89,8 @@ export default function Login() {
           <div className="box-1 mt-md-0 mt-5">
             <img
               src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              className=""
-              alt=""
+              className="login-pic"
+              alt="login-pic"
             />
           </div>
           <div className="box-2 d-flex flex-column h-100">
@@ -98,7 +98,7 @@ export default function Login() {
             <form className="login-form" onSubmit={(e) => handleLogin(e)}>
               <h1 style={{  textAlign: "center" }}>
                 <em>Login</em>
-              </h1> 
+              </h1>
               <Form.Group className="mb-3" controlId="formBasicEmail">
               {!invalidAccount ? <p style={{ fontSize: "12px", color:'red', margin:'0px'}}>The account doesn't exist. Please check your username or password.</p> : null}
                 <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Username</Form.Label>
@@ -172,3 +172,81 @@ export default function Login() {
     </div>
   );
 }
+
+// import { useState } from "react";
+// import LoginForm from "./Login-Form";
+
+// const Login = () => {
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+
+//   const [values, setValues] = useState({
+//     username: "",
+//     password: "",
+//   });
+
+//   const inputs = [
+//     {
+//       id: 1,
+//       name: "username",
+//       type: "text",
+//       placeholder: "Username",
+//       errorMessage:
+//         "Username should be 3-16 characters and shouldn't include any special character!",
+//       label: "Username",
+//       pattern: "^[A-Za-z0-9]{3,16}$",
+//       required: true,
+//     },
+//     {
+//       id: 2,
+//       name: "password",
+//       type: "password",
+//       placeholder: "Password",
+//       errorMessage:
+//         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+//       label: "Password",
+//       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+//       required: true,
+//     },
+//   ];
+
+//   const handleSubmit = (e: any) => {
+//     e.preventDefault();
+//     if (values.username && values.password) {
+//       fetch(`http://localhost:3000/login`, {
+//         method: "POST",
+//         headers: {
+//           Accept: "application/json",
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(values),
+//       })
+//         .then((res) => res.json())
+//         .then((data) => {
+//           localStorage.setItem("token", data.token);
+//           dispatch(login(data.user));
+//           navigate("/profile");
+//         })
+//         .catch((error) => {
+//           console.log(error);
+//         });
+//     }
+
+//     const onChange = (e: any) => {
+//       setValues({ ...values, [e.target.name]: e.target.value });
+//     };
+
+//     return (
+//       <div className="app">
+//         <form onSubmit={handleSubmit}>
+//           <h1>Register</h1>
+//           {inputs.map((input) => (
+//             <LoginForm key={input.id} {...input} onChange={onChange} />
+//           ))}
+//           <button>Submit</button>
+//         </form>
+//       </div>
+//     );
+//   };
+// };
+// export default Login;
