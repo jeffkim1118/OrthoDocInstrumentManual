@@ -1,6 +1,6 @@
-// import { useState } from "react";
-// import { Button } from "react-bootstrap";
-// // import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import BForm from "react-bootstrap/Form";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -100,6 +100,7 @@ export default function Login() {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           localStorage.setItem("token", data.token);
           dispatch(login(data.user));
           navigate("/profile");
@@ -118,7 +119,9 @@ export default function Login() {
         (error:any, validator:any) => error || validator(value),
         undefined
       );
-  const required = (value:any) => (value ? undefined : "Required");
+  const requiredUsername = (value:any) => (value ? undefined : <span className="info-required">Required username</span>);
+  
+  const requiredPassword = (value:any) => (value ? undefined : <span className="info-required">Required password</span>)
 
   return (
     <div className="background">
@@ -127,30 +130,30 @@ export default function Login() {
           onSubmit={handleSubmit}
           render={({ handleSubmit, submitting, submitError, pristine, values }) => (
             <form onSubmit={handleSubmit}>
-              <Field name="username" validate={required}>
+              <Field name="username" validate={requiredUsername}>
                 {({ input, meta }) => (
-                  <div  >
+                  <div>
                     {console.log(meta)}
                     <label>Username</label>
-                    <input {...input} className={meta.touched && meta.error ? "error" : ''} type="text" placeholder="Username" />
+                    <BForm.Control {...input} className={meta.touched && meta.error ? "error" : ''} type="text" placeholder="Username" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               </Field>
-              <Field name="password" validate={required}>
+              <Field name="password" validate={requiredPassword}>
                 {({ input, meta }) => (
                   <div>
                     <label>Password</label>
-                    <input {...input} className={meta.touched && meta.error ? "error" : ''}  type="password" placeholder="Password" />
+                    <BForm.Control {...input} className={meta.touched && meta.error ? "error" : ''}  type="password" placeholder="Password" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               </Field>
               {submitError && <div className="error">{submitError}</div>}
               <div className="buttons">
-                <button type="submit" disabled={submitting || pristine}>
+                <Button type="submit" disabled={submitting || pristine}>
                   Submit
-                </button>
+                </Button>
               </div>
               <pre>{JSON.stringify(values,undefined,2)}</pre>
             </form>

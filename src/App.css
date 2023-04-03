@@ -373,9 +373,12 @@ body {
 }
 
 .error{
-  border:1px solid red
+  border:2px solid red;
+  color: red;
 }
-
+.info-required{
+  color: red;
+}
 
 .form {
   position: relative;
