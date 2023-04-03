@@ -125,13 +125,14 @@ export default function Login() {
       <div className="form-container">
         <Form
           onSubmit={handleSubmit}
-          render={({ handleSubmit, submitting, pristine, values }) => (
+          render={({ handleSubmit, submitting, submitError, pristine, values }) => (
             <form onSubmit={handleSubmit}>
               <Field name="username" validate={required}>
                 {({ input, meta }) => (
-                  <div>
+                  <div  >
+                    {console.log(meta)}
                     <label>Username</label>
-                    <input {...input} type="text" placeholder="Username" />
+                    <input {...input} className={meta.touched && meta.error ? "error" : ''} type="text" placeholder="Username" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -140,12 +141,12 @@ export default function Login() {
                 {({ input, meta }) => (
                   <div>
                     <label>Password</label>
-                    <input {...input} type="password" placeholder="Password" />
+                    <input {...input} className={meta.touched && meta.error ? "error" : ''}  type="password" placeholder="Password" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               </Field>
-              
+              {submitError && <div className="error">{submitError}</div>}
               <div className="buttons">
                 <button type="submit" disabled={submitting || pristine}>
                   Submit

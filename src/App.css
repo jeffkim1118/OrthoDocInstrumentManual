@@ -372,6 +372,11 @@ body {
   background-color: #9f2b68;
 }
 
+.error{
+  border:1px solid red
+}
+
+
 .form {
   position: relative;
   width: 720px;
