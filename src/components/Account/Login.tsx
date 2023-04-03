@@ -2,9 +2,9 @@
 // import { Button } from "react-bootstrap";
 // // import Form from "react-bootstrap/Form";
 // import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { login } from "../../features/userSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/userSlice";
 // import accountIcon from "../../components/images/account/account.png";
 // import padLock from "../../components/images/account/padlock.png";
 import { Form, Field } from "react-final-form";
@@ -17,8 +17,8 @@ export default function Login() {
   // const [verifyPassword, setVerifyPassword] = useState(true);
   // const [invalidAccount, checkAccount] = useState(true);
 
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // const handleLogin = (e: any) => {
   //   e.preventDefault();
@@ -87,13 +87,30 @@ export default function Login() {
   // };
 
   const handleSubmit = async (values:any) => {
-    window.alert(JSON.stringify(values,undefined,2))
+    // window.alert(JSON.stringify(values,undefined,2))
+    console.log(values)
+    
+      fetch(`http://localhost:3000/login`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("token", data.token);
+          dispatch(login(data.user));
+          navigate("/profile");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
 
-  const mustBeNumber = (value:any) =>
-    isNaN(value) ? "Must be a number" : undefined;
-  const minValue = (min:any) => (value:any) =>
-    isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`;
+  const mustBeNumber = (value:any) => (isNaN(value) ? "Must be a number" : undefined);
+  const minValue = (min:any) => (value:any) => (isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`);
   const composeValidators =
     (...validators:any) =>
     (value:any) =>
@@ -101,59 +118,37 @@ export default function Login() {
         (error:any, validator:any) => error || validator(value),
         undefined
       );
-  const required = (value: any) => (value ? undefined : "Required");
+  const required = (value:any) => (value ? undefined : "Required");
 
   return (
     <div className="background">
       <div className="form-container">
         <Form
           onSubmit={handleSubmit}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
+          render={({ handleSubmit, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>
-              <Field name="firstName" validate={required}>
+              <Field name="username" validate={required}>
                 {({ input, meta }) => (
                   <div>
-                    <label>First Name</label>
-                    <input {...input} type="text" placeholder="First Name" />
+                    <label>Username</label>
+                    <input {...input} type="text" placeholder="Username" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               </Field>
-              <Field name="lastName" validate={required}>
+              <Field name="password" validate={required}>
                 {({ input, meta }) => (
                   <div>
-                    <label>Last Name</label>
-                    <input {...input} type="text" placeholder="Last Name" />
+                    <label>Password</label>
+                    <input {...input} type="password" placeholder="Password" />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               </Field>
-              <Field
-                name="age"
-                validate={composeValidators(
-                  required,
-                  mustBeNumber,
-                  minValue(18)
-                )}
-              >
-                {({ input, meta }) => (
-                  <div>
-                    <label>Age</label>
-                    <input {...input} type="text" placeholder="Age" />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
+              
               <div className="buttons">
-                <button type="submit" disabled={submitting}>
+                <button type="submit" disabled={submitting || pristine}>
                   Submit
-                </button>
-                <button
-                  type="button"
-                  onClick={form.reset}
-                  disabled={submitting || pristine}
-                >
-                  Reset
                 </button>
               </div>
               <pre>{JSON.stringify(values,undefined,2)}</pre>
