@@ -20,6 +20,8 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+
   // const handleLogin = (e: any) => {
   //   e.preventDefault();
   //   if (username && password) {
@@ -86,56 +88,69 @@ export default function Login() {
   //   }
   // };
 
-  const handleSubmit = async (values:any) => {
-    // window.alert(JSON.stringify(values,undefined,2))
-    console.log(values)
-    
-      fetch(`http://localhost:3000/login`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
+  const handleSubmit = async (values: any) => {
+    await sleep(300);
+    fetch(`http://localhost:3000/login`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("token", data.token);
+        dispatch(login(data.user));
+        navigate("/profile");
       })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data)
-          localStorage.setItem("token", data.token);
-          dispatch(login(data.user));
-          navigate("/profile");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .catch((error) => {
+        return {error}
+      });
   };
 
-  const mustBeNumber = (value:any) => (isNaN(value) ? "Must be a number" : undefined);
-  const minValue = (min:any) => (value:any) => (isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`);
-  const composeValidators =
-    (...validators:any) =>
-    (value:any) =>
-      validators.reduce(
-        (error:any, validator:any) => error || validator(value),
-        undefined
-      );
-  const requiredUsername = (value:any) => (value ? undefined : <span className="info-required">Required username</span>);
-  
-  const requiredPassword = (value:any) => (value ? undefined : <span className="info-required">Required password</span>)
+  // const mustBeNumber = (value:any) => (isNaN(value) ? "Must be a number" : undefined);
+  // const minValue = (min:any) => (value:any) => (isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`);
+  // const composeValidators =
+  //   (...validators:any) =>
+  //   (value:any) =>
+  //     validators.reduce(
+  //       (error:any, validator:any) => error || validator(value),
+  //       undefined
+  //     );
+  const requiredUsername = (value: any) =>
+    value ? undefined : (
+      <span className="info-required">Required username</span>
+    );
+  const requiredPassword = (value: any) =>
+    value ? undefined : (
+      <span className="info-required">Required password</span>
+    );
 
   return (
     <div className="background">
       <div className="form-container">
         <Form
           onSubmit={handleSubmit}
-          render={({ handleSubmit, submitting, submitError, pristine, values }) => (
+          render={({
+            handleSubmit,
+            submitting,
+            submitError,
+            pristine,
+            values,
+          }) => (
             <form onSubmit={handleSubmit}>
               <Field name="username" validate={requiredUsername}>
                 {({ input, meta }) => (
                   <div>
-                    {console.log(meta)}
                     <label>Username</label>
-                    <BForm.Control {...input} className={meta.touched && meta.error ? "error" : ''} type="text" placeholder="Username" />
+                    <BForm.Control
+                      {...input}
+                      className={meta.touched && meta.error ? "error" : ""}
+                      type="text"
+                      placeholder="Username"
+                    />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -144,7 +159,12 @@ export default function Login() {
                 {({ input, meta }) => (
                   <div>
                     <label>Password</label>
-                    <BForm.Control {...input} className={meta.touched && meta.error ? "error" : ''}  type="password" placeholder="Password" />
+                    <BForm.Control
+                      {...input}
+                      className={meta.touched && meta.error ? "error" : ""}
+                      type="password"
+                      placeholder="Password"
+                    />
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -155,7 +175,7 @@ export default function Login() {
                   Submit
                 </Button>
               </div>
-              <pre>{JSON.stringify(values,undefined,2)}</pre>
+              <pre>{JSON.stringify(values, undefined, 2)}</pre>
             </form>
           )}
         />
