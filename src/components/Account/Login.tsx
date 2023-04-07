@@ -15,7 +15,7 @@ export default function Login() {
 
   // const [verifyUsername, setVerifyUsername] = useState(true);
   // const [verifyPassword, setVerifyPassword] = useState(true);
-  // const [invalidAccount, checkAccount] = useState(true);
+  const [invalidAccount, checkAccount] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -58,36 +58,6 @@ export default function Login() {
   //   }
   // };
 
-  // const handleBlur = () => {
-  //   const usernameInput: any =
-  //     document.getElementsByClassName("username-input")[0];
-  //   const passwordInput: any =
-  //     document.getElementsByClassName("password-input")[0];
-  //   if (!usernameInput.value) {
-  //     usernameInput.style.border = "1px solid red";
-  //     setVerifyUsername(false);
-  //   }
-  //   if (!passwordInput.value) {
-  //     passwordInput.style.border = "1px solid red";
-  //     setVerifyPassword(false);
-  //   }
-  // };
-
-  // const handleFocus = () => {
-  //   const usernameInput: any =
-  //     document.getElementsByClassName("username-input")[0];
-  //   const passwordInput: any =
-  //     document.getElementsByClassName("password-input")[0];
-  //   if (usernameInput.value) {
-  //     usernameInput.style.border = "1px solid black";
-  //     setVerifyUsername(true);
-  //   }
-  //   if (passwordInput.value) {
-  //     passwordInput.style.border = "1px solid black";
-  //     setVerifyPassword(true);
-  //   }
-  // };
-
   const handleSubmit = async (values: any) => {
     await sleep(300);
     fetch(`http://localhost:3000/login`, {
@@ -106,7 +76,8 @@ export default function Login() {
         navigate("/profile");
       })
       .catch((error) => {
-        return {error}
+        console.log(error);
+        checkAccount(false);
       });
   };
 
@@ -133,50 +104,67 @@ export default function Login() {
       <div className="form-container">
         <Form
           onSubmit={handleSubmit}
-          render={({
-            handleSubmit,
-            submitting,
-            submitError,
-            pristine,
-            values,
-          }) => (
-            <form onSubmit={handleSubmit}>
-              <Field name="username" validate={requiredUsername}>
-                {({ input, meta }) => (
-                  <div>
-                    <label>Username</label>
-                    <BForm.Control
-                      {...input}
-                      className={meta.touched && meta.error ? "error" : ""}
-                      type="text"
-                      placeholder="Username"
-                    />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              <Field name="password" validate={requiredPassword}>
-                {({ input, meta }) => (
-                  <div>
-                    <label>Password</label>
-                    <BForm.Control
-                      {...input}
-                      className={meta.touched && meta.error ? "error" : ""}
-                      type="password"
-                      placeholder="Password"
-                    />
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                  </div>
-                )}
-              </Field>
-              {submitError && <div className="error">{submitError}</div>}
-              <div className="buttons">
-                <Button type="submit" disabled={submitting || pristine}>
-                  Submit
-                </Button>
+          render={({ handleSubmit, submitting, pristine, values }) => (
+            <div className="form d-md-flex align-items-center justify-content-between">
+              <div className="box-1 mt-md-0 mt-5">
+                <img
+                  src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                  className="login-pic"
+                  alt="login-pic"
+                />
               </div>
-              <pre>{JSON.stringify(values, undefined, 2)}</pre>
-            </form>
+              <div className="box-2 d-flex flex-column h-100">
+                <div className="mt-5" />
+                <form className="form-display" onSubmit={handleSubmit}>
+                  <h1 className="login-title"><em>Login</em></h1>
+                  {!invalidAccount ? (
+                    <span className="error-msg">
+                      Login failed. Please check your username or password
+                      again.
+                    </span>
+                  ) : null}
+                  <Field name="username" validate={requiredUsername}>
+                    {({ input, meta }) => (
+                      <div>
+                        <label>Username</label>
+                        <BForm.Control
+                          {...input}
+                          className={meta.touched && meta.error ? "error" : ""}
+                          type="text"
+                          placeholder="Username"
+                        />
+                        {meta.error && meta.touched && (
+                          <span className="error-msg">{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+                  <Field name="password" validate={requiredPassword}>
+                    {({ input, meta }) => (
+                      <div>
+                        <label>Password</label>
+                        <BForm.Control
+                          {...input}
+                          className={meta.touched && meta.error ? "error" : ""}
+                          type="password"
+                          placeholder="Password"
+                        />
+                        {meta.error && meta.touched && (
+                          <span className="error-msg">{meta.error}</span>
+                        )}
+                      </div>
+                    )}
+                  </Field>
+
+                  <div className="buttons">
+                    <Button className="login-btn" type="submit" disabled={submitting || pristine}>
+                      Submit
+                    </Button>
+                  </div>
+                  <pre>{JSON.stringify(values, undefined, 2)}</pre>
+                </form>
+              </div>
+            </div>
           )}
         />
 
