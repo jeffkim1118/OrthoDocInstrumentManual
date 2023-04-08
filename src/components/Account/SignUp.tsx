@@ -39,15 +39,18 @@ export default function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        localStorage.setItem("token", data.token);
-        dispatch(login(data));
-        navigate('/profile')
+        if (data.ok) {
+          localStorage.setItem("token", data.token);
+          dispatch(login(data));
+          navigate("/profile");
+        }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         setRegistrationStatus(false);
       });
-      
+
+      console.log(registrationStatus);
   };
   return (
     <div className="background">
@@ -56,13 +59,11 @@ export default function SignUp() {
           <h1 className="signup-form-heading">
             <em>Sign Up</em>
           </h1>
-          <Form.Group className="mb-3" controlId="formBasicText">
+          {!registrationStatus ? <span className="error-msg">Account creation failed. Check your inputs again.</span> : ""}
+          <Form.Group className="mb-3" controlId="formBasicText">     
             <Form.Label>First Name</Form.Label>
             <div className="icons">
-              <img
-                src={accountIcon}
-                alt="account-icon"
-              ></img>
+              <img src={accountIcon} alt="account-icon"></img>
               <Form.Control
                 type="text"
                 placeholder="First Name"
@@ -74,10 +75,7 @@ export default function SignUp() {
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>Last Name</Form.Label>
             <div className="icons">
-              <img
-                src={accountIcon}
-                alt="account-icon"
-              ></img>
+              <img src={accountIcon} alt="account-icon"></img>
               <Form.Control
                 type="text"
                 placeholder="Last Name"
@@ -89,10 +87,7 @@ export default function SignUp() {
           <Form.Group className="mb-3" controlId="formBasicText">
             <Form.Label>Username</Form.Label>
             <div className="icons">
-              <img
-                src={accountIcon}
-                alt="account-icon"
-              ></img>
+              <img src={accountIcon} alt="account-icon"></img>
               <Form.Control
                 type="text"
                 placeholder="Enter Username"
@@ -105,10 +100,7 @@ export default function SignUp() {
             <Form.Label>Email address</Form.Label>
             <br />
             <div className="icons">
-              <img
-                src={emailIcon}
-                alt="email-icon"
-              ></img>
+              <img src={emailIcon} alt="email-icon"></img>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
@@ -120,10 +112,7 @@ export default function SignUp() {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <div className="icons">
-              <img
-                src={padLock}
-                alt="password-icon"
-              ></img>
+              <img src={padLock} alt="password-icon"></img>
               <Form.Control
                 type="password"
                 placeholder="Password"

@@ -12,6 +12,7 @@ import SignUp from './components/Account/SignUp';
 import Profile from './components/Profile/Profile';
 import Dashboard from './components/Profile/Dashboard';
 import Update from './components/Profile/Update';
+import PublicChat from './components/PublicChat';
 
 function App() {
   const user = useSelector(selectUser);
@@ -42,7 +43,9 @@ function App() {
       <header>  
         <Navbar />
       </header>
-     
+      <div>
+        <PublicChat />
+      </div>
       <Routes>
         <Route path="/" index element={<Home />}></Route>
         <Route path="/adjustment" element={<Page />}></Route>
@@ -58,10 +61,9 @@ function App() {
         {user ? <Route path='profile' element={<Profile/>}>
           <Route path='dashboard' element={<Dashboard/>}></Route>
           <Route path="update" element={<Update/>}></Route>
-        </Route> : null}
-        
+        </Route> : null} 
       </Routes>
-
+      
       <footer>
         <Footer />
       </footer>

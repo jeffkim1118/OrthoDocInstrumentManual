@@ -1,18 +1,15 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import BForm from "react-bootstrap/Form";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
-// import accountIcon from "../../components/images/account/account.png";
-// import padLock from "../../components/images/account/padlock.png";
+import accountIcon from "../../components/images/account/account.png";
+import padLock from "../../components/images/account/padlock.png";
 import { Form, Field } from "react-final-form";
 
 export default function Login() {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
   // const [verifyUsername, setVerifyUsername] = useState(true);
   // const [verifyPassword, setVerifyPassword] = useState(true);
   const [invalidAccount, checkAccount] = useState(true);
@@ -116,7 +113,9 @@ export default function Login() {
               <div className="box-2 d-flex flex-column h-100">
                 <div className="mt-5" />
                 <form className="form-display" onSubmit={handleSubmit}>
-                  <h1 className="login-title"><em>Login</em></h1>
+                  <h1 className="login-title">
+                    <em>Login</em>
+                  </h1>
                   {!invalidAccount ? (
                     <span className="error-msg">
                       Login failed. Please check your username or password
@@ -127,12 +126,25 @@ export default function Login() {
                     {({ input, meta }) => (
                       <div>
                         <label>Username</label>
-                        <BForm.Control
-                          {...input}
-                          className={meta.touched && meta.error ? "error" : ""}
-                          type="text"
-                          placeholder="Username"
-                        />
+                        <div style={{ display: "flex" }}>
+                          <img
+                            src={accountIcon}
+                            alt="account-icon"
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              margin: "auto 5px",
+                            }}
+                          ></img>
+                          <BForm.Control
+                            {...input}
+                            className={
+                              meta.touched && meta.error ? "error" : ""
+                            }
+                            type="text"
+                            placeholder="Username"
+                          />
+                        </div>
                         {meta.error && meta.touched && (
                           <span className="error-msg">{meta.error}</span>
                         )}
@@ -143,12 +155,25 @@ export default function Login() {
                     {({ input, meta }) => (
                       <div>
                         <label>Password</label>
-                        <BForm.Control
-                          {...input}
-                          className={meta.touched && meta.error ? "error" : ""}
-                          type="password"
-                          placeholder="Password"
-                        />
+                        <div style={{ display: "flex" }}>
+                          <img
+                            src={padLock}
+                            alt="password-icon"
+                            style={{
+                              width: "20px",
+                              height: "20px",
+                              margin: "auto 5px",
+                            }}
+                          ></img>
+                          <BForm.Control
+                            {...input}
+                            className={
+                              meta.touched && meta.error ? "error" : ""
+                            }
+                            type="password"
+                            placeholder="Password"                          
+                          />
+                        </div>
                         {meta.error && meta.touched && (
                           <span className="error-msg">{meta.error}</span>
                         )}
@@ -157,9 +182,18 @@ export default function Login() {
                   </Field>
 
                   <div className="buttons">
-                    <Button className="login-btn" type="submit" disabled={submitting || pristine}>
+                    <Button
+                      className="login-btn"
+                      type="submit"
+                      disabled={submitting || pristine}
+                    >
                       Submit
                     </Button>
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <Link to={"/signup"}>Don't have an account?</Link>
+                    <br />
+                    <Link to={"/"}>Forgot your password?</Link>
                   </div>
                   <pre>{JSON.stringify(values, undefined, 2)}</pre>
                 </form>
