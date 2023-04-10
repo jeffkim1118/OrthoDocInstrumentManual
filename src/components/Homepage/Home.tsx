@@ -1,5 +1,4 @@
 import Content from "./Content"
-import landingPage from "../images/landingPage.jpg";
 
 export default function Home(){
     const handleClickScroll = () => {
