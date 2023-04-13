@@ -551,14 +551,14 @@ input:invalid[focused="true"] ~ span{
 }
 
 /* Add styles to the form container */
-.form-container {
+.chat-form-container {
   max-width: 500px;
   padding: 10px;
   background-color: white;
 }
 
 /* Full-width textarea */
-.form-container textarea {
+.chat-form-container textarea {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -570,13 +570,13 @@ input:invalid[focused="true"] ~ span{
 }
 
 /* When the textarea gets focus, do something */
-.form-container textarea:focus {
+.chat-form-container textarea:focus {
   background-color: #ddd;
   outline: none;
 }
 
 /* Set a style for the submit/send button */
-.form-container .btn {
+.chat-form-container .btn {
   background-color: #04AA6D;
   color: white;
   padding: 16px 20px;
@@ -589,12 +589,12 @@ input:invalid[focused="true"] ~ span{
 }
 
 /* Add a red background color to the cancel button */
-.form-container .cancel {
+.chat-form-container .cancel {
   background-color: red;
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
+.chat-form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
 

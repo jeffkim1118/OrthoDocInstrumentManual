@@ -11,6 +11,16 @@ export default function PublicChat() {
   const [newMessage, setNewMessage] = useState("");
   const [msgArray, setMsgArray] = useState(chatMessages);
 
+  const [messages, setMessages] = useState([]);
+  
+ useEffect(() => {
+  const date = new Date();
+  const todaysDate = date.toLocaleDateString();
+  const newMsg = { user: "me", message: newMessage, date: `${todaysDate}`};
+  
+ }, [])
+
+
   const openForm = () => {
     let chatbox = document.getElementById("myForm");
     if (chatbox) {
@@ -46,13 +56,14 @@ export default function PublicChat() {
     }
   }, [])
 
+  
   return (
     <>
       <button className="open-button" onClick={() => openForm()}>
         Chat
       </button>
       <div className="chat-popup" id="myForm">
-        <form className="form-container" onSubmit={(e) => handleSubmit(e)}>
+        <form className="chat-form-container" onSubmit={(e) => handleSubmit(e)}>
           <h1>Open Chat</h1>
           <div className="text-messages-container" ref={bottomRef}>
             {msgArray.map((msg) => (
