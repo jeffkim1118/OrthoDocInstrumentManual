@@ -195,7 +195,7 @@ export default function Login() {
                     <br />
                     <Link to={"/"}>Forgot your password?</Link>
                   </div>
-                  <pre>{JSON.stringify(values, undefined, 2)}</pre>
+                  {/* <pre>{JSON.stringify(values, undefined, 2)}</pre> */}
                 </form>
               </div>
             </div>

@@ -44,7 +44,7 @@ function App() {
         <Navbar />
       </header>
       <div>
-        <PublicChat />
+        {localStorage.getItem('token') ?  <PublicChat /> : null}
       </div>
       <Routes>
         <Route path="/" index element={<Home />}></Route>

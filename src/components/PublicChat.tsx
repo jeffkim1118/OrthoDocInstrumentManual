@@ -1,26 +1,26 @@
 import { useState, useEffect, useRef } from "react";
 import Chat from "./Chat";
+import { createConsumer } from "@rails/actioncable"
+
 
 export default function PublicChat() {
+  const token = localStorage.getItem('token');
+  let decoded:any = token?.split('.')[1];
+  let decodedUser = JSON.parse(atob(decoded))
+
   const bottomRef = useRef<HTMLInputElement>(null);
-  let chatMessages = [
-    { user: "me", message: "Hello all!", date: "April 8 2023" },
-    { user: "mike", message: "How are you?", date: "April 8 2023" },
-    { user: "jane", message: "I'm fine, thanks!", date: "April 9 2023" },
-  ]
-  const [newMessage, setNewMessage] = useState("");
-  const [msgArray, setMsgArray] = useState(chatMessages);
-
-  const [messages, setMessages] = useState([]);
   
- useEffect(() => {
-  const date = new Date();
-  const todaysDate = date.toLocaleDateString();
-  const newMsg = { user: "me", message: newMessage, date: `${todaysDate}`};
+  const [newMessage, setNewMessage] = useState('')
+
+  const [msgData, setMsgData] = useState<any[]>([])
   
- }, [])
-
-
+  useEffect(() => {
+    fetch('http://localhost:3000/api/conversations/1')
+    .then(res => res.json())
+    .then(data => setMsgData(data.messages))
+  },[])
+ 
+  
   const openForm = () => {
     let chatbox = document.getElementById("myForm");
     if (chatbox) {
@@ -35,16 +35,55 @@ export default function PublicChat() {
     }
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
+    if(newMessage !== ''){
+      fetch(`http://localhost:3000/api/messages`, {
+        method: 'POST',
+        headers: {
+          'content-type' : 'application/json',
+        },
+        body: JSON.stringify({
+          content: newMessage,
+          user_id: decodedUser.id,
+          conversation_id: 1
+        })
+      })
+      .then(res => res.json())
+      .then((newData) => {
+        setMsgData((oldData) => [...oldData, newData])
+        setNewMessage("")
+      })
+    }
+    // const date = new Date();
+    // const todaysDate = date.toLocaleDateString();
+    // if(newMessage !== ''){
+    //   // setNewMessage('')
+    //   fetch(`http://localhost:3000/messages`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'content-type' : 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       content: newMessage,
+    //       postedDateTime: todaysDate,
+    //       conversation_id: params.id,
+    //       user_id: user.id
+    //     })
+    //   })
+    // }
+  }
 
-    const date = new Date();
-    const todaysDate = date.toLocaleDateString();
-    const newMsg = { user: "me", message: newMessage, date: `${todaysDate}` };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+
+  //   const date = new Date();
+  //   const todaysDate = date.toLocaleDateString();
+  //   const newMsg = { user: "me", message: newMessage, date: `${todaysDate}` };
    
-    setMsgArray((oldArray) => [...oldArray, newMsg]);
-    setNewMessage("");
-  };
+  //   setMsgArray((oldArray) => [...oldArray, newMsg]);
+  //   setNewMessage("");
+  // };
 
   // This automatically scroll down the chat messages to the bottom to show the latest messages.
   useEffect(() => {
@@ -66,8 +105,8 @@ export default function PublicChat() {
         <form className="chat-form-container" onSubmit={(e) => handleSubmit(e)}>
           <h1>Open Chat</h1>
           <div className="text-messages-container" ref={bottomRef}>
-            {msgArray.map((msg) => (
-              <Chat msg={msg}/>
+            {msgData.map((msg:any) => (
+              <Chat msg={msg} decodedUser={decodedUser} key={msg.id}/>
             ))}
           </div>
           <textarea

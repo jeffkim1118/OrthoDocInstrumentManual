@@ -15,6 +15,7 @@ export default function Update() {
   const [newLastName, setNewLastName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [newBio, setNewBio] = useState('');
 
 
   const handleUpdate = (e:any) => {
@@ -26,6 +27,7 @@ export default function Update() {
       last_name: newLastName,
       password: newPassword,
       email: newEmail,
+      bio: newBio,
     }
 
     const token = localStorage.getItem('token');
@@ -42,7 +44,7 @@ export default function Update() {
     .then(data => {
       console.log(data)
       dispatch(login(data))
-      navigate('/profile')
+      navigate('/')
     })
   }
 
@@ -64,7 +66,6 @@ export default function Update() {
     })
     .catch(error => console.log(error))
     }
-    
   }
 
   return (
@@ -72,6 +73,10 @@ export default function Update() {
       <div className="update-form-container">
         <h1>Update</h1>
         <form onSubmit={(e) => handleUpdate(e)}>
+          <label>{user.bio === null ? "Add bio" : user.bio}</label>
+          <br/>
+          <textarea value={newBio} onChange={(e) => setNewBio(e.target.value)} placeholder="Type in your biography..."></textarea>
+          <br/>
           <label>{user.username}</label>
           <input placeholder="Username" type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
           <br />
