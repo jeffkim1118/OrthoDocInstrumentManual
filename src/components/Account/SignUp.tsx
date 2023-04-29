@@ -14,10 +14,11 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
+  const [avatar, setSelectedAvatar] = useState();
   const [registrationStatus, setRegistrationStatus] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ 
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -27,6 +28,7 @@ export default function SignUp() {
       last_name,
       email,
       password,
+      avatar,
     };
 
     fetch(`http://localhost:3000/api/users`, {
@@ -60,6 +62,9 @@ export default function SignUp() {
             <em>Sign Up</em>
           </h1>
           {!registrationStatus ? <span className="error-msg">Account creation failed. Check your inputs again.</span> : ""}
+
+          <input type="file" name="myImage" onChange={(e:any) => {console.log(e.target.files[0]);setSelectedAvatar(e.target.files[0])}}></input>
+          
           <Form.Group className="mb-3" controlId="formBasicText">     
             <Form.Label>First Name</Form.Label>
             <div className="icons">

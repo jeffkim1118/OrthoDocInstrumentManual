@@ -634,6 +634,7 @@ input:invalid[focused="true"] ~ span{
 }
 
 .mychat{
+  text-align: left;
   display: inline-block;
   right: 0;
   background-color: #23a6d5;
@@ -645,13 +646,14 @@ input:invalid[focused="true"] ~ span{
 .otherchat{
   text-align: left;
   border-radius: 10px;
-  background-color: #5f43b2;
+  background-color: #919191;
   width: fit-content;
   padding: 5px;
 }
 
 .msg-time{
   font-size: 12px;
+  color: rgb(29, 29, 29);
 }
 
 

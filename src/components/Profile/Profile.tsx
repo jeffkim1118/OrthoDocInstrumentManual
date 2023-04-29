@@ -45,6 +45,7 @@ export default function Profile() {
         }}
         onClick={() => handleShowProfilePage()}
       >
+        {user.avatar? <div>user.avatar</div> : null}
         <Link to="/profile" style={{ textDecoration: "none", color: "black" }}>
           <img
             src={
