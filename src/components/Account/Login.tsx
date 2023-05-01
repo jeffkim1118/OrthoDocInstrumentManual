@@ -193,7 +193,7 @@ export default function Login() {
                   <div style={{ textAlign: "center" }}>
                     <Link to={"/signup"}>Don't have an account?</Link>
                     <br />
-                    <Link to={"/"}>Forgot your password?</Link>
+                    <Link to={"/recover"}>Forgot your password?</Link>
                   </div>
                   {/* <pre>{JSON.stringify(values, undefined, 2)}</pre> */}
                 </form>

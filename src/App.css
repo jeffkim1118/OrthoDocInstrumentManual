@@ -212,7 +212,7 @@ body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
-  height: 100vh;
+  height: fit-content;
 }
 
 @keyframes gradient {
@@ -378,6 +378,11 @@ body {
   margin: 0;
 }
 
+.error::placeholder{
+  color: red;
+  opacity: 1;
+}
+
 .error-msg{
   font-size: 12px;
   color: #9f2b68;
@@ -482,6 +487,9 @@ body {
 }
 
 /* Sign Up */
+.signup-container{
+  padding: 30px;
+}
 .signup-form {
   display: flex;
   flex-direction: column;
@@ -524,6 +532,16 @@ input:invalid[focused="true"] ~ span{
   display: block;
 }
 
+/* ---------------------- Recover password form -------------------------*/
+
+.recover-password-form{
+  text-align: center;
+  background: rgba(226, 226, 226, 0.8);
+}
+
+.recover-btn{
+  margin: 10px;
+}
 
 /* -------------------- Live Chat -------------------------- */
 .open-button {
