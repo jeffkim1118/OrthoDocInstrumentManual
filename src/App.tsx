@@ -17,7 +17,7 @@ import PublicChat from './components/PublicChat';
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  
+  debugger;
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
