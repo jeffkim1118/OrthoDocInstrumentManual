@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { ActionCable } from 'react-actioncable-provider';
 import Chat from "./Chat";
-import { createConsumer } from "@rails/actioncable"
 
 
 export default function PublicChat() {
@@ -12,8 +12,8 @@ export default function PublicChat() {
   
   const [newMessage, setNewMessage] = useState('')
 
-  const [msgData, setMsgData] = useState<any[]>([])
-  
+  const [msgData, setMsgData] = useState<any[]>([]);
+
   useEffect(() => {
     fetch('http://localhost:3000/api/conversations/1')
     .then(res => res.json())
@@ -35,8 +35,13 @@ export default function PublicChat() {
     }
   };
 
+  const something = (e:any) => {
+    debugger;
+  }
+
   const handleSubmit = (e:any) => {
     e.preventDefault();
+    debugger;
     if(newMessage !== ''){
       fetch(`http://localhost:3000/api/messages`, {
         method: 'POST',
@@ -53,6 +58,9 @@ export default function PublicChat() {
       .then((newData) => {
         setMsgData((oldData) => [...oldData, newData])
         setNewMessage("")
+      })
+      .catch(error => {
+        debugger;
       })
     }
     // const date = new Date();
@@ -101,6 +109,10 @@ export default function PublicChat() {
       <button className="open-button" onClick={() => openForm()}>
         Chat
       </button>
+      <ActionCable
+        channel={{ channel: 'MessagesChannel' }}
+        onReceived={something}
+      />
       <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={(e) => handleSubmit(e)}>
           <h1>Open Chat</h1>

@@ -18,7 +18,7 @@ import Recover from './components/Account/Recover';
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-  
+  debugger;
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');

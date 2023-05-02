@@ -9,7 +9,7 @@ import { useEffect } from "react";
 
 export default function Profile() {
   const user: any = useSelector(selectUser);
-  const dateString = user.created_at.toString();
+  const dateString = user?.created_at?.toString() || '';
   const formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
     month: "long",
@@ -131,9 +131,9 @@ export default function Profile() {
               <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
 
               <label>Joined</label>
-              <time id="user-data">
+              {/* <time id="user-data">
                 <p>&emsp;{formatter.format(Date.parse(dateString))}</p>
-              </time>
+              </time> */}
             </div>
           </div>
         </div>
