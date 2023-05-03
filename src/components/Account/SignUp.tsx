@@ -48,11 +48,12 @@ export default function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.ok) {
+          // console.log(data.token)
+          console.log(data)
           localStorage.setItem("token", data.token);
-          dispatch(login(data));
+          dispatch(login(data.user));
           navigate("/profile");
-        }
+        
       })
       .catch((error) => {
         console.log(error);

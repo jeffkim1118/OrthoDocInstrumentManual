@@ -4,6 +4,8 @@ import { createConsumer } from "@rails/actioncable"
 
 
 export default function PublicChat() {
+  let ws = new WebSocket('ws://localhost:3000/cable');
+  console.log(ws)
   const token = localStorage.getItem('token');
   let decoded:any = token?.split('.')[1];
   let decodedUser = JSON.parse(atob(decoded))

@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import {useEffect} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import { selectUser,login } from './features/userSlice';
+import { selectUser,login, getUser } from './features/userSlice';
+// import {fetchUser} from "./features/userSlice"
 import Home from './components/Homepage/Home';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
@@ -14,16 +15,18 @@ import Dashboard from './components/Profile/Dashboard';
 import Update from './components/Profile/Update';
 import PublicChat from './components/PublicChat';
 import Recover from './components/Account/Recover';
+import type { RootState, AppDispatch } from './app/Store';
 
 function App() {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       let decoded:any = token?.split('.')[1];
       let decodedUser = JSON.parse(atob(decoded))
+      
       fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
         method: 'GET',
         headers: {
@@ -34,11 +37,15 @@ function App() {
       })
       .then(res => res.json())
       .then((data) => {
-      dispatch(login(data))
+          dispatch(login(data))
       })
+    
+    // dispatch(getUser());
     }
+    // debugger;
+    // console.log(dispatch(fetchUser('hello')))
   },[])
- 
+  
   return (
     <div className="App">
       <header>  

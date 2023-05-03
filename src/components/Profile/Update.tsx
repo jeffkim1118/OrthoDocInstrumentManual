@@ -42,7 +42,6 @@ export default function Update() {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       dispatch(login(data))
       navigate('/')
     })
