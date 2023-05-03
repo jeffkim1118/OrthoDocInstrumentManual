@@ -64,6 +64,7 @@ function App() {
         <Route path='/appliancecheck' element={<Page />}></Route>
         <Route path='/mse' element={<Page />}></Route>
         <Route path='/scan' element={<Page />}></Route>
+        <Route path='/startrecord' element={<Page />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/recover' element={<Recover/>}></Route>

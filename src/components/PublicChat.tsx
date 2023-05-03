@@ -37,13 +37,8 @@ export default function PublicChat() {
     }
   };
 
-  const something = (e:any) => {
-    debugger;
-  }
-
   const handleSubmit = (e:any) => {
     e.preventDefault();
-    debugger;
     if(newMessage !== ''){
       fetch(`http://localhost:3000/api/messages`, {
         method: 'POST',
@@ -62,7 +57,7 @@ export default function PublicChat() {
         setNewMessage("")
       })
       .catch(error => {
-        debugger;
+        console.log(error)
       })
     }
     // const date = new Date();
@@ -111,10 +106,10 @@ export default function PublicChat() {
       <button className="open-button" onClick={() => openForm()}>
         Chat
       </button>
-      <ActionCable
+      {/* <ActionCable
         channel={{ channel: 'MessagesChannel' }}
         onReceived={something}
-      />
+      /> */}
       <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={(e) => handleSubmit(e)}>
           <h1>Open Chat</h1>

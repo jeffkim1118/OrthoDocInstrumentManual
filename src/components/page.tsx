@@ -4,8 +4,8 @@ import ModalP from "./ModalPopup/ModalP";
 function Page(){
     const information = obj[window.location.pathname];
     const {name, image, desc} = information
-    console.log(image)
-
+    console.log(information)
+    console.log(obj['/startrecord'])
     return(
         <div id="kit-container">
             <div className="d-flex flex-column justify-content-center w-100 h-100"></div>
