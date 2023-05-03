@@ -19,7 +19,7 @@ import type { RootState, AppDispatch } from './app/Store';
 
 function App() {
   const user = useSelector(selectUser);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
