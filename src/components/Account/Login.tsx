@@ -67,14 +67,11 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        debugger;
-        console.log(data);
         localStorage.setItem("token", data.token);
         dispatch(login(data.user));
         navigate("/profile");
       })
       .catch((error) => {
-        debugger;
         console.log(error);
         checkAccount(false);
       });
