@@ -16,7 +16,7 @@ export default function SignUp() {
   // const [email, setEmail] = useState("");
   // const [first_name, setFirstName] = useState("");
   // const [last_name, setLastName] = useState("");
-  const [avatar, setSelectedAvatar] = useState(null);
+  const [avatar, setSelectedAvatar] = useState<any | null>(null);
   const [registrationStatus, setRegistrationStatus] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,15 +24,6 @@ export default function SignUp() {
   
   const onSubmit = (values:any) => {
     
-    // const newUser = {
-    //   username,
-    //   first_name,
-    //   last_name,
-    //   email,
-    //   password,
-    //   bio:null,
-    //   avatar,
-    // };
     if(!values.bio){
       values.bio = 'Your biography goes here...'
     }
@@ -99,7 +90,7 @@ export default function SignUp() {
               <h1 className="signup-form-heading">
                 <em>Sign Up</em>
               </h1>
-              <FileField name="files" />
+              <FileField name="avatar" accept="image/*"></FileField>
               {/* <Field name="avatar">
                 {({ input, meta }) => (
                   <BForm.Group className="mb-3" controlId="formBasicText">
@@ -110,6 +101,7 @@ export default function SignUp() {
                         {...input}
                         type="file"
                         placeholder="Avatar"
+                        accept="image/*"
                         className={meta.touched && meta.error ? "error" : ""}
                       />
                     </div>
