@@ -10,7 +10,7 @@
 }
 
 html {
-  width: 100%;
+  height: fit-content;
 }
 
 body {
@@ -53,6 +53,17 @@ body {
   background-color: rgb(24, 24, 24);
 }
 
+.hero-background {
+  background-image: url(https://images.pexels.com/photos/16092760/pexels-photo-16092760.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load);
+  min-height: 900px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: grey;
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+}
+
 .hero-msg {
   text-align: center;
   height: 900px;
@@ -61,31 +72,24 @@ body {
   margin: auto;
 }
 
-#hero {
+.hero {
+  font-size: 70px;
   font-family: "Pacifico", cursive;
   color: whitesmoke;
-  margin: 30px;
+  margin: 23px auto;
   letter-spacing: 1px;
 }
 
 /* Content */
 .table-content-container {
   width: 100%;
-  min-height: 1400px;
   background-image: linear-gradient(#5f43b2, #804fb3, #b589d6);
-  --mask: radial-gradient(
-        154.43px at 50% calc(100% - 210px),
-        #000 99%,
-        #0000 101%
-      )
-      calc(50% - 150px) 0/300px 100%,
-    radial-gradient(154.43px at 50% calc(100% + 135px), #0000 99%, #000 101%)
-      50% calc(100% - 75px) / 300px 100% repeat-x;
-  -webkit-mask: var(--mask);
-  mask: var(--mask);
 }
 
 .content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 85%;
   margin: auto;
 }
@@ -111,13 +115,6 @@ body {
 #kit {
   width: 70%;
   margin: auto;
-  /* display: grid;
-    grid-template-columns: 30% 20% 20% 10%;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "header header header header"
-    ". pic pic desc"
-    "footer footer footer footer"; */
 }
 
 #kit h1 {
@@ -143,10 +140,12 @@ body {
 .home-card-content {
   margin: 10px;
   display: flex;
-  float: left;
   min-height: 400px;
 }
 
+.card {
+  width: 18rem;
+}
 /* Arrow down button */
 .arrow {
   position: absolute;
@@ -178,6 +177,63 @@ body {
   animation-delay: -0.4s;
 }
 
+@media only screen and (max-width: 767px) {
+  .hero-background {
+    background-image: url(https://img.freepik.com/free-vector/medical-pattern-design_1061-360.jpg?w=826&t=st=1683857348~exp=1683857948~hmac=21dea0905e9c508123eb6913323dba6b04059b7c779f18d1b3f286f7d79ed473);
+    min-height: 800px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: grey;
+  }
+  .hero-msg {
+    text-align: center;
+    line-height: 200px;
+    padding: 5%;
+    width: 75%;
+    margin: auto;
+    transform: translate(2%, 10%);
+  }
+  .hero {
+    font-size: 30px;
+    font-family: "Pacifico", cursive;
+    color: whitesmoke;
+    text-align: center;
+    letter-spacing: 7px;
+  }
+  .arrow {
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -25%);
+    transform: rotate(0deg);
+    cursor: pointer;
+    width: 30px;
+    padding: 15% 0;
+  }
+  .arrow span {
+    display: block;
+    width: 8.5vw;
+    height: 8.5vw;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+  }
+
+  .footer {
+    background-color: rgb(24, 24, 24);
+    width: 100%;
+    height: 30px;
+    color: whitesmoke;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .footer h1 {
+  }
+}
+
 @keyframes animate {
   0% {
     opacity: 0;
@@ -195,8 +251,10 @@ body {
 /* Footer */
 .footer {
   background-color: rgb(24, 24, 24);
-  width: 100%;
-  height: 180px;
+  color: whitesmoke;
+  text-decoration: none;
+  text-align: center;
+  height: fit-content;
 }
 
 /* Account */
@@ -374,18 +432,18 @@ body {
   background-color: #9f2b68;
 }
 
-.error{
-  border:1px solid red;
+.error {
+  border: 1px solid red;
   color: red;
   margin: 0;
 }
 
-.error::placeholder{
+.error::placeholder {
   color: red;
   opacity: 1;
 }
 
-.error-msg{
+.error-msg {
   font-size: 12px;
   color: #9f2b68;
   margin: 0;
@@ -395,11 +453,11 @@ body {
   color: red;
 } */
 
-.login-title{
+.login-title {
   text-align: center;
 }
 
-.form{
+.form {
   position: relative;
   width: 720px;
   height: 470px;
@@ -410,7 +468,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.form-display label{
+.form-display label {
   font-size: 15px;
 }
 
@@ -464,11 +522,11 @@ body {
   border: 2px solid #ee82ee;
 }
 
-.buttons{
+.buttons {
   text-align: center;
 }
 
-.login-btn{
+.login-btn {
   width: 100%;
 }
 
@@ -489,7 +547,7 @@ body {
 }
 
 /* Sign Up */
-.signup-container{
+.signup-container {
   padding: 30px;
 }
 .signup-form {
@@ -503,45 +561,44 @@ body {
   box-shadow: 8px 7px 5px 5px black;
 }
 
-.signup-form-heading{
+.signup-form-heading {
   margin: auto;
 }
 
-.formInput{
+.formInput {
   display: flex;
   flex-direction: column;
   width: 280px;
 }
 
-input{
+input {
   padding: 15px;
   margin: 10px 0px;
   border-radius: 5px;
   border: 1px solid gray;
 }
 
-
-label{
+label {
   font-size: 12px;
   color: gray;
 }
 
-input:invalid[focused="true"]{
+input:invalid[focused="true"] {
   border: 1px solid red;
 }
 
-input:invalid[focused="true"] ~ span{
+input:invalid[focused="true"] ~ span {
   display: block;
 }
 
 /* ---------------------- Recover password form -------------------------*/
 
-.recover-password-form{
+.recover-password-form {
   text-align: center;
   background: rgba(226, 226, 226, 0.8);
 }
 
-.recover-btn{
+.recover-btn {
   margin: 10px;
 }
 
@@ -586,7 +643,6 @@ input:invalid[focused="true"] ~ span{
   background: #f1f1f1;
   resize: none;
   min-height: 80px;
-  
 }
 
 /* When the textarea gets focus, do something */
@@ -597,13 +653,13 @@ input:invalid[focused="true"] ~ span{
 
 /* Set a style for the submit/send button */
 .chat-form-container .btn {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   opacity: 0.8;
   resize: none;
 }
@@ -614,11 +670,12 @@ input:invalid[focused="true"] ~ span{
 }
 
 /* Add some hover effects to buttons */
-.chat-form-container .btn:hover, .open-button:hover {
+.chat-form-container .btn:hover,
+.open-button:hover {
   opacity: 1;
 }
 
-.text-messages-container{
+.text-messages-container {
   width: 100%;
   height: 500px;
   padding: 15px;
@@ -629,31 +686,30 @@ input:invalid[focused="true"] ~ span{
   min-height: 300px;
   overflow-y: auto;
 }
-.text-messages-container::-webkit-scrollbar{
+.text-messages-container::-webkit-scrollbar {
   display: none;
 }
 
-.text-messages-container div{
+.text-messages-container div {
   margin-bottom: 20px;
- 
 }
 
-.text-messages-container .user-message-date{
+.text-messages-container .user-message-date {
   font-size: 11px;
   opacity: 0.8;
 }
 
-.text-messages-container .chat-user{
+.text-messages-container .chat-user {
   font-size: 13px;
   opacity: 0.8;
 }
 
-.chatbox-container{
+.chatbox-container {
   color: whitesmoke;
   text-align: right;
 }
 
-.mychat{
+.mychat {
   text-align: left;
   display: inline-block;
   right: 0;
@@ -663,7 +719,7 @@ input:invalid[focused="true"] ~ span{
   padding: 5px;
 }
 
-.otherchat{
+.otherchat {
   text-align: left;
   border-radius: 10px;
   background-color: #919191;
@@ -671,11 +727,9 @@ input:invalid[focused="true"] ~ span{
   padding: 5px;
 }
 
-.msg-time{
+.msg-time {
   font-size: 12px;
   color: rgb(29, 29, 29);
 }
-
-
 
 /* ---------------------------------------------------------------- */
