@@ -12,17 +12,17 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  // <ActionCableProvider url={API_WS_ROOT}>
-  //   <Provider store={store}>
-  //   <BrowserRouter>
-  //       <App />
-  //   </BrowserRouter>
-  //   </Provider>
-  // </ActionCableProvider>
-
-  <Provider store={store}>
+  <ActionCableProvider url={API_WS_ROOT}>
+    <Provider store={store}>
     <BrowserRouter>
-      <App />
+        <App />
     </BrowserRouter>
-  </Provider>
+    </Provider>
+  </ActionCableProvider>
+
+  // <Provider store={store}>
+  //   <BrowserRouter>
+  //     <App />
+  //   </BrowserRouter>
+  // </Provider>
 );

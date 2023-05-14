@@ -39,12 +39,9 @@ export default function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-          // console.log(data.token)
-          console.log(data)
           localStorage.setItem("token", data.token);
           dispatch(login(data.user));
           navigate("/profile");
-        
       })
       .catch((error) => {
         console.log(error);
@@ -241,7 +238,7 @@ export default function SignUp() {
                   Submit
                 </Button>
               </div>
-              <pre>{JSON.stringify(values, undefined, 2)}</pre>
+              {/* <pre>{JSON.stringify(values, undefined, 2)}</pre> */}
             </form>
           )}
         />

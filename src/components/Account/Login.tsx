@@ -8,6 +8,7 @@ import { login } from "../../features/userSlice";
 import accountIcon from "../../components/images/account/account.png";
 import padLock from "../../components/images/account/padlock.png";
 import { Form, Field } from "react-final-form";
+import { FORM_ERROR } from "final-form";
 
 export default function Login() {
   // const [verifyUsername, setVerifyUsername] = useState(true);
@@ -56,8 +57,7 @@ export default function Login() {
   // };
 
   const handleSubmit = async (values: any) => {
-    await sleep(300);
-    fetch(`http://localhost:3000/login`, {
+    await fetch(`http://localhost:3000/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -72,7 +72,7 @@ export default function Login() {
         navigate("/profile");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error)
         checkAccount(false);
       });
   };

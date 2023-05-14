@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { selectUser,login, getUser } from './features/userSlice';
 // import {fetchUser} from "./features/userSlice"
@@ -15,12 +15,33 @@ import Dashboard from './components/Profile/Dashboard';
 import Update from './components/Profile/Update';
 import PublicChat from './components/PublicChat';
 import Recover from './components/Account/Recover';
-import type { RootState, AppDispatch } from './app/Store';
+
 
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
+  const [isVisible, setIsVisible] = useState(false);
   
+  const handleScroll = () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    setIsVisible(scrollTop > 300);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [])
+
   useEffect(() => {
     if (!!localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
@@ -39,12 +60,13 @@ function App() {
       .then((data) => {
           dispatch(login(data))
       })
-    
     // dispatch(getUser());
     }
     // debugger;
     // console.log(dispatch(fetchUser('hello')))
   },[])
+
+  
   
   return (
     <div className="App">
@@ -53,6 +75,7 @@ function App() {
       </header>
       <div>
         {localStorage.getItem('token') ?  <PublicChat /> : null}
+        <button className={`scroll-to-top ${isVisible ? 'display' : 'notdisplay'}`} onClick={scrollToTop}></button>
       </div>
       <Routes>
         <Route path="/" index element={<Home />}></Route>
@@ -69,7 +92,7 @@ function App() {
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/recover' element={<Recover/>}></Route>
         {user ? <Route path='profile' element={<Profile/>}>
-          <Route path='dashboard' element={<Dashboard/>}></Route>
+          {/* <Route path='dashboard' element={<Dashboard/>}></Route> */}
           <Route path="update" element={<Update/>}></Route>
         </Route> : null} 
       </Routes>

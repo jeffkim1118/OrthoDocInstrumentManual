@@ -70,7 +70,7 @@ export default function Profile() {
         >
           <div className="position-sticky">
             <div className="list-group list-group-flush mx-3 mt-4">
-              <Link to={"dashboard"}>
+              {/* <Link to={"dashboard"}>
                 <button
                   className="list-group-item list-group-item-action py-2 ripple"
                   onClick={() => handleHideProfilePage()}
@@ -78,7 +78,7 @@ export default function Profile() {
                   <i className="fas fa-chart-area fa-fw me-3"></i>
                   <span>Main DashBoard</span>
                 </button>
-              </Link>
+              </Link> */}
 
               <Link to={"update"}>
                 <button
