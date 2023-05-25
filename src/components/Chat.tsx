@@ -1,10 +1,15 @@
+import { useContext } from "react";
 import Moment from "moment";
 import { selectUser } from "../features/userSlice";
 import { useSelector } from "react-redux";
 import profileImage from "./images/account/defaultProfilePicture.png";
+import { ReactReduxContext } from 'react-redux'
 
 export default function Chat({ msg, decodedUser }: any) {
   const user: any = useSelector(selectUser);
+  
+  const { store } = useContext(ReactReduxContext)
+  const currentUserData = store.getState().user;
 
   return (
     <div className="chatbox-container">
@@ -13,7 +18,7 @@ export default function Chat({ msg, decodedUser }: any) {
         key={msg.i}
       >
         <img
-          src={user.avatar_url? user.avatar_url : profileImage}
+          src={user.avatar_url? currentUserData.avatar_url : profileImage}
           alt="profile-img"
           className="chat-profile-avatar"
         ></img>

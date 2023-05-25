@@ -9,7 +9,7 @@ import padLock from "../../components/images/account/padlock.png";
 import emailIcon from "../../components/images/account/email.png";
 import { Form, Field } from "react-final-form";
 import { AppContext } from "../../App";
-import profileImage from "./images/account/defaultProfilePicture.png";
+
 
 export default function SignUp() {
   const { newUser, setNewUser } = useContext<any>(AppContext);
@@ -82,17 +82,7 @@ export default function SignUp() {
                 <em>Sign Up</em>
               </h1>
               <input type="file" onChange={(e) => setAvatar(e.target.files)}></input>
-              {/* <Field name="avatar">
-                {({ input }) => (
-                  <input
-                    {...input}
-                    type="file"
-                    id="file"
-                    accept=".jpg,.png,.gif"
-                  />
-                )}
-              </Field> */}
-
+              
               <Field name="bio">
                 {({ input, meta }) => (
                   <BForm.Group className="mb-3" controlId="formBasicText">

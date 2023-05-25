@@ -9,14 +9,14 @@ import { useEffect } from "react";
 
 export default function Profile() {
   const user: any = useSelector(selectUser);
-  console.log(user)
+  
   const dateString = user?.created_at?.toString() || '';
   const formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
     month: "long",
     day: "2-digit",
   });
-  console.log(user)
+ 
   const outlet: any = document.getElementsByClassName("outletContainer");
   const profile: any = document.getElementsByClassName("user-content");
 

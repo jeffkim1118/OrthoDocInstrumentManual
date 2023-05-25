@@ -114,7 +114,6 @@ function App() {
           <Route path="/verify_email/:token" element={<VerifyEmail/>} />
           {user ? (
             <Route path="profile" element={<Profile />}>
-              {/* <Route path='dashboard' element={<Dashboard/>}></Route> */}
               <Route path="update" element={<Update />}></Route>
             </Route>
           ) : null}

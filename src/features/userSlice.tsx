@@ -10,7 +10,7 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
     let decoded:any = token?.split('.')[1];
     let decodedUser = JSON.parse(atob(decoded))
    
-    fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
+    const fetchUser = await fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -25,6 +25,7 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
     .catch((error) => {
         thunkAPI.rejectWithValue(error.message)
     })
+    fetchUser();
 })
 
 const userSlice = createSlice({

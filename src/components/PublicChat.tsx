@@ -44,11 +44,11 @@ export default function PublicChat() {
   //   };
   // }, [msgData]);
   
-  // const currentUserData = useSelector((state: RootState) => state.user);
+  
   useEffect(() => {
     dispatch(getUser()); // Dispatch an action to fetch the user data if required
   }, [dispatch]);
-  console.log(currentUserData.user)
+
 
   useEffect(() => {
     const fetchMessageData = async () => {
@@ -62,14 +62,6 @@ export default function PublicChat() {
       });
     }
     fetchMessageData()
-    // fetch("http://localhost:3000/api/conversations/1")
-    //   .then((res) => res.json())
-    //   .then((data) => setMsgData(data.messages))
-    //   .then(() => {
-    //     if (bottomRef.current) {
-    //       bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-    //     }
-    //   });
   }, []);
 
   const openForm = () => {
