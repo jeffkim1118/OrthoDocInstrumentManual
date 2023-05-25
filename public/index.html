@@ -25,13 +25,13 @@
     />
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T91DNJ83EC"></script>
+    <script async src=`https://www.googletagmanager.com/gtag/js?id=${ENV['ID']}`></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-T91DNJ83EC');
+      gtag('config', ENV['ID']);
     </script>
     <!--------------------------------------------------------------->
   </head>
