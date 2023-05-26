@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import {useEffect,useState} from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { selectUser,login, getUser } from './features/userSlice';
-// import {fetchUser} from "./features/userSlice"
 import Home from './components/Homepage/Home';
 import Navbar from './components/Nav/Navbar';
 import Footer from './components/Homepage/Footer';
@@ -50,8 +49,6 @@ function App() {
     }
   }, [dispatch])
 
-  
-  
   return (
     <div className="App">
       <header>  
