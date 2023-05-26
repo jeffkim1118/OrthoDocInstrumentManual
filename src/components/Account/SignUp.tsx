@@ -8,11 +8,11 @@ import accountIcon from "../../components/images/account/account.png";
 import padLock from "../../components/images/account/padlock.png";
 import emailIcon from "../../components/images/account/email.png";
 import { Form, Field } from "react-final-form";
-
+import { AppContext } from "../../App";
 
 
 export default function SignUp() {
- 
+  const { newUser, setNewUser } = useContext<any>(AppContext);
   const [avatar, setAvatar] = useState<File | any>(null)
   const dispatch = useDispatch();
   const navigate = useNavigate();

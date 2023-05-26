@@ -12,9 +12,9 @@ export default function Navb(){
   const navigate = useNavigate();
   const user = useSelector(selectUser);
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     dispatch(logout())
-    await fetch(`http://localhost:3000/logout`,{
+    fetch(`http://localhost:3000/logout`,{
       method: "DELETE",
       headers: {
         "Content-Type" : 'application/json'

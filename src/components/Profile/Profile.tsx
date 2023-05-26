@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 
 export default function Profile() {
   const user: any = useSelector(selectUser);
+  
   const dateString = user?.created_at?.toString() || '';
   const formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
@@ -43,20 +44,11 @@ export default function Profile() {
         }}
         onClick={() => handleShowProfilePage()}
       >
+
         {/* {user.avatar? <div>{user.avatar}</div> : null} */}
+
         <Link to="/profile" style={{ textDecoration: "none", color: "black" }}>
-          <img
-            src={
-              "https://images.pexels.com/photos/1172207/pexels-photo-1172207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            alt="profile-icon"
-            style={{
-              width: "130px",
-              height: "130px",
-              marginTop: "7%",
-              borderRadius: "50%",
-            }}
-          ></img>
+        {user.avatar? <img src={user.avatar_url} className="user-avatar"></img> : null}
           <p>{user.username}</p>
         </Link>
       </div>

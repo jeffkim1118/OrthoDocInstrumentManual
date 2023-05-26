@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { ActionCable} from 'react-actioncable-provider';
+import { useState, useEffect, useRef, useContext } from "react";
+import { ActionCable } from "react-actioncable-provider";
+import { useSelector,useDispatch } from 'react-redux';
 import Chat from "./Chat";
 
 export default function PublicChat() {
@@ -12,16 +13,29 @@ export default function PublicChat() {
   const [newMessage, setNewMessage] = useState('');
   const [msgData, setMsgData] = useState<any[]>([]);
 
+
   useEffect(() => {
-    fetch('http://localhost:3000/api/conversations/1')
-    .then(res => res.json())
-    .then(data => setMsgData(data.messages))
-  },[])
- 
+    const fetchMessageData = async () => {
+      await fetch("http://localhost:3000/api/conversations/1")
+      .then((res) => res.json())
+      .then((data) => setMsgData(data.messages))
+      .then(() => {
+        if (bottomRef.current) {
+          bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
+        }
+      });
+    }
+    fetchMessageData()
+  }, []);
+
   const openForm = () => {
+    // stopChatButtonBlink();
     let chatbox = document.getElementById("myForm");
     if (chatbox) {
       chatbox.style.display = "block";
+      if (bottomRef.current) {
+        bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
+      }
     }
   };
 
@@ -31,54 +45,54 @@ export default function PublicChat() {
       chatbox.style.display = "none";
     }
   };
-  
-  const handleSubmit = (e:any) => {
+
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    if(newMessage !== ''){
+    if (newMessage !== "") {
       fetch(`http://localhost:3000/api/messages`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'content-type' : 'application/json',
+          "content-type": "application/json",
         },
         body: JSON.stringify({
           username: decodedUser.name,
           content: newMessage,
           user_id: decodedUser.id,
-          conversation_id: 1
+          conversation_id: 1,
+        }),
+      })
+        .then((res) => res.json())
+        .then((newData) => {
+          console.log(newData);
+          setNewMessage("");
+          if (decodedUser.id === newData.message.user_id) {
+            setMsgData([...msgData, newData.message]);
+          }
         })
-      })
-      .then(res => res.json())
-      .then((newData) => {
-        console.log(newData);
-        setNewMessage("")
-        if (decodedUser.id === newData.message.user_id) {
-          setMsgData([...msgData, newData.message])
-        }
-        
-      })
-      .catch(error => {
-        console.log(error)
-      })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
 
   // This automatically scroll down the chat messages to the bottom to show the latest messages.
   useEffect(() => {
     if (bottomRef.current != null) {
-      bottomRef.current.addEventListener('DOMNodeInserted', (event:any) => {
+      bottomRef.current.addEventListener("DOMNodeInserted", (event: any) => {
         const { currentTarget: target } = event;
-        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+        target.scroll({ top: target.scrollHeight, behavior: "smooth" });
       });
     }
-  }, [])
+  }, []);
 
-  const something = (data:any) => {
+
+  const ReceiveMessageData = (data: any) => {
     if (data.user_id !== decodedUser.id) {
       const allMessages = [...msgData, data];
       setMsgData(allMessages);
+      // makeChatButtonBlink();
     }
-  }
-
+  };
 
   return (
     <>
@@ -86,15 +100,15 @@ export default function PublicChat() {
         Chat
       </button>
       <ActionCable
-        channel={{ channel: 'MessagesChannel' }}
-        onReceived={something}
+        channel={{ channel: "MessagesChannel" }}
+        onReceived={ReceiveMessageData}
       />
       <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={handleSubmit}>
           <h1>Open Chat</h1>
           <div className="text-messages-container" ref={bottomRef}>
-            {msgData.map((msg:any) => (
-              <Chat msg={msg} decodedUser={decodedUser} key={msg.id}/>
+            {msgData.map((msg: any) => (
+              <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
             ))}
           </div>
           <textarea
@@ -103,7 +117,7 @@ export default function PublicChat() {
             placeholder="Type message.."
             name="msg"
             value={newMessage}
-            onChange={(e)=> setNewMessage(e.target.value)}
+            onChange={(e) => setNewMessage(e.target.value)}
             required
           ></textarea>
           <button type="submit" className="btn">

@@ -8,7 +8,7 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
     const token = localStorage.getItem('token');
     let decoded:any = token?.split('.')[1];
     let decodedUser = JSON.parse(atob(decoded))
-    
+
     try {
         const response = await fetch(`http://localhost:3000/api/users/${decodedUser['id']}`, {
           method: "GET",
@@ -49,7 +49,7 @@ const userSlice = createSlice({
         })
     },
     
-})
+});
 
 export const {login,logout} = userSlice.actions;
 export const selectUser = (state:any) => state.user.user;
