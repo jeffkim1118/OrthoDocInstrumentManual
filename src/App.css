@@ -234,6 +234,14 @@ body {
 }
 
 /* profile section */
+
+.user-avatar{
+  margin: 12px auto;
+  width: 165px;
+  height: 165px;
+  border-radius: 50%;
+}
+
 .grid-line {
   background-image: url("https://images.pexels.com/photos/733853/pexels-photo-733853.jpeg?auto=compress&cs=tinysrgb&w=1600");
   background-repeat: no-repeat;
@@ -547,6 +555,12 @@ input:invalid[focused="true"] ~ span {
 }
 
 /* -------------------- Live Chat -------------------------- */
+.chat-profile-avatar{
+  width: 20px;
+  border-radius: 10px;
+  margin: 3px;
+}
+
 .open-button {
   background-color: #616161;
   color: white;
@@ -676,6 +690,11 @@ input:invalid[focused="true"] ~ span {
 .msg-time {
   font-size: 12px;
   color: rgb(29, 29, 29);
+}
+@keyframes blinking {
+  0% { color: rgb(0, 255, 34); }
+  50% { color: rgb(255, 255, 255); }
+  100% { color: rgb(22, 189, 0); }
 }
 
 /* ---------------------------------------------------------------- */
