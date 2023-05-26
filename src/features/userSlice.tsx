@@ -8,26 +8,42 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
     const token = localStorage.getItem('token');
     let decoded:any = token?.split('.')[1];
     let decodedUser = JSON.parse(atob(decoded))
-    let u = {
-        user:{}
-    };
-      
-    fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`
+    
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/${decodedUser['id']}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        });
+    
+        if (!response.ok) {
+          const error = await response.json();
+          return thunkAPI.rejectWithValue(error);
+        }
+        const user = await response.json();
+        return user;
+      } catch (error:any) {
+        return thunkAPI.rejectWithValue(error.message);
       }
-    })
-    .then((res) => res.json())
-    .then((res) => {
+//     fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
+//       method: 'GET',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//         'Authorization': `${token}`
+//       }
+//     })
+//     .then((res) => res.json())
+//     .then((res) => {
         
-    })
-    .catch((error) => {
-        thunkAPI.rejectWithValue(error.res.data)
-    })
-    return u
+//     })
+//     .catch((error) => {
+//         thunkAPI.rejectWithValue(error.res.data)
+//     })
+  
 })
 
 const userSlice = createSlice({
@@ -40,28 +56,7 @@ const userSlice = createSlice({
         logout: (state) => {
             state.user = null;
         },
-        
-        // getUser: getUser,
-        // fetchUser: () => {
-        //     if (!!localStorage.getItem('token')) {
-        //         const token = localStorage.getItem('token');
-        //         let decoded:any = token?.split('.')[1];
-        //         let decodedUser = JSON.parse(atob(decoded))
-                
-        //         fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
-        //           method: 'GET',
-        //           headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json',
-        //             'Authorization': `${token}`
-        //           }
-        //         })
-        //         .then(res => res.json())
-        //         .then((data) => {
-        //             initialState.user = data
-        //         })
-        //     }
-        // }
+
     },
     extraReducers: builder => {
         builder.addCase(getUser.fulfilled, (state,action) => {

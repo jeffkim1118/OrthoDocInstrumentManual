@@ -11,50 +11,11 @@ import { Form, Field } from "react-final-form";
 import { FORM_ERROR } from "final-form";
 
 export default function Login() {
-  // const [verifyUsername, setVerifyUsername] = useState(true);
-  // const [verifyPassword, setVerifyPassword] = useState(true);
   const [invalidAccount, checkAccount] = useState(true);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  // const handleLogin = (e: any) => {
-  //   e.preventDefault();
-  //   if (username && password) {
-  //     const loggingInUser = {
-  //       username,
-  //       password,
-  //     };
-
-  //     fetch(`http://localhost:3000/login`, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(loggingInUser),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         localStorage.setItem("token", data.token);
-  //         dispatch(login(data.user));
-  //         navigate("/profile");
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         checkAccount(false);
-  //       });
-  //   } else if (!username && !password) {
-  //     setVerifyUsername(false);
-  //     setVerifyPassword(false);
-  //   } else if (!username) {
-  //     setVerifyUsername(false);
-  //   } else if (!password) {
-  //     setVerifyPassword(false);
-  //   }
-  // };
 
   const handleSubmit = async (values: any) => {
     await fetch(`http://localhost:3000/login`, {
@@ -77,15 +38,6 @@ export default function Login() {
       });
   };
 
-  // const mustBeNumber = (value:any) => (isNaN(value) ? "Must be a number" : undefined);
-  // const minValue = (min:any) => (value:any) => (isNaN(value) || value >= min ? undefined : `Should be greater than ${min}`);
-  // const composeValidators =
-  //   (...validators:any) =>
-  //   (value:any) =>
-  //     validators.reduce(
-  //       (error:any, validator:any) => error || validator(value),
-  //       undefined
-  //     );
   const requiredUsername = (value: any) =>
     value ? undefined : (
       <span className="info-required">Required username</span>

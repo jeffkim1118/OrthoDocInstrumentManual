@@ -11,7 +11,6 @@ import Page from './components/page';
 import Login from './components/Account/Login';
 import SignUp from './components/Account/SignUp';
 import Profile from './components/Profile/Profile';
-import Dashboard from './components/Profile/Dashboard';
 import Update from './components/Profile/Update';
 import PublicChat from './components/PublicChat';
 import Recover from './components/Account/Recover';
@@ -42,29 +41,14 @@ function App() {
     };
   }, [])
 
+  
   useEffect(() => {
-    if (!!localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      let decoded:any = token?.split('.')[1];
-      let decodedUser = JSON.parse(atob(decoded))
-      
-      fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `${token}`
-        }
+    if(!!localStorage.getItem('token')){
+      dispatch(getUser()).then((action:any) => {
+        dispatch(login(action.payload))
       })
-      .then(res => res.json())
-      .then((data) => {
-          dispatch(login(data))
-      })
-    // dispatch(getUser());
     }
-    // debugger;
-    // console.log(dispatch(fetchUser('hello')))
-  },[])
+  }, [dispatch])
 
   
   

@@ -2,21 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import { ActionCable} from 'react-actioncable-provider';
 import Chat from "./Chat";
 
-// interface Message {
-//   id:number;
-//   content:string;
-// }
-
 export default function PublicChat() {
-  
   const token = localStorage.getItem('token');
   let decoded:any = token?.split('.')[1];
   let decodedUser = JSON.parse(atob(decoded))
-  
-  const bottomRef = useRef<HTMLInputElement>(null);
-  // const [messages, setMessages] = useState<Message[]>([]);
-  const [newMessage, setNewMessage] = useState('')
 
+  const bottomRef = useRef<HTMLInputElement>(null);
+
+  const [newMessage, setNewMessage] = useState('');
   const [msgData, setMsgData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -67,36 +60,7 @@ export default function PublicChat() {
         console.log(error)
       })
     }
-
-    // const date = new Date();
-    // const todaysDate = date.toLocaleDateString();
-    // if(newMessage !== ''){
-    //   // setNewMessage('')
-    //   fetch(`http://localhost:3000/messages`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'content-type' : 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       content: newMessage,
-    //       postedDateTime: todaysDate,
-    //       conversation_id: params.id,
-    //       user_id: user.id
-    //     })
-    //   })
-    // }
   }
-
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-
-  //   const date = new Date();
-  //   const todaysDate = date.toLocaleDateString();
-  //   const newMsg = { user: "me", message: newMessage, date: `${todaysDate}` };
-
-  //   setMsgArray((oldArray) => [...oldArray, newMsg]);
-  //   setNewMessage("");
-  // };
 
   // This automatically scroll down the chat messages to the bottom to show the latest messages.
   useEffect(() => {
@@ -109,10 +73,6 @@ export default function PublicChat() {
   }, [])
 
   const something = (data:any) => {
-    // const allMessages = [...msgData, data];
-    // setMsgData(allMessages);
-    // console.log(msgData);
-    // console.log(data);
     if (data.user_id !== decodedUser.id) {
       const allMessages = [...msgData, data];
       setMsgData(allMessages);
