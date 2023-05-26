@@ -2,52 +2,16 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { ActionCable } from "react-actioncable-provider";
 import { useSelector,useDispatch } from 'react-redux';
 import Chat from "./Chat";
-import { getUser } from "../features/userSlice";
-import get from "../features/userSlice"
-import { ReactReduxContext } from 'react-redux'
-import { RootState } from "../app/Store"
 
 export default function PublicChat() {
-  const token = localStorage.getItem("token");
-  let decoded: any = token?.split(".")[1];
-  let decodedUser = JSON.parse(atob(decoded));
-
-  const { store } = useContext(ReactReduxContext)
-  const currentUserData = store.getState().user;
+  const token = localStorage.getItem('token');
+  let decoded:any = token?.split('.')[1];
+  let decodedUser = JSON.parse(atob(decoded))
 
   const bottomRef = useRef<HTMLInputElement>(null);
-  const dispatch = useDispatch();
-  
-  const [newMessage, setNewMessage] = useState("");
+
+  const [newMessage, setNewMessage] = useState('');
   const [msgData, setMsgData] = useState<any[]>([]);
-
-  const [test, setTest] = useState()
-
-  const makeChatButtonBlink = () => {
-    let chatButton = document.getElementsByClassName(
-      "open-button"
-    )[0] as HTMLElement;
-    chatButton.style.animation = "blinking 1s infinite";
-  };
-
-  const stopChatButtonBlink = () => {
-    let chatButton = document.getElementsByClassName(
-      "open-button"
-    )[0] as HTMLElement;
-    chatButton.style.animation = "none";
-  };
-
-  // useEffect(() => {
-  //   makeChatButtonBlink();
-  //   return () => {
-  //     stopChatButtonBlink();
-  //   };
-  // }, [msgData]);
-  
-  
-  useEffect(() => {
-    dispatch(getUser()); // Dispatch an action to fetch the user data if required
-  }, [dispatch]);
 
 
   useEffect(() => {
@@ -109,7 +73,9 @@ export default function PublicChat() {
           console.log(error);
         });
     }
-  };
+
+  }
+
 
   // This automatically scroll down the chat messages to the bottom to show the latest messages.
   useEffect(() => {
@@ -120,6 +86,7 @@ export default function PublicChat() {
       });
     }
   }, []);
+
 
   const ReceiveMessageData = (data: any) => {
     if (data.user_id !== decodedUser.id) {

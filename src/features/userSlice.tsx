@@ -9,23 +9,29 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
     const token = localStorage.getItem('token');
     let decoded:any = token?.split('.')[1];
     let decodedUser = JSON.parse(atob(decoded))
-   
-    const fetchUser = await fetch(`http://localhost:3000/api/users/${decodedUser['id']}`,{
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `${token}`
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/users/${decodedUser['id']}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+        });
+    
+        if (!response.ok) {
+          const error = await response.json();
+          return thunkAPI.rejectWithValue(error);
+        }
+        const user = await response.json();
+        return user;
+      } catch (error:any) {
+        return thunkAPI.rejectWithValue(error.message);
       }
-    })
-    .then((res) => res.json())
-    .then(data => {
-       return data
-    })
-    .catch((error) => {
-        thunkAPI.rejectWithValue(error.message)
-    })
-    fetchUser();
+
+  
+
 })
 
 const userSlice = createSlice({
@@ -38,6 +44,7 @@ const userSlice = createSlice({
         logout: (state) => {
             state.user = null;
         },
+
     },
     
     // extraReducers: builder => {
