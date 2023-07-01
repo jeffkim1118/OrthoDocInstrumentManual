@@ -4,20 +4,18 @@ import defaultProfilePicture from "../components/images/account/defaultProfilePi
 import emailIcon from "../components/images/account/icons8-mail-96.png";
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useRef } from "react";
-
 export default function Profile() {
   const user: any = useSelector(selectUser);
-  
-  const dateString = user?.created_at?.toString() || '';
+  const outletRef = useRef<any>(null);
+  const profileRef = useRef<any>(null);
+
+  const dateString = user?.created_at?.toString() || "";
   const formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
     month: "long",
     day: "2-digit",
   });
 
-  const outletRef = useRef<any>(null);
-  const profileRef = useRef<any>(null);
- 
   useEffect(() => {
     outletRef.current.style.display = "none";
   }, []);
@@ -31,24 +29,21 @@ export default function Profile() {
     outletRef.current.style.display = "none";
     profileRef.current.style.display = "block";
   };
-  
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="grid-line">
       <div
         className="profile-picture"
-        style={{
-          width: "100%",
-          height: "100%",
-          textAlign: "center",
-          backgroundColor: "#FFFDFA",
-        }}
         onClick={() => handleShowProfilePage()}
       >
 
-        {/* {user.avatar? <div>{user.avatar}</div> : null} */}
-
         <Link to="/profile" style={{ textDecoration: "none", color: "black" }}>
-        {user.avatar? <img src={user.avatar_url} className="user-avatar"></img> : null}
+          {user.avatar ? (
+            <img src={user.avatar_url} className="user-avatar"></img>
+          ) : null}
           <p>{user.username}</p>
         </Link>
       </div>
@@ -80,7 +75,9 @@ export default function Profile() {
           <div className="user-bio">
             <h3>User Information</h3>
             <p>
-              {user.bio ? user.bio : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat"}
+              {user.bio
+                ? user.bio
+                : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat"}
             </p>
           </div>
 
@@ -106,7 +103,7 @@ export default function Profile() {
             <div style={{ marginLeft: "20%" }}>
               <label>Password</label>
               <p>&emsp;***********</p>
-              
+
               <label>Access Level</label>
               <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
 

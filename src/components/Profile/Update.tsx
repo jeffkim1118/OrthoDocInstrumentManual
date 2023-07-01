@@ -22,12 +22,12 @@ export default function Update() {
     e.preventDefault();
 
     const updatedUserData = {
-      username: newUsername,
-      first_name: newFirstName,
-      last_name: newLastName,
-      password: newPassword,
-      email: newEmail,
-      bio: newBio,
+      username: newUsername || user.username,
+      first_name: newFirstName || user.first_name,
+      last_name: newLastName || user.last_name,
+      password: newPassword || user.password,
+      email: newEmail || user.email,
+      bio: newBio || user.bio,
     }
 
     const token = localStorage.getItem('token');

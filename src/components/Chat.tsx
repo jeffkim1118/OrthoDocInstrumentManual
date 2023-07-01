@@ -7,7 +7,6 @@ import { ReactReduxContext } from 'react-redux'
 
 export default function Chat({ msg, decodedUser }: any) {
   const user: any = useSelector(selectUser);
-  
   const { store } = useContext(ReactReduxContext)
   const currentUserData = store.getState().user;
 
@@ -17,11 +16,11 @@ export default function Chat({ msg, decodedUser }: any) {
         className={msg.user_id === decodedUser.id ? "mychat" : "otherchat"}
         key={msg.i}
       >
-        {/* <img
-          src={user.avatar_url? currentUserData.avatar_url : profileImage}
+        <img
+          src={user.avatar_url? user.avatar_url : null}
           alt="profile-img"
           className="chat-profile-avatar"
-        ></img> */}
+        ></img>
 
         <span>{msg.username}</span>
         <br />

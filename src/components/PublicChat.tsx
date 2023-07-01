@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { ActionCable } from "react-actioncable-provider";
+import { ActionCableConsumer } from "react-actioncable-provider";
 import { useSelector,useDispatch } from 'react-redux';
 import Chat from "./Chat";
 
@@ -99,7 +99,7 @@ export default function PublicChat() {
       <button className="open-button" onClick={() => openForm()}>
         Chat
       </button>
-      <ActionCable
+      <ActionCableConsumer
         channel={{ channel: "MessagesChannel" }}
         onReceived={ReceiveMessageData}
       />

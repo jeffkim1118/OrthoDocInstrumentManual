@@ -1,41 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import BForm from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogin, login, selectUser } from "../../features/userSlice";
 import accountIcon from "../../components/images/account/account.png";
 import padLock from "../../components/images/account/padlock.png";
 import { Form, Field } from "react-final-form";
-import { FORM_ERROR } from "final-form";
 
 export default function Login() {
-  const [invalidAccount, checkAccount] = useState(true);
-
+  const [invalidAccount, setInvalidAccount] = useState(true);
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const handleSubmit = async (values: any) => {
-    await fetch(`http://localhost:3000/login`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("token", data.token);
-        dispatch(login(data.user));
+    try {
+      const response = await dispatch(handleLogin(values));
+      console.log(response)
+      if (response.payload) {
+        dispatch(login(response.payload));
         navigate("/profile");
-      })
-      .catch((error) => {
-        console.log(error)
-        checkAccount(false);
-      });
+      } 
+    } catch (error) {
+      console.log("Login error:", error);
+    }
   };
 
   const requiredUsername = (value: any) =>
@@ -146,97 +136,11 @@ export default function Login() {
                     <br />
                     <Link to={"/recover"}>Forgot your password?</Link>
                   </div>
-                  {/* <pre>{JSON.stringify(values, undefined, 2)}</pre> */}
                 </form>
               </div>
             </div>
           )}
         />
-
-        {/* <div className="form d-md-flex align-items-center justify-content-between">
-          <div className="box-1 mt-md-0 mt-5">
-            <img
-              src="https://images.pexels.com/photos/2033997/pexels-photo-2033997.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              className="login-pic"
-              alt="login-pic"
-            />
-          </div>
-          <div className="box-2 d-flex flex-column h-100">
-            <div className="mt-5" />
-            <form className="login-form" onSubmit={(e) => handleLogin(e)}>
-              <h1 style={{  textAlign: "center" }}>
-                <em>Login</em>
-              </h1>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-              {!invalidAccount ? <p style={{ fontSize: "12px", color:'red', margin:'0px'}}>The account doesn't exist. Please check your username or password.</p> : null}
-                <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Username</Form.Label>
-                <div className="icons">
-                  <img
-                    src={accountIcon}
-                    alt="account-icon"
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      margin: "auto 5px",
-                    }}
-                  ></img>
-                  <Form.Control
-                    className="username-input"
-                    type="text"
-                    placeholder="Enter Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    onBlur={handleBlur}
-                    onFocus={handleFocus}
-                  ></Form.Control>
-                </div>
-                {!verifyUsername ? (<p style={{ fontSize: "12px", color:'red' }}>Invalid username</p>) : null}
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label style={{ fontSize: "14px", margin:'0px' }}>Password</Form.Label>
-                <div className="icons">
-                  <img
-                    src={padLock}
-                    alt="password-icon"
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      margin: "auto 5px",
-                    }}
-                  ></img>
-                  <Form.Control
-                    className="password-input"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    onBlur={handleBlur}
-                    onFocus={handleFocus}
-                  />
-                </div>
-                {!verifyPassword ? (<p style={{ fontSize: "12px", color:'red', margin:'0px',border:'none',padding:'none' }}>Invalid password</p>) : null}
-              </Form.Group>
-              <Button
-                className="login-btn"
-                variant="primary"
-                type="submit"
-                style={{
-                  marginTop: "10px",
-                  marginBottom: "10px",
-                  width: "340px",
-                }}
-              >
-                Login
-              </Button>
-              <br />
-              <div style={{ textAlign: "center" }}>
-                <Link to={"/signup"}>Don't have an account?</Link>
-                <br />
-                <Link to={"/"}>Forgot your password?</Link>
-              </div>
-            </form>
-          </div>
-        </div> */}
       </div>
     </div>
   );
