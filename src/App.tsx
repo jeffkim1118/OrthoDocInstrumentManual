@@ -13,6 +13,8 @@ import Profile from './components/Profile/Profile';
 import Update from './components/Profile/Update';
 import PublicChat from './components/PublicChat';
 import Recover from './components/Account/Recover';
+import Verify from './components/Account/RegisterSuccess'
+
 
 export const AppContext = createContext<any>(null);
 
@@ -80,6 +82,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/recover" element={<Recover />}></Route>
+          <Route path="/verify" element={<Verify />}></Route>
           {/* <Route path="/verify_email/:token" element={<VerifyEmail/>} /> */}
           {user ? (
             <Route path="profile" element={<Profile />}>

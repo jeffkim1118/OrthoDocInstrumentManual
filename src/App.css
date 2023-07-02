@@ -9,6 +9,7 @@
   font-family: "Poppins", sans-serif;
 }
 
+
 html {
   height: fit-content;
 }
@@ -704,6 +705,33 @@ input:invalid[focused="true"] ~ span {
   100% { color: rgb(22, 189, 0); }
 }
 
+/* -----------------Registration success message section------------ */
+.registration-success{
+  position: relative;
+  height: 80vh;
+  background-color: rgb(71, 71, 71);
+}
+.registration-success-container{
+  /* background-color: rgb(71, 71, 71); */
+  padding: 120px;
+  border: 1px solid;
+  border-radius: 50px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #223e49;
+}
+.registration-success-message{
+  color: #bdbdbd;
+  font-size: 25px;
+}
+
+.goto-login-from-registration-success{
+  text-decoration: solid;
+}
 /* ---------------------------------------------------------------- */
 
 .display{
@@ -842,6 +870,5 @@ input:invalid[focused="true"] ~ span {
     grid-template-columns: [line1] 10% [line2] 15% [line3] auto [line4] 30% [line5] 10% [line6];
     grid-template-rows: [row1] 10% [row2] 5% [row3] 15% [row4] auto [row5] 10% [end]; */
   }
-  
   
 }
