@@ -30,7 +30,7 @@ export default function SignUp() {
   };
 
   const submitToApi = async (data: any) => {
-    hideFormAndDisplayVerification();
+    // hideFormAndDisplayVerification();
     await fetch("http://localhost:3000/api/users", {
       method: "POST",
       body: data,
@@ -41,19 +41,18 @@ export default function SignUp() {
         // localStorage.setItem("token", data.token);
         // dispatch(login(data.user));
         // debugger
-        // navigate("/profile");
+        navigate("/verify");
         // debugger
       })
       .catch((error) => console.log(error));
   };
   let registerFormRef = useRef<any>(null);
-  let registerSuccessMsg = useRef<any>(null);
+  // let registerSuccessMsg = useRef<any>(null);
 
-  const hideFormAndDisplayVerification = () => {
-    debugger;
-    registerFormRef.current.style.display = "none";
-    registerSuccessMsg.current.style.display = "block";
-  };
+  // const hideFormAndDisplayVerification = () => {
+  //   registerFormRef.current.style.display = "none";
+  //   registerSuccessMsg.current.style.display = "block";
+  // };
 
   return (
     <div className="background">
@@ -88,9 +87,9 @@ export default function SignUp() {
             values,
           }) => (
             <>
-              <div className="register-success-msg" ref={registerSuccessMsg}>
+              {/* <div className="register-success-msg" ref={registerSuccessMsg}>
                 <p>Please check your email to verify your email.</p>
-              </div>
+              </div> */}
               <form
                 className="signup-form"
                 onSubmit={handleSubmit}
