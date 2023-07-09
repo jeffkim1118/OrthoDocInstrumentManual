@@ -18,7 +18,6 @@ export default function Login() {
   const handleSubmit = async (values: any) => {
     try {
       const response = await dispatch(handleLogin(values));
-      console.log(response)
       if (response.payload) {
         dispatch(login(response.payload));
         navigate("/profile");
