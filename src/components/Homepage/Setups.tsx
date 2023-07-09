@@ -6,6 +6,8 @@ import AlignerIPR from '../images/aligner IPR/IMG-0464.jpg';
 import ApplianceCheck from '../images/appliance check/IMG-0465.jpg';
 import MSECheck from '../images/MSE/IMG-0466.jpg';
 import Scan from '../images/scan/IMG-0463.jpg';
+import StartRecord1 from "../images/startRecord/IMG-0484.jpg";
+import StartRecord2 from '../images/startRecord/IMG-0485.jpg'
 
 const setUps = [
     {
@@ -36,25 +38,31 @@ const setUps = [
       "name":"MSE Check",
       "image": MSECheck,
       "desc":"This is for checking MSE expander.",
-      "link":'/adjustment'
+      "link":'/mse'
     },
     {
       "name":"Appliance Check",
       "image": ApplianceCheck,
       "desc":"This is for checking appliance.",
-      "link":'/adjustment'
+      "link":'/appliancecheck'
     },,
     {
       "name":"Aligner IPR",
       "image": AlignerIPR,
       "desc":"This is for IPR treatment.",
-      "link":'/adjustment'
+      "link":'/aligneripr'
     },,
     {
       "name":"Scan",
       "image": Scan,
       "desc":"This is for scanning patients teeth.",
-      "link":'/adjustment'
-    },
+      "link":'/scan'
+    },,
+    {
+      "name":"Start Record",
+      "image": StartRecord1,
+      "desc":"This is for start record appointment.",
+      "link": '/startrecord'
+    }
 ]
 export default setUps;

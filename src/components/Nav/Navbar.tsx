@@ -49,6 +49,7 @@ export default function Navb(){
               <NavDropdown.Item href="/appliancecheck">Appliance Check</NavDropdown.Item>
               <NavDropdown.Item href="/mse">MSE Check</NavDropdown.Item>
               <NavDropdown.Item href="/scan">Scan</NavDropdown.Item>
+              <NavDropdown.Item href="/startrecord">Start Record</NavDropdown.Item>
             </NavDropdown>
             {user ? <Nav.Link href="/profile">{user.first_name} </Nav.Link>: null}
             {user ? <Nav.Link onClick={handleLogout}>Logout</Nav.Link>:<Nav.Link href="/login">Login</Nav.Link>}

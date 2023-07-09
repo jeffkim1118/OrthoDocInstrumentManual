@@ -2,7 +2,7 @@ import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../../features/userSlice";
+import { login, logout } from "../../features/userSlice";
 import { useState } from "react";
 
 export default function Update() {
@@ -15,17 +15,19 @@ export default function Update() {
   const [newLastName, setNewLastName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [newBio, setNewBio] = useState('');
 
 
   const handleUpdate = (e:any) => {
     e.preventDefault();
 
     const updatedUserData = {
-      username: newUsername,
-      first_name: newFirstName,
-      last_name: newLastName,
-      password: newPassword,
-      email: newEmail,
+      username: newUsername || user.username,
+      first_name: newFirstName || user.first_name,
+      last_name: newLastName || user.last_name,
+      password: newPassword || user.password,
+      email: newEmail || user.email,
+      bio: newBio || user.bio,
     }
 
     const token = localStorage.getItem('token');
@@ -36,12 +38,12 @@ export default function Update() {
         "Content-Type": "application/json",
         'Authorization': `${token}`
       },
-      body: JSON.stringify({ user: updatedUserData})
+      body: JSON.stringify({ user: updatedUserData })
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
-      navigate('/profile')
+      dispatch(login(data))
+      navigate('/')
     })
   }
 
@@ -63,7 +65,6 @@ export default function Update() {
     })
     .catch(error => console.log(error))
     }
-    
   }
 
   return (
@@ -71,20 +72,24 @@ export default function Update() {
       <div className="update-form-container">
         <h1>Update</h1>
         <form onSubmit={(e) => handleUpdate(e)}>
+          <label>{user.bio === null ? "Add bio" : user.bio}</label>
+          <br/>
+          <textarea value={newBio} onChange={(e) => setNewBio(e.target.value)} placeholder="Type in your biography..."></textarea>
+          <br/>
           <label>{user.username}</label>
-          <input placeholder="Username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
+          <input placeholder="Username" type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
           <br />
           <label>{user.first_name}</label>
-          <input placeholder="First Name"value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
+          <input placeholder="First Name" type="text" value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
           <br />
           <label>{user.last_name}</label>
-          <input placeholder="Last Name" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
+          <input placeholder="Last Name" type="text" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
           <br />
           <label>{user.email}</label>
-          <input placeholder="Email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
+          <input placeholder="Email" type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
           <br />
           <label>************</label>
-          <input placeholder="Password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+          <input placeholder="Password" type="current-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
           <br />
           <button type="submit">Update</button>
         </form>  

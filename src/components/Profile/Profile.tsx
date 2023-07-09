@@ -2,62 +2,48 @@ import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
 import defaultProfilePicture from "../components/images/account/defaultProfilePicture.png";
 import emailIcon from "../components/images/account/icons8-mail-96.png";
-import Dashboard from "./Dashboard";
-// import Update from "./Update";
 import { Link, Outlet } from "react-router-dom";
-import { useEffect } from "react";
-
+import { useEffect, useRef } from "react";
 export default function Profile() {
   const user: any = useSelector(selectUser);
-  const dateString = user.created_at.toString();
+  const outletRef = useRef<any>(null);
+  const profileRef = useRef<any>(null);
+
+  const dateString = user?.created_at?.toString() || "";
   const formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
     month: "long",
     day: "2-digit",
   });
 
-  const outlet: any = document.getElementsByClassName("outletContainer");
-  const profile: any = document.getElementsByClassName("user-content");
-
   useEffect(() => {
-    outlet[0].style.display = "none";
+    outletRef.current.style.display = "none";
   }, []);
 
   const handleHideProfilePage = () => {
-    profile[0].style.display = "none";
-    outlet[0].style.display = "block";
+    profileRef.current.style.display = "none";
+    outletRef.current.style.display = "block";
   };
 
   const handleShowProfilePage = () => {
-    outlet[0].style.display = "none";
-    profile[0].style.display = "block";
+    outletRef.current.style.display = "none";
+    profileRef.current.style.display = "block";
   };
 
+  if (!user) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="grid-line">
       <div
         className="profile-picture"
-        style={{
-          width: "100%",
-          height: "100%",
-          textAlign: "center",
-          backgroundColor: "#FFFDFA",
-        }}
         onClick={() => handleShowProfilePage()}
       >
+
         <Link to="/profile" style={{ textDecoration: "none", color: "black" }}>
-          <img
-            src={
-              "https://images.pexels.com/photos/1172207/pexels-photo-1172207.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            }
-            alt="profile-icon"
-            style={{
-              width: "130px",
-              height: "130px",
-              marginTop: "7%",
-              borderRadius: "50%",
-            }}
-          ></img>
+          {user.avatar ? (
+            <img src={user.avatar_url} className="user-avatar"></img>
+          ) : null}
           <p>{user.username}</p>
         </Link>
       </div>
@@ -69,16 +55,6 @@ export default function Profile() {
         >
           <div className="position-sticky">
             <div className="list-group list-group-flush mx-3 mt-4">
-              <Link to={"dashboard"}>
-                <button
-                  className="list-group-item list-group-item-action py-2 ripple"
-                  onClick={() => handleHideProfilePage()}
-                >
-                  <i className="fas fa-chart-area fa-fw me-3"></i>
-                  <span>Main DashBoard</span>
-                </button>
-              </Link>
-
               <Link to={"update"}>
                 <button
                   className="list-group-item list-group-item-action py-2 ripple"
@@ -94,18 +70,14 @@ export default function Profile() {
       </div>
 
       <div className="user-section">
-        <div className="user-content">
+        <div className="user-content" ref={profileRef}>
           <h1>Profile</h1>
           <div className="user-bio">
             <h3>User Information</h3>
             <p>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
+              {user.bio
+                ? user.bio
+                : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat"}
             </p>
           </div>
 
@@ -131,7 +103,7 @@ export default function Profile() {
             <div style={{ marginLeft: "20%" }}>
               <label>Password</label>
               <p>&emsp;***********</p>
-              
+
               <label>Access Level</label>
               <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
 
@@ -143,7 +115,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="outletContainer">
+        <div className="outletContainer" ref={outletRef}>
           <Outlet />
         </div>
       </div>

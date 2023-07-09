@@ -15,6 +15,9 @@ import ApplianceCheck from './images/appliance check/IMG-0465.jpg';
 import MSECheck from './images/MSE/IMG-0466.jpg';
 import Scan from './images/scan/IMG-0463.jpg';
 
+import startRecord1 from './images/startRecord/IMG-0484.jpg';
+import startRecord2 from './images/startRecord/IMG-0485.jpg';
+
 const obj:any = {
         '/adjustment': {
             "name": "Adjustment",
@@ -56,6 +59,11 @@ const obj:any = {
           "image": [Scan],
           "desc": 'This is for scanning patients teeth.',
         },
+        '/startrecord': {
+          "name": "Start Record",
+          "image": [startRecord1, startRecord2],
+          "desc": "This is for start record appointment."
+        }
         
 }
     

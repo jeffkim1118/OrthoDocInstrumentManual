@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
    
     <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
-   
+    
     <title>OrthoDoc Instrument Manual</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,17 @@
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
     crossorigin="anonymous"
     />
+
+    <!-- Google Analytics -->
+    <script async src=`https://www.googletagmanager.com/gtag/js?id=${ENV['ID']}`></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', ENV['ID']);
+    </script>
+    <!--------------------------------------------------------------->
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

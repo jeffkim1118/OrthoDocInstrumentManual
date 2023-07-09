@@ -1,139 +1,242 @@
 import { Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import BForm from "react-bootstrap/Form";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
 import accountIcon from "../../components/images/account/account.png";
 import padLock from "../../components/images/account/padlock.png";
 import emailIcon from "../../components/images/account/email.png";
+import { Form, Field } from "react-final-form";
+import { AppContext } from "../../App";
+import RegisterSuccess from "./RegisterSuccess";
 
 export default function SignUp() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
+  const { newUser, setNewUser } = useContext<any>(AppContext);
+  const [avatar, setAvatar] = useState<File | any>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-
-    const newUser = {
-      username,
-      first_name,
-      last_name,
-      email,
-      password,
-    };
-
-    fetch(`http://localhost:3000/api/users`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ user: newUser }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem("token", data.token);
-        dispatch(login(data));
-      });
-      navigate('/profile')
+  const onSubmit = (values: any) => {
+    const data = new FormData();
+    data.append("user[bio]", values.bio || "Your biography goes here...");
+    data.append("user[first_name]", values.first_name);
+    data.append("user[last_name]", values.last_name);
+    data.append("user[email]", values.email);
+    data.append("user[password]", values.password);
+    data.append("user[username]", values.username);
+    data.append("user[avatar]", avatar[0]);
+    submitToApi(data);
   };
+
+  const submitToApi = async (data: any) => {
+    // hideFormAndDisplayVerification();
+    await fetch("http://localhost:3000/api/users", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setNewUser(data.image_url);
+        // localStorage.setItem("token", data.token);
+        // dispatch(login(data.user));
+        // debugger
+        navigate("/verify");
+        // debugger
+      })
+      .catch((error) => console.log(error));
+  };
+  let registerFormRef = useRef<any>(null);
+  // let registerSuccessMsg = useRef<any>(null);
+
+  // const hideFormAndDisplayVerification = () => {
+  //   registerFormRef.current.style.display = "none";
+  //   registerSuccessMsg.current.style.display = "block";
+  // };
+
   return (
     <div className="background">
-      <div className="signup-container" style={{ padding: "130px" }}>
-        <form className="signup-form" onSubmit={(e) => handleSubmit(e)}>
-          <h1 className="signup-form-heading">
-            <em>Sign Up</em>
-          </h1>
-          <Form.Group className="mb-3" controlId="formBasicText">
-            <Form.Label>First Name</Form.Label>
-            <div className="icons">
-              <img
-                src={accountIcon}
-                alt="account-icon"
-              ></img>
-              <Form.Control
-                type="text"
-                placeholder="First Name"
-                value={first_name}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicText">
-            <Form.Label>Last Name</Form.Label>
-            <div className="icons">
-              <img
-                src={accountIcon}
-                alt="account-icon"
-              ></img>
-              <Form.Control
-                type="text"
-                placeholder="Last Name"
-                value={last_name}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicText">
-            <Form.Label>Username</Form.Label>
-            <div className="icons">
-              <img
-                src={accountIcon}
-                alt="account-icon"
-              ></img>
-              <Form.Control
-                type="text"
-                placeholder="Enter Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <br />
-            <div className="icons">
-              <img
-                src={emailIcon}
-                alt="email-icon"
-              ></img>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-            </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <div className="icons">
-              <img
-                src={padLock}
-                alt="password-icon"
-              ></img>
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </Form.Group>
+      <div className="signup-container">
+        <Form
+          onSubmit={onSubmit}
+          validate={(values) => {
+            const errors: any = {};
+            if (!values.first_name) {
+              errors.first_name = "First name required";
+            }
+            if (!values.last_name) {
+              errors.last_name = "Last name required";
+            }
+            if (!values.email) {
+              errors.email = "Email required";
+            }
+            if (!values.password) {
+              errors.password = "Password required";
+            }
+            if (!values.username) {
+              errors.username = "Username required";
+            }
+            return errors;
+          }}
+          render={({
+            submitError,
+            handleSubmit,
+            form,
+            submitting,
+            pristine,
+            values,
+          }) => (
+            <>
+              {/* <div className="register-success-msg" ref={registerSuccessMsg}>
+                <p>Please check your email to verify your email.</p>
+              </div> */}
+              <form
+                className="signup-form"
+                onSubmit={handleSubmit}
+                ref={registerFormRef}
+              >
+                <h1 className="signup-form-heading">
+                  <em>Sign Up</em>
+                </h1>
+                <input
+                  type="file"
+                  onChange={(e) => setAvatar(e.target.files)}
+                ></input>
 
-          <Button variant="primary" type="submit">
-            Register
-          </Button>
-          <Link to={"/login"} style={{ padding: "10px", margin: "auto" }}>
-            Already have an account?
-          </Link>
-        </form>
+                <Field name="bio">
+                  {({ input, meta }) => (
+                    <BForm.Group className="mb-3" controlId="formBasicText">
+                      <BForm.Label>Bio</BForm.Label>
+                      <div className="icons">
+                        <img src={accountIcon} alt="account-icon"></img>
+                        <BForm.Control
+                          {...input}
+                          type="text"
+                          placeholder="Bio is optional"
+                          className={meta.touched && meta.error ? "error" : ""}
+                        />
+                      </div>
+                      {meta.error && meta.touched && (
+                        <span className="error-msg">{meta.error}</span>
+                      )}
+                    </BForm.Group>
+                  )}
+                </Field>
+
+                <Field name="first_name">
+                  {({ input, meta }) => (
+                    <BForm.Group className="mb-3" controlId="formBasicText">
+                      <BForm.Label>First Name</BForm.Label>
+                      <div className="icons">
+                        <img src={accountIcon} alt="account-icon"></img>
+                        <BForm.Control
+                          {...input}
+                          type="text"
+                          placeholder="First Name"
+                          className={meta.touched && meta.error ? "error" : ""}
+                        />
+                      </div>
+                      {meta.error && meta.touched && (
+                        <span className="error-msg">{meta.error}</span>
+                      )}
+                    </BForm.Group>
+                  )}
+                </Field>
+
+                <Field name="last_name">
+                  {({ input, meta }) => (
+                    <BForm.Group className="mb-3" controlId="formBasicText">
+                      <BForm.Label>Last Name</BForm.Label>
+                      <div className="icons">
+                        <img src={accountIcon} alt="account-icon"></img>
+                        <BForm.Control
+                          {...input}
+                          type="text"
+                          placeholder="Last Name"
+                          className={meta.touched && meta.error ? "error" : ""}
+                        />
+                      </div>
+                      {meta.error && meta.touched && (
+                        <span className="error-msg">{meta.error}</span>
+                      )}
+                    </BForm.Group>
+                  )}
+                </Field>
+
+                <Field name="username">
+                  {({ input, meta }) => (
+                    <BForm.Group className="mb-3" controlId="formBasicEmail">
+                      <BForm.Label>Username</BForm.Label>
+                      <br />
+                      <div className="icons">
+                        <img src={accountIcon} alt="email-icon"></img>
+                        <BForm.Control
+                          {...input}
+                          type="text"
+                          placeholder="Enter username"
+                          className={meta.touched && meta.error ? "error" : ""}
+                        ></BForm.Control>
+                      </div>
+                      {meta.error && meta.touched && (
+                        <span className="error-msg">{meta.error}</span>
+                      )}
+                    </BForm.Group>
+                  )}
+                </Field>
+
+                <Field name="email">
+                  {({ input, meta }) => (
+                    <BForm.Group className="mb-3" controlId="formBasicText">
+                      <BForm.Label>Email</BForm.Label>
+                      <div className="icons">
+                        <img src={emailIcon} alt="account-icon"></img>
+                        <BForm.Control
+                          {...input}
+                          type="email"
+                          placeholder="Enter email"
+                          className={meta.touched && meta.error ? "error" : ""}
+                        ></BForm.Control>
+                      </div>
+                      {meta.error && meta.touched && (
+                        <span className="error-msg">{meta.error}</span>
+                      )}
+                    </BForm.Group>
+                  )}
+                </Field>
+
+                <Field name="password">
+                  {({ input, meta }) => (
+                    <BForm.Group className="mb-3" controlId="formBasicText">
+                      <BForm.Label>Password</BForm.Label>
+                      <div className="icons">
+                        <img src={padLock} alt="account-icon"></img>
+                        <BForm.Control
+                          {...input}
+                          type="password"
+                          placeholder="Enter password"
+                          className={meta.touched && meta.error ? "error" : ""}
+                        ></BForm.Control>
+                      </div>
+                      {meta.error && meta.touched && (
+                        <span className="error-msg">{meta.error}</span>
+                      )}
+                    </BForm.Group>
+                  )}
+                </Field>
+
+                <div className="buttons">
+                  <Button
+                    className="login-btn"
+                    type="submit"
+                    disabled={submitting || pristine}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </form>
+            </>
+          )}
+        />
       </div>
     </div>
   );

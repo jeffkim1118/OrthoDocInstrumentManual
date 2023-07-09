@@ -1,5 +1,4 @@
 import Content from "./Content"
-import landingPage from "../images/landingPage.jpg";
 
 export default function Home(){
     const handleClickScroll = () => {
@@ -10,19 +9,10 @@ export default function Home(){
     }
     return (
         <div className="main-page">
-            <div className="hero-background" style={{backgroundImage: `url(https://images.pexels.com/photos/16092760/pexels-photo-16092760.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load)`,
-                minHeight: '500px',
-                backgroundPosition: 'center',
-                backgroundRepeat:'no-repeat',
-                backgroundSize:'cover',
-                backgroundColor: 'grey',
-                backgroundBlendMode: 'multiply',
-                backgroundAttachment: 'fixed'
-            }}>
+            <div className="hero-background">
             <div className="hero-msg" >
-                <h1 id="hero" style={{fontSize:'90px'}}>Welcome to Orthodontic Harmony!</h1>
-                <h4 id="hero" style={{fontSize:'50px'}}>Explore instrument set ups for Orthodontist.</h4>
-
+                <h1 className="hero">Welcome to Orthodontic Harmony!</h1>
+                <h4 className="hero">Explore instrument set ups for Orthodontist.</h4>
                 <div className="arrow-container">
                     <div className="arrow" onClick={handleClickScroll}>
                         <span></span>
@@ -34,6 +24,7 @@ export default function Home(){
             </div>
 
             <div className="table-content-container">
+                <h2 id="content" style={{color:'whitesmoke',textAlign:'center', padding:'70px'}}><em>Here are our necessary kits</em></h2>
                 <Content /> 
             </div>
         </div>

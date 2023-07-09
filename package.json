@@ -7,15 +7,21 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/actioncable": "^5.2.7",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "actioncable": "^5.2.6-3",
     "bootstrap": "^5.2.3",
     "css-loader": "^6.7.3",
+    "final-form": "^4.20.9",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
+    "react-actioncable-provider": "^2.0.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
+    "react-final-form": "^6.5.9",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
     "react-scripts": "^5.0.1",
@@ -49,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/rails__actioncable": "^6.1.6",
     "jest": "^27.5.1"
   }
 }
