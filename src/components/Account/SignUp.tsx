@@ -31,7 +31,7 @@ export default function SignUp() {
 
   const submitToApi = async (data: any) => {
     // hideFormAndDisplayVerification();
-    await fetch("http://localhost:3000/api/users", {
+    await fetch("https://orthodoc-backend-88937012f308.herokuapp.com/api/users", {
       method: "POST",
       body: data,
     })

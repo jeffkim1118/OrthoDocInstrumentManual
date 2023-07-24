@@ -9,7 +9,7 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
     let decoded:any = token?.split('.')[1];
     let decodedUser = JSON.parse(atob(decoded));
     try {
-        const response = await fetch(`http://localhost:3000/api/users/${decodedUser['id']}`, {
+        const response = await fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/users/${decodedUser['id']}`, {
           method: "GET",
           headers: {
             Accept: "application/json",
