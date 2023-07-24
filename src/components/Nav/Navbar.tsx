@@ -14,7 +14,7 @@ export default function Navb(){
 
   const handleLogout = () => {
     dispatch(logout())
-    fetch(`http://localhost:3000/logout`,{
+    fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/logout`,{
       method: "DELETE",
       headers: {
         "Content-Type" : 'application/json'
