@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom/client"
 import { ActionCableProvider } from "react-actioncable-provider";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
