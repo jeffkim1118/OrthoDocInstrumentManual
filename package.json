@@ -35,7 +35,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node src/index.tsx",
     "postinstall":"tsc",
     "build": "react-scripts build",
     "test": "react-scripts test",
