@@ -49,7 +49,7 @@ export default function PublicChat() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (newMessage !== "") {
-      fetch(`http://localhost:3000/api/messages`, {
+      fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/messages`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
