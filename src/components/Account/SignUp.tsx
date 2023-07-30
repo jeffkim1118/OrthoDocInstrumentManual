@@ -30,7 +30,6 @@ export default function SignUp() {
   };
 
   const submitToApi = async (data: any) => {
-    // hideFormAndDisplayVerification();
     await fetch("https://orthodoc-backend-88937012f308.herokuapp.com/api/users", {
       method: "POST",
       body: data,
@@ -38,21 +37,12 @@ export default function SignUp() {
       .then((res) => res.json())
       .then((data) => {
         setNewUser(data.image_url);
-        // localStorage.setItem("token", data.token);
-        // dispatch(login(data.user));
-        // debugger
         navigate("/verify");
-        // debugger
       })
       .catch((error) => console.log(error));
   };
   let registerFormRef = useRef<any>(null);
-  // let registerSuccessMsg = useRef<any>(null);
-
-  // const hideFormAndDisplayVerification = () => {
-  //   registerFormRef.current.style.display = "none";
-  //   registerSuccessMsg.current.style.display = "block";
-  // };
+ 
 
   return (
     <div className="background">
@@ -87,9 +77,6 @@ export default function SignUp() {
             values,
           }) => (
             <>
-              {/* <div className="register-success-msg" ref={registerSuccessMsg}>
-                <p>Please check your email to verify your email.</p>
-              </div> */}
               <form
                 className="signup-form"
                 onSubmit={handleSubmit}
