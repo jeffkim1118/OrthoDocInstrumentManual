@@ -31,7 +31,7 @@ export const getUser:any = createAsyncThunk('user/getUser', async (number, thunk
 
 export const handleLogin:any = createAsyncThunk('user/handleLogin', async (values, thunkAPI) => {
   try{
-    const response = await fetch(`http://localhost:3000/login`, {
+    const response = await fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/login`, {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -50,7 +50,7 @@ export default function Update() {
   const handleDelete = () => {
     if(!!localStorage.getItem('token')){
       const token = localStorage.getItem('token');
-      fetch(`http://localhost:3000/api/users/${user.id}`, {
+      fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/users/${user.id}`, {
       method:'DELETE',
       headers: {
         'Authorization': `${token}`

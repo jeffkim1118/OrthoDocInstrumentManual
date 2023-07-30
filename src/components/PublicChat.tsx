@@ -16,7 +16,7 @@ export default function PublicChat() {
 
   useEffect(() => {
     const fetchMessageData = async () => {
-      await fetch("http://localhost:3000/api/conversations/1")
+      await fetch("https://orthodoc-backend-88937012f308.herokuapp.com/api/conversations/1")
       .then((res) => res.json())
       .then((data) => setMsgData(data.messages))
       .then(() => {
