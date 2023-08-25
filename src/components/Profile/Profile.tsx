@@ -4,11 +4,12 @@ import defaultProfilePicture from "../components/images/account/defaultProfilePi
 import emailIcon from "../components/images/account/icons8-mail-96.png";
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
+import Update from "./Update";
+
 export default function Profile() {
   const user: any = useSelector(selectUser);
-  const outletRef = useRef<any>(null);
-  const profileRef = useRef<any>(null);
-
   const dateString = user?.created_at?.toString() || "";
   const formatter = new Intl.DateTimeFormat("en-GB", {
     year: "numeric",
@@ -16,108 +17,75 @@ export default function Profile() {
     day: "2-digit",
   });
 
-  useEffect(() => {
-    outletRef.current.style.display = "none";
-  }, []);
-
-  const handleHideProfilePage = () => {
-    profileRef.current.style.display = "none";
-    outletRef.current.style.display = "block";
-  };
-
-  const handleShowProfilePage = () => {
-    outletRef.current.style.display = "none";
-    profileRef.current.style.display = "block";
-  };
-
   if (!user) {
     return <div>Loading...</div>;
   }
   return (
     <div className="grid-line">
-      <div
-        className="profile-picture"
-        onClick={() => handleShowProfilePage()}
-      >
-
-        <Link to="/profile" style={{ textDecoration: "none", color: "black" }}>
-          {user.avatar ? (
-            <img src={user.avatar_url} className="user-avatar"></img>
-          ) : null}
-          <p>{user.username}</p>
-        </Link>
-      </div>
-
-      <div className="side-bar">
-        <nav
-          id="sidebarMenu"
-          className="collapse d-lg-block sidebar collapse bg-white"
-        >
-          <div className="position-sticky">
-            <div className="list-group list-group-flush mx-3 mt-4">
-              <Link to={"update"}>
-                <button
-                  className="list-group-item list-group-item-action py-2 ripple"
-                  onClick={() => handleHideProfilePage()}
-                >
-                  <i className="fas fa-chart-area fa-fw me-3"></i>
-                  <span>Update Profile</span>
-                </button>
-              </Link>
-            </div>
-          </div>
-        </nav>
-      </div>
-
       <div className="user-section">
-        <div className="user-content" ref={profileRef}>
-          <h1>Profile</h1>
-          <div className="user-bio">
-            <h3>User Information</h3>
-            <p>
-              {user.bio
-                ? user.bio
-                : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat"}
-            </p>
-          </div>
+        <Tabs
+          defaultActiveKey="profile"
+          id="uncontrolled-tab-example"
+          className="profile-tab"
+        >
+          <Tab eventKey="profile" title="Profile">
+            <div className="user-content">
+              <h1>Profile</h1>
+              <div className="user-bio">
+              {user.avatar ? (
+                    <img src={user.avatar_url} className="user-avatar"></img>
+                  ) : null}
+                <div className="user-bio-content">                 
+                  <p>
+                    {user.bio
+                      ? user.bio
+                      : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation ullamco laborisnisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat"}
+                  </p>
+                </div>
+              </div>
 
-          <h4>Account Detail</h4>
-          <div
-            className="user-detail"
-            style={{ display: "flex", flexDirection: "row", marginTop: "40px" }}
-          >
-            <div>
-              <label>First Name</label>
-              <p>&emsp;{user.first_name}</p>
+              <h4>Account Detail</h4>
+              <div
+                className="user-detail"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: "40px",
+                }}
+              >
+                <div>
+                  <label>First Name</label>
+                  <p>&emsp;{user.first_name}</p>
 
-              <label>Last Name</label>
-              <p>&emsp;{user.last_name}</p>
+                  <label>Last Name</label>
+                  <p>&emsp;{user.last_name}</p>
 
-              <label>Email</label>
-              <p>&emsp;{user.email}</p>
+                  <label>Email</label>
+                  <p>&emsp;{user.email}</p>
 
-              <label>Username</label>
-              <p>&emsp;{user.username}</p>
+                  <label>Username</label>
+                  <p>&emsp;{user.username}</p>
+                </div>
+
+                <div style={{ marginLeft: "20%" }}>
+                  <label>Password</label>
+                  <p>&emsp;***********</p>
+
+                  <label>Access Level</label>
+                  <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
+
+                  <label>Joined</label>
+                  <time id="user-data">
+                    <p>&emsp;{formatter.format(Date.parse(dateString))}</p>
+                  </time>
+                </div>
+              </div>
             </div>
-
-            <div style={{ marginLeft: "20%" }}>
-              <label>Password</label>
-              <p>&emsp;***********</p>
-
-              <label>Access Level</label>
-              <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
-
-              <label>Joined</label>
-              <time id="user-data">
-                <p>&emsp;{formatter.format(Date.parse(dateString))}</p>
-              </time>
-            </div>
-          </div>
-        </div>
-
-        <div className="outletContainer" ref={outletRef}>
-          <Outlet />
-        </div>
+          </Tab>
+          <Tab eventKey="Edit" title="Edit Profile">
+            <Update />
+          </Tab>
+        </Tabs>
       </div>
     </div>
   );
