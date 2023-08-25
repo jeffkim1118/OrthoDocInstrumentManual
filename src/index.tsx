@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/Store";
 import { Provider } from "react-redux";
 
-export const API_WS_ROOT = "ws://localhost:3000/cable";
+export const API_WS_ROOT = "wss://orthodoc-backend-88937012f308.herokuapp.com/cable";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
