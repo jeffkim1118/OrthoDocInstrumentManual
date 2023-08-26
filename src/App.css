@@ -281,6 +281,7 @@ body {
   width: 80%;
   max-height: 500px;
   margin: 30px auto;
+  text-align: center;
 }
 
 .user-content h1 {
@@ -290,6 +291,22 @@ body {
 
 .user-content p {
   color: rgb(116, 116, 116);
+}
+
+.detail-container{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}
+
+.detail-line-one{
+  width: 50%;
+  padding: 50px;
+}
+
+.detail-line-two{
+  width: 50%;
+  padding: 50px;
 }
 
 .user-avatar{
