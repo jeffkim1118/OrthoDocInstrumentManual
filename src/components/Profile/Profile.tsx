@@ -32,10 +32,18 @@ export default function Profile() {
             <div className="user-content">
               <h1>Profile</h1>
               <div className="user-bio">
-              {user.avatar ? (
-                    <img src={user.avatar_url} className="user-avatar"></img>
-                  ) : null}
-                <div className="user-bio-content">                 
+                {user.avatar ? (
+                  <img
+                    src={user.avatar_url}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null; // prevents looping
+                      currentTarget.src =
+                        "http://www.gravatar.com/avatar/?d=identicon";
+                    }}
+                    className="user-avatar"
+                  ></img>
+                ) : null}
+                <div className="user-bio-content">
                   <p>
                     {user.bio
                       ? user.bio
@@ -53,31 +61,33 @@ export default function Profile() {
                   marginTop: "40px",
                 }}
               >
-                <div>
-                  <label>First Name</label>
-                  <p>&emsp;{user.first_name}</p>
+                <div className="detail-container">
+                  <div className="detail-line-one">
+                    <label>First Name</label>
+                    <p>&emsp;{user.first_name}</p>
 
-                  <label>Last Name</label>
-                  <p>&emsp;{user.last_name}</p>
+                    <label>Last Name</label>
+                    <p>&emsp;{user.last_name}</p>
 
-                  <label>Email</label>
-                  <p>&emsp;{user.email}</p>
+                    <label>Email</label>
+                    <p>&emsp;{user.email}</p>
 
-                  <label>Username</label>
-                  <p>&emsp;{user.username}</p>
-                </div>
+                    <label>Username</label>
+                    <p>&emsp;{user.username}</p>
+                  </div>
 
-                <div style={{ marginLeft: "20%" }}>
-                  <label>Password</label>
-                  <p>&emsp;***********</p>
+                  <div className="detail-line-two">
+                    <label>Password</label>
+                    <p>&emsp;***********</p>
 
-                  <label>Access Level</label>
-                  <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
+                    <label>Access Level</label>
+                    <p>&emsp; {user.admin === false ? "user" : "admin"}</p>
 
-                  <label>Joined</label>
-                  <time id="user-data">
-                    <p>&emsp;{formatter.format(Date.parse(dateString))}</p>
-                  </time>
+                    <label>Joined</label>
+                    <time id="user-data">
+                      <p>&emsp;{formatter.format(Date.parse(dateString))}</p>
+                    </time>
+                  </div>
                 </div>
               </div>
             </div>
