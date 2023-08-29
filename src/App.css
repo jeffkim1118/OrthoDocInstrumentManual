@@ -293,6 +293,12 @@ body {
   color: rgb(116, 116, 116);
 }
 
+.user-detail{
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+}
+
 .detail-container{
   display: flex;
   flex-direction: row;

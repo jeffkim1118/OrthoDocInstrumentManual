@@ -1,9 +1,5 @@
 import { selectUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
-import defaultProfilePicture from "../components/images/account/defaultProfilePicture.png";
-import emailIcon from "../components/images/account/icons8-mail-96.png";
-import { Link, Outlet } from "react-router-dom";
-import { useEffect, useRef } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Update from "./Update";
@@ -55,11 +51,6 @@ export default function Profile() {
               <h4>Account Detail</h4>
               <div
                 className="user-detail"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  marginTop: "40px",
-                }}
               >
                 <div className="detail-container">
                   <div className="detail-line-one">
