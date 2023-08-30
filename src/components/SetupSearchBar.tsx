@@ -1,4 +1,5 @@
 import Form from 'react-bootstrap/Form';
+import obj from './Instruments';
 import {useState, useEffect} from 'react'
 export default function SetupSearchBar(){
 
@@ -16,7 +17,6 @@ export default function SetupSearchBar(){
         setSearchList(filterBySearch);
     },[searchQuery])
 
-    console.log(searchQuery)
     return(
         <div>
             <input type='text' value={searchQuery} onChange={(e:any) => setSearchQuery(e.target.value)}></input>
