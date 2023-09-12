@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client"
+import ActionCable from "actioncable";
 import { ActionCableProvider } from "react-actioncable-provider";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./app/Store";
 import { Provider } from "react-redux";
 
-export const API_WS_ROOT = "wss://orthodoc-backend-88937012f308.herokuapp.com/cable";
-
+const API_WS_ROOT = "ws://orthodoc-backend-88937012f308.herokuapp.com/cable";
+const cable = ActionCable.createConsumer('wss://orthodoc-backend-88937012f308.herokuapp.com/cable')
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
