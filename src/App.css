@@ -609,6 +609,8 @@ input:invalid[focused="true"] ~ span {
   right: 15px;
   border: 3px solid #f1f1f1;
   z-index: 9;
+  display: flex;
+  flex-direction: row;
 }
 
 /* Add styles to the form container */
@@ -766,6 +768,21 @@ input:invalid[focused="true"] ~ span {
 
 .notdisplay{
   display: none;
+}
+
+/* Private message section */
+.create-private-msg-form{
+ display: flex;
+ flex-direction: column;
+}
+
+.DMButton{
+  
+}
+
+.combiner{
+  display: flex;
+  flex-direction: row;
 }
 
 @media only screen and (max-width: 767px) {
