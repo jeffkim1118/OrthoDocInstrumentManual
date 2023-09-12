@@ -28,6 +28,8 @@ export default function PublicChat() {
     fetchMessageData()
   }, []);
 
+  
+
   const openForm = () => {
     // stopChatButtonBlink();
     let chatbox = document.getElementById("myForm");
@@ -87,8 +89,9 @@ export default function PublicChat() {
 
 
   const ReceiveMessageData = (data: any) => {
+    console.log(data)
     if (data.user_id !== decodedUser.id) {
-      const allMessages = [...msgData, data];
+      let allMessages = [...msgData, data];
       setMsgData(allMessages);
       // makeChatButtonBlink();
     }
