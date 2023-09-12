@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { ActionCableConsumer } from "react-actioncable-provider";
 import { useSelector,useDispatch } from 'react-redux';
 import Chat from "./Chat";
+import CreatePrivateMsg from "./CreatePrivateMsg";
 
 export default function PublicChat() {
   const token = localStorage.getItem('token');
@@ -12,6 +13,7 @@ export default function PublicChat() {
 
   const [newMessage, setNewMessage] = useState('');
   const [msgData, setMsgData] = useState<any[]>([]);
+  const [showPrivateMsgForm, setPrivateMsgFormStatus] = useState(false)
 
 
   useEffect(() => {
@@ -97,6 +99,10 @@ export default function PublicChat() {
     }
   };
 
+  const createNewPrivateMsg = () => {
+    setPrivateMsgFormStatus(current => !current)
+  }
+
   return (
     <>
       <button className="open-button" onClick={() => openForm()}>
@@ -106,7 +112,13 @@ export default function PublicChat() {
         channel={{ channel: "MessagesChannel" }}
         onReceived={ReceiveMessageData}
       />
+
+      <div className="combiner">
+      <button className="DMbutton" onClick={createNewPrivateMsg}>+</button>
       <div className="chat-popup" id="myForm">
+      
+      {showPrivateMsgForm && <CreatePrivateMsg />}
+
         <form className="chat-form-container" onSubmit={handleSubmit}>
           <h1>Open Chat</h1>
           <div className="text-messages-container" ref={bottomRef}>
@@ -134,6 +146,7 @@ export default function PublicChat() {
             Close
           </button>
         </form>
+      </div>
       </div>
     </>
   );
