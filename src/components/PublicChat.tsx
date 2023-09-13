@@ -114,13 +114,13 @@ export default function PublicChat() {
       />
 
       <div className="combiner">
-      <button className="DMbutton" onClick={createNewPrivateMsg}>+</button>
-      <div className="chat-popup" id="myForm">
       
-      {showPrivateMsgForm && <CreatePrivateMsg />}
-
+      <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={handleSubmit}>
           <h1>Open Chat</h1>
+          <a className="privateMsgButton" onClick={createNewPrivateMsg}>Private Message</a>
+          {showPrivateMsgForm && <CreatePrivateMsg />}
+
           <div className="text-messages-container" ref={bottomRef}>
             {msgData.map((msg: any) => (
               <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
