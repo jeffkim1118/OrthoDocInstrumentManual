@@ -776,8 +776,25 @@ input:invalid[focused="true"] ~ span {
  flex-direction: column;
 }
 
-.DMButton{
-  
+.privateMsgButton{
+  text-decoration: none;
+  display: flex;
+  width: fit-content;
+}
+
+.msg-target-username{
+  height: 20px;;
+}
+
+.private-msg-create-btn{
+  margin: 5px;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+}
+
+.private-msg-create-btn:hover{
+  background-color: #23a6d5;
 }
 
 .combiner{
