@@ -802,6 +802,25 @@ input:invalid[focused="true"] ~ span {
   flex-direction: row;
 }
 
+/* setup search bar page */
+.setUpSearchBarPage{
+  height: 100vh;
+}
+.setUpSearchBarContainer{
+  text-align: center;
+  padding: 20px;
+}
+
+.searchResultItem{
+  height: 30px;
+  margin: 10px;
+}
+.searchResultItem:hover{
+  background-color: #23a6d5;
+}
+
+/* -------------------------------------------------- */
+
 @media only screen and (max-width: 767px) {
   .body {
     width: 100%;
