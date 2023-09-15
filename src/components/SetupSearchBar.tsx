@@ -7,22 +7,34 @@ import setUps from "./Homepage/Setups";
 export default function SetupSearchBar() {
   let setupArray = [ "setup3", "setup4", "setup5"];
 
-  let testArray = []
+  let testObj = {
+    'sets': [{
+      "name": "setup1",
+    },{
+      "name": "setup2",
+    },{
+      "name": 'setup3',
+    },{
+      "name": 'setup4',
+    }]
+  }
 
   const [searchList, setSearchList] = useState(setupArray);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (searchQuery === "") {
       setSearchList(setupArray);
       return;
     }
-    const filterBySearch = setupArray.filter((setup) => {
-      if (setup.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return setup;
+    const filterBySearch = testObj.sets.filter((setup:any) => {
+      console.log(setup.name)
+      if (setup.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+        return setup.name
       }
     });
-    setSearchList(filterBySearch);
+    console.log(typeof(filterBySearch[0].name))
+    setSearchQuery(filterBySearch)
   }, [searchQuery]);
 
   return (
@@ -35,8 +47,8 @@ export default function SetupSearchBar() {
           onChange={(e: any) => setSearchQuery(e.target.value)}
         ></input>
         <div>
-          {searchList.map((setup) => {
-            return <div className="searchResultItem"><Nav.Link>{setup}</Nav.Link></div>;
+          {testObj.sets.map((setup) => {
+            return <div className="searchResultItem"><Nav.Link>{setup.name}</Nav.Link></div>;
           })}
         </div>
       </div>
