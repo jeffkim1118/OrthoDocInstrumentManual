@@ -91,7 +91,6 @@ export default function PublicChat() {
 
 
   const ReceiveMessageData = (data: any) => {
-    console.log(data)
     if (data.user_id !== decodedUser.id) {
       let allMessages = [...msgData, data];
       setMsgData(allMessages);
@@ -112,20 +111,26 @@ export default function PublicChat() {
         channel={{ channel: "MessagesChannel" }}
         onReceived={ReceiveMessageData}
       />
-
-      <div className="combiner">
-      
+      {/* <div className="combiner"> */}
       <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={handleSubmit}>
-          <h1>Open Chat</h1>
-          <a className="privateMsgButton" onClick={createNewPrivateMsg}>Private Message</a>
-          {showPrivateMsgForm && <CreatePrivateMsg />}
+        <button
+            type="button"
+            className="btn-cancel"
+            onClick={() => closeForm()}
+          >
+            X
+          </button>
 
+          {/* <a className="privateMsgButton" onClick={createNewPrivateMsg}>Private Message</a>
+          {showPrivateMsgForm && <CreatePrivateMsg />} */}
           <div className="text-messages-container" ref={bottomRef}>
             {msgData.map((msg: any) => (
               <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
             ))}
           </div>
+
+          <div className="text-area">
           <textarea
             id="output"
             className="textMsg"
@@ -138,16 +143,18 @@ export default function PublicChat() {
           <button type="submit" className="btn">
             Send
           </button>
-          <button
+          
+          </div>
+          {/* <button
             type="button"
-            className="btn cancel"
+            className="btn-cancel"
             onClick={() => closeForm()}
           >
-            Close
-          </button>
+            X
+          </button> */}
         </form>
       </div>
-      </div>
+      {/* </div> */}
     </>
   );
 }
