@@ -19,22 +19,20 @@ export default function SetupSearchBar() {
     }]
   }
 
-  const [searchList, setSearchList] = useState(setupArray);
+  const [searchList, setSearchList] = useState(testObj.sets);
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     if (searchQuery === "") {
-      setSearchList(setupArray);
+      setSearchList(testObj.sets);
       return;
     }
     const filterBySearch = testObj.sets.filter((setup:any) => {
-      console.log(setup.name)
       if (setup.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return setup.name
+        return setup
       }
     });
-    console.log(typeof(filterBySearch[0].name))
-    setSearchQuery(filterBySearch)
+   
   }, [searchQuery]);
 
   return (
