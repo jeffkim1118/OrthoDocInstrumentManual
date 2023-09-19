@@ -1,36 +1,37 @@
 import { useState, useEffect, useRef, useContext } from "react";
 import { ActionCableConsumer } from "react-actioncable-provider";
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from "../features/userSlice";
 import Chat from "./Chat";
 import CreatePrivateMsg from "./CreatePrivateMsg";
+import SendArrow from "./images/send.svg";
 
 export default function PublicChat() {
-  const token = localStorage.getItem('token');
-  let decoded:any = token?.split('.')[1];
-  let decodedUser = JSON.parse(atob(decoded))
-
+  const token = localStorage.getItem("token");
+  let decoded: any = token?.split(".")[1];
+  let decodedUser = JSON.parse(atob(decoded));
+  let user: any = useSelector(selectUser);
   const bottomRef = useRef<HTMLInputElement>(null);
 
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const [msgData, setMsgData] = useState<any[]>([]);
-  const [showPrivateMsgForm, setPrivateMsgFormStatus] = useState(false)
-
+  const [showPrivateMsgForm, setPrivateMsgFormStatus] = useState(false);
 
   useEffect(() => {
     const fetchMessageData = async () => {
-      await fetch("https://orthodoc-backend-88937012f308.herokuapp.com/api/conversations/1")
-      .then((res) => res.json())
-      .then((data) => setMsgData(data.messages))
-      .then(() => {
-        if (bottomRef.current) {
-          bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-        }
-      });
-    }
-    fetchMessageData()
+      await fetch(
+        "https://orthodoc-backend-88937012f308.herokuapp.com/api/conversations/1"
+      )
+        .then((res) => res.json())
+        .then((data) => setMsgData(data.messages))
+        .then(() => {
+          if (bottomRef.current) {
+            bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
+          }
+        });
+    };
+    fetchMessageData();
   }, []);
-
-  
 
   const openForm = () => {
     // stopChatButtonBlink();
@@ -53,31 +54,35 @@ export default function PublicChat() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (newMessage !== "") {
-      fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/messages`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          username: decodedUser.name,
-          content: newMessage,
-          user_id: decodedUser.id,
-          conversation_id: 1,
-        }),
+      fetch(
+        `https://orthodoc-backend-88937012f308.herokuapp.com/api/messages`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            username: decodedUser.name,
+            content: newMessage,
+            user_id: decodedUser.id,
+            conversation_id: 1,
+          }),
+        }
+      )
+      .then((res) => res.json())
+      .then((newData) => {
+        console.log(newData);
+        setNewMessage("");
+        if (decodedUser.id === newData.message.user_id) {
+          setMsgData([...msgData, newData.message]);
+        }
       })
-        .then((res) => res.json())
-        .then((newData) => {
-          console.log(newData);
-          setNewMessage("");
-          if (decodedUser.id === newData.message.user_id) {
-            setMsgData([...msgData, newData.message]);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .catch((error) => {
+        debugger
+        console.log(error);      
+      });
     }
-  }
+  };
 
   // This automatically scroll down the chat messages to the bottom to show the latest messages.
   useEffect(() => {
@@ -89,7 +94,6 @@ export default function PublicChat() {
     }
   }, []);
 
-
   const ReceiveMessageData = (data: any) => {
     if (data.user_id !== decodedUser.id) {
       let allMessages = [...msgData, data];
@@ -99,14 +103,15 @@ export default function PublicChat() {
   };
 
   const createNewPrivateMsg = () => {
-    setPrivateMsgFormStatus(current => !current)
-  }
+    setPrivateMsgFormStatus((current) => !current);
+  };
 
   return (
     <>
       <button className="open-button" onClick={() => openForm()}>
         Chat
       </button>
+
       <ActionCableConsumer
         channel={{ channel: "MessagesChannel" }}
         onReceived={ReceiveMessageData}
@@ -114,7 +119,7 @@ export default function PublicChat() {
       {/* <div className="combiner"> */}
       <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={handleSubmit}>
-        <button
+          <button
             type="button"
             className="btn-cancel"
             onClick={() => closeForm()}
@@ -131,19 +136,18 @@ export default function PublicChat() {
           </div>
 
           <div className="text-area">
-          <textarea
-            id="output"
-            className="textMsg"
-            placeholder="Type message.."
-            name="msg"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            required
-          ></textarea>
-          <button type="submit" className="btn">
-            Send
-          </button>
-          
+            <textarea
+              id="output"
+              className="textMsg"
+              placeholder="Type message.."
+              name="msg"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              required
+            ></textarea>
+            <button type="submit" className="btn">
+              <img src={SendArrow}></img>
+            </button>
           </div>
           {/* <button
             type="button"

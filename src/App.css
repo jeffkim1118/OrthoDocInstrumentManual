@@ -631,7 +631,6 @@ input:invalid[focused="true"] ~ span {
   border-radius: 10px;
   background: #f1f1f1;
   resize: none;
-  min-height: 100px;
 }
 
 .text-area{
@@ -649,16 +648,14 @@ input:invalid[focused="true"] ~ span {
   background-color: #454dca;
   color: white;
   padding: 15px;
-  margin: 10px;
+  margin: 12px 10px 20px 0;
   border: none;
   cursor: pointer;
   opacity: 0.8;
   resize: none;
+  height: fit-content;
 }
 
-.btn-cancel{
-  
-}
 
 /* Add a red background color to the cancel button */
 .chat-form-container .cancel {
