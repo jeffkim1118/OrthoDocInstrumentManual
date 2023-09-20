@@ -15,6 +15,7 @@ export default function PublicChat() {
 
   const [newMessage, setNewMessage] = useState("");
   const [msgData, setMsgData] = useState<any[]>([]);
+  const [displayChatForm, setDisplayChatForm] = useState(false)
   const [showPrivateMsgForm, setPrivateMsgFormStatus] = useState(false);
 
   useEffect(() => {
@@ -33,23 +34,27 @@ export default function PublicChat() {
     fetchMessageData();
   }, []);
 
-  const openForm = () => {
-    // stopChatButtonBlink();
-    let chatbox = document.getElementById("myForm");
-    if (chatbox) {
-      chatbox.style.display = "block";
-      if (bottomRef.current) {
-        bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-      }
-    }
-  };
+  // const openForm = () => {
+  //   // stopChatButtonBlink();
+  //   let chatbox = document.getElementById("myForm");
+  //   if (chatbox) {
+  //     chatbox.style.display = "block";
+  //     if (bottomRef.current) {
+  //       bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
+  //     }
+  //   }
+  // };
 
-  const closeForm = () => {
-    let chatbox = document.getElementById("myForm");
-    if (chatbox) {
-      chatbox.style.display = "none";
-    }
-  };
+  // const closeForm = () => {
+  //   let chatbox = document.getElementById("myForm");
+  //   if (chatbox) {
+  //     chatbox.style.display = "none";
+  //   }
+  // };
+
+  const handleChatForm = () => {
+    setDisplayChatForm((current) => !current);
+  }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -78,7 +83,6 @@ export default function PublicChat() {
         }
       })
       .catch((error) => {
-        debugger
         console.log(error);      
       });
     }
@@ -108,7 +112,7 @@ export default function PublicChat() {
 
   return (
     <>
-      <button className="open-button" onClick={() => openForm()}>
+      <button className="open-button" onClick={() => handleChatForm()}>
         Chat
       </button>
 
@@ -116,19 +120,17 @@ export default function PublicChat() {
         channel={{ channel: "MessagesChannel" }}
         onReceived={ReceiveMessageData}
       />
-      {/* <div className="combiner"> */}
+     
       <div className="chat-popup" id="myForm">
         <form className="chat-form-container" onSubmit={handleSubmit}>
           <button
             type="button"
             className="btn-cancel"
-            onClick={() => closeForm()}
+            onClick={() => handleChatForm()}
           >
             X
           </button>
 
-          {/* <a className="privateMsgButton" onClick={createNewPrivateMsg}>Private Message</a>
-          {showPrivateMsgForm && <CreatePrivateMsg />} */}
           <div className="text-messages-container" ref={bottomRef}>
             {msgData.map((msg: any) => (
               <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
@@ -158,7 +160,7 @@ export default function PublicChat() {
           </button> */}
         </form>
       </div>
-      {/* </div> */}
+    
     </>
   );
 }
