@@ -702,13 +702,16 @@ input:invalid[focused="true"] ~ span {
   text-align: right;
 }
 
+.chatbox-container div{
+  height: 60px;
+}
+
 .mychat {
   text-align: left;
   display: inline-block;
   right: 0;
   background-color: #23a6d5;
   border-radius: 10px;
-  width: fit-content;
   padding: 5px;
 }
 
@@ -720,10 +723,15 @@ input:invalid[focused="true"] ~ span {
   padding: 5px;
 }
 
+.date-time-indicator{
+  text-align: right;
+}
+
 .msg-time {
   font-size: 12px;
   color: rgb(29, 29, 29);
 }
+
 @keyframes blinking {
   0% { color: rgb(0, 255, 34); }
   50% { color: rgb(255, 255, 255); }
