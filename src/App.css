@@ -146,6 +146,10 @@ body {
   min-height: 400px;
 }
 
+.card-content-detail{
+  min-height: 100px;
+}
+
 .card {
   width: 18rem;
 }
@@ -704,6 +708,20 @@ input:invalid[focused="true"] ~ span {
 
 .chatbox-container div{
   height: 60px;
+}
+
+.cancel-btn-container{
+  text-align: right;
+  height: fit-content;
+}
+
+.cancel-btn{
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+.cancel-btn:hover{
+  cursor: pointer;
 }
 
 .mychat {

@@ -15,7 +15,7 @@ export default function PublicChat() {
 
   const [newMessage, setNewMessage] = useState("");
   const [msgData, setMsgData] = useState<any[]>([]);
-  const [displayChatForm, setDisplayChatForm] = useState(false)
+  const [displayChatForm, setDisplayChatForm] = useState(false);
   const [showPrivateMsgForm, setPrivateMsgFormStatus] = useState(false);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function PublicChat() {
 
   const handleChatForm = () => {
     setDisplayChatForm((current) => !current);
-  }
+  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -74,17 +74,17 @@ export default function PublicChat() {
           }),
         }
       )
-      .then((res) => res.json())
-      .then((newData) => {
-        console.log(newData);
-        setNewMessage("");
-        if (decodedUser.id === newData.message.user_id) {
-          setMsgData([...msgData, newData.message]);
-        }
-      })
-      .catch((error) => {
-        console.log(error);      
-      });
+        .then((res) => res.json())
+        .then((newData) => {
+          console.log(newData);
+          setNewMessage("");
+          if (decodedUser.id === newData.message.user_id) {
+            setMsgData([...msgData, newData.message]);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -120,47 +120,42 @@ export default function PublicChat() {
         channel={{ channel: "MessagesChannel" }}
         onReceived={ReceiveMessageData}
       />
-     
-      <div className="chat-popup" id="myForm">
-        <form className="chat-form-container" onSubmit={handleSubmit}>
-          <button
-            type="button"
-            className="btn-cancel"
-            onClick={() => handleChatForm()}
-          >
-            X
-          </button>
 
-          <div className="text-messages-container" ref={bottomRef}>
-            {msgData.map((msg: any) => (
-              <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
-            ))}
-          </div>
+      {displayChatForm === true ? (
+        <div className="chat-popup" id="myForm">
+          <form className="chat-form-container" onSubmit={handleSubmit}>
+            <div className="cancel-btn-container">
+              <a
+                className="cancel-btn"
+                onClick={() => handleChatForm()}
+              >
+                X
+              </a>
+            </div>
 
-          <div className="text-area">
-            <textarea
-              id="output"
-              className="textMsg"
-              placeholder="Type message.."
-              name="msg"
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              required
-            ></textarea>
-            <button type="submit" className="btn">
-              <img src={SendArrow}></img>
-            </button>
-          </div>
-          {/* <button
-            type="button"
-            className="btn-cancel"
-            onClick={() => closeForm()}
-          >
-            X
-          </button> */}
-        </form>
-      </div>
-    
+            <div className="text-messages-container" ref={bottomRef}>
+              {msgData.map((msg: any) => (
+                <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
+              ))}
+            </div>
+
+            <div className="text-area">
+              <textarea
+                id="output"
+                className="textMsg"
+                placeholder="Type message.."
+                name="msg"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                required
+              ></textarea>
+              <button type="submit" className="btn">
+                <img src={SendArrow}></img>
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : null}
     </>
   );
 }
