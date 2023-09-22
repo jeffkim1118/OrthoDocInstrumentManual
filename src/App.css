@@ -99,6 +99,7 @@ body {
 
 /* Each kit */
 #kit-container {
+  text-align: center;
   width: 100%;
   min-height: 800px;
   background-color: #d9afd9;
@@ -115,29 +116,27 @@ body {
   mask: var(--mask);
 }
 
-#kit {
-  width: 70%;
+.kit{
   margin: auto;
+  width:80%;
 }
 
-#kit h1 {
+
+.kit h1 {
   grid-area: header;
 }
 
 #pic {
-  grid-area: pic;
   max-width: 400px;
   min-width: 300px;
 }
 
 /* Dynamic modal popup */
-.modal-image {
-  width: 100px;
-}
-
-.test {
+.setup-picture-container {
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
+  margin: 0 0 0 10%;
 }
 
 .home-card-content {
