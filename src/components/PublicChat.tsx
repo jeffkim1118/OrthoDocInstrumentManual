@@ -5,6 +5,8 @@ import { selectUser } from "../features/userSlice";
 import Chat from "./Chat";
 import CreatePrivateMsg from "./CreatePrivateMsg";
 import SendArrow from "./images/send.svg";
+import { current } from "@reduxjs/toolkit";
+import chatIcon from "./images/chat.svg";
 
 export default function PublicChat() {
   const token = localStorage.getItem("token");
@@ -16,67 +18,50 @@ export default function PublicChat() {
   const [newMessage, setNewMessage] = useState("");
   const [msgData, setMsgData] = useState<any[]>([]);
   const [displayChatForm, setDisplayChatForm] = useState(false);
+  const [displayChatBtn, setDisplayChatBtn] = useState(true);
   const [showPrivateMsgForm, setPrivateMsgFormStatus] = useState(false);
+  const [newMsgCounter, increaseCounter] = useState(0);
+
+  const scrollToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
     const fetchMessageData = async () => {
-      await fetch(
-        "https://orthodoc-backend-88937012f308.herokuapp.com/api/conversations/1"
-      )
+      await fetch("https://orthodoc-backend-88937012f308.herokuapp.com/api/conversations/1")
         .then((res) => res.json())
         .then((data) => setMsgData(data.messages))
-        .then(() => {
-          if (bottomRef.current) {
-            bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-          }
-        });
     };
     fetchMessageData();
   }, []);
 
-  // const openForm = () => {
-  //   // stopChatButtonBlink();
-  //   let chatbox = document.getElementById("myForm");
-  //   if (chatbox) {
-  //     chatbox.style.display = "block";
-  //     if (bottomRef.current) {
-  //       bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-  //     }
-  //   }
-  // };
-
-  // const closeForm = () => {
-  //   let chatbox = document.getElementById("myForm");
-  //   if (chatbox) {
-  //     chatbox.style.display = "none";
-  //   }
-  // };
+  useEffect(() => {
+    scrollToBottom();
+  });
 
   const handleChatForm = () => {
+    increaseCounter(0)
+    setDisplayChatBtn((current) => !current);
     setDisplayChatForm((current) => !current);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (newMessage !== "") {
-      fetch(
-        `https://orthodoc-backend-88937012f308.herokuapp.com/api/messages`,
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            username: decodedUser.name,
-            content: newMessage,
-            user_id: decodedUser.id,
-            conversation_id: 1,
-          }),
-        }
-      )
+      fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/messages`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          username: decodedUser.name,
+          content: newMessage,
+          user_id: decodedUser.id,
+          conversation_id: 1,
+        }),
+      })
         .then((res) => res.json())
         .then((newData) => {
-          console.log(newData);
           setNewMessage("");
           if (decodedUser.id === newData.message.user_id) {
             setMsgData([...msgData, newData.message]);
@@ -102,7 +87,7 @@ export default function PublicChat() {
     if (data.user_id !== decodedUser.id) {
       let allMessages = [...msgData, data];
       setMsgData(allMessages);
-      // makeChatButtonBlink();
+      increaseCounter(newMsgCounter+1);
     }
   };
 
@@ -112,9 +97,15 @@ export default function PublicChat() {
 
   return (
     <>
-      <button className="open-button" onClick={() => handleChatForm()}>
-        Chat
-      </button>
+      {displayChatBtn === true ? (
+        <div className="open-button">
+          {newMsgCounter === 0 ? null:<span className="new-msg-counter"/>}
+          <img
+            src={chatIcon}
+            onClick={() => handleChatForm()}
+          />
+        </div>
+      ) : null}
 
       <ActionCableConsumer
         channel={{ channel: "MessagesChannel" }}
@@ -125,18 +116,16 @@ export default function PublicChat() {
         <div className="chat-popup" id="myForm">
           <form className="chat-form-container" onSubmit={handleSubmit}>
             <div className="cancel-btn-container">
-              <a
-                className="cancel-btn"
-                onClick={() => handleChatForm()}
-              >
+              <a className="cancel-btn" onClick={() => handleChatForm()}>
                 X
               </a>
             </div>
 
-            <div className="text-messages-container" ref={bottomRef}>
+            <div className="text-messages-container">
               {msgData.map((msg: any) => (
                 <Chat msg={msg} decodedUser={decodedUser} key={msg.id} />
               ))}
+              <div className="bot-ref" ref={bottomRef}></div>
             </div>
 
             <div className="text-area">
@@ -149,7 +138,7 @@ export default function PublicChat() {
                 onChange={(e) => setNewMessage(e.target.value)}
                 required
               ></textarea>
-              <button type="submit" className="btn">
+              <button type="submit" className="msg-send-btn">
                 <img src={SendArrow}></img>
               </button>
             </div>

@@ -36,6 +36,7 @@ export default function SignUp() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setNewUser(data.image_url);
         navigate("/verify");
       })

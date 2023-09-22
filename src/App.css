@@ -592,24 +592,30 @@ input:invalid[focused="true"] ~ span {
 }
 
 .open-button {
-  background-color: #616161;
-  color: white;
-  padding: 16px 20px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  opacity: 0.8;
   position: fixed;
-  bottom: 23px;
+  bottom: 20px;
   right: 28px;
-  width: 80px;
+  width: 60px;
   height: 80px;
   z-index: 1;
+  transition: transform 200ms, background 200ms;
+}
+
+.new-msg-counter{
+  width: 15px;
+  height: 15px;
+  position: fixed;
+  color: white;
+  background-color: red;
+  padding: 5px;
+  border-radius: 50%;
 }
 
 /* The popup chat - hidden by default */
 .chat-popup {
-  display: none;
   position: fixed;
   bottom: 0;
   right: 15px;
@@ -620,10 +626,9 @@ input:invalid[focused="true"] ~ span {
 
 /* Add styles to the form container */
 .chat-form-container {
-  border-radius: 15px 15px 0 0;
   max-width: 400px;
-  padding: 10px;
-  background-color: rgba(177, 177, 177, 0.925);
+  padding: 1px;
+ 
 }
 
 /* Full-width textarea */
@@ -635,10 +640,15 @@ input:invalid[focused="true"] ~ span {
   border-radius: 10px;
   background: #f1f1f1;
   resize: none;
+  height: 55px;
 }
 
 .text-area{
   display: flex;
+}
+
+.textMsg{
+  height: 100%;
 }
 
 /* When the textarea gets focus, do something */
@@ -648,16 +658,23 @@ input:invalid[focused="true"] ~ span {
 }
 
 /* Set a style for the submit/send button */
-.chat-form-container .btn {
-  background-color: #454dca;
+.msg-send-btn {
+  display: block;
+  background-color: #4681f4;
   color: white;
   padding: 15px;
   margin: 12px 10px 20px 0;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
-  opacity: 0.8;
   resize: none;
   height: fit-content;
+  transition: transform 200ms, background 200ms;
+}
+
+ .msg-send-btn:hover{
+  background-color: #5783db;
+  transform: translateY(-2px);
 }
 
 
@@ -667,9 +684,9 @@ input:invalid[focused="true"] ~ span {
 }
 
 /* Add some hover effects to buttons */
-.chat-form-container .btn:hover,
+.chat-form-container .chat:hover,
 .open-button:hover {
-  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .text-messages-container {
@@ -687,10 +704,6 @@ input:invalid[focused="true"] ~ span {
   display: none;
 }
 
-.text-messages-container div {
-  margin-bottom: 20px;
-}
-
 .text-messages-container .user-message-date {
   font-size: 11px;
   opacity: 0.8;
@@ -702,12 +715,15 @@ input:invalid[focused="true"] ~ span {
 }
 
 .chatbox-container {
-  color: whitesmoke;
   text-align: right;
-}
-
-.chatbox-container div{
-  height: 60px;
+  background-color: #fff;
+  border: 1px solid #e5e5ea;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  font-family: "SanFrancisco";
+  font-size: 1rem;
+  max-width: 600px;
 }
 
 .cancel-btn-container{
@@ -724,25 +740,44 @@ input:invalid[focused="true"] ~ span {
   cursor: pointer;
 }
 
-.mychat {
-  text-align: left;
+.mychat { 
   display: inline-block;
-  right: 0;
-  background-color: #23a6d5;
-  border-radius: 10px;
-  padding: 5px;
+  border-radius: 1.15rem 0 1.15rem 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem .875rem;
+  position: relative;
+  word-wrap: break-word;
+  align-self: flex-end;
+  background-color: #248bf5;
+  color: #fff; 
 }
 
 .otherchat {
+  border-radius: 0 1.15rem 1.15rem 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem .875rem;
+  position: relative;
+  word-wrap: break-word;
   text-align: left;
-  border-radius: 10px;
-  background-color: #919191;
   width: fit-content;
-  padding: 5px;
+  align-items: flex-start;
+  background-color: rgb(202, 202, 202);
+  color: #000;
 }
 
-.date-time-indicator{
+.chat-user-name{
+  font-size: 11px;
+  color: #4b4b4b;
+}
+
+.date-time-indicator-right{
   text-align: right;
+}
+
+.date-time-indicator-left{
+  text-align: left;
 }
 
 .msg-time {
@@ -919,18 +954,10 @@ input:invalid[focused="true"] ~ span {
   }
 
   .open-button {
-    background-color: #616161;
-    color: white;
-    padding: 16px 20px;
     border: none;
-    border-radius: 50%;
     cursor: pointer;
     opacity: 0.8;
     position: fixed;
-    bottom: 23px;
-    right: 28px;
-    width: 80px;
-    height: 80px;
     z-index: 1;
   }
 

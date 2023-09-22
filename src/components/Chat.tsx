@@ -9,30 +9,29 @@ export default function Chat({ msg, decodedUser }: any) {
   const user: any = useSelector(selectUser);
   const { store } = useContext(ReactReduxContext);
   const currentUserData = store.getState().user;
-  console.log(currentUserData.user.username);
   return (
-    <div className="chatbox-container">
-      <div
-        className={msg.user_id === decodedUser.id ? "mychat" : "otherchat"}
-        key={msg.i}
-      >
-        {/* <img
-          src={user.avatar_url}
-          alt={profileImage}
-          className="chat-profile-avatar"
-        ></img> */}
-
-        {currentUserData.user.username === msg.username ? null : (
-          <span>{msg.username}</span>
-        )}
-        <br />
-        <span>{msg.content}</span>
-        <br />
-        <div className="date-time-indicator">
-          <span className="msg-time">
-            {Moment(msg.created_at).format("h:mm:ss a")}
-          </span>
+    <div>
+      {currentUserData.user.username === msg.username ? null : (
+        <span className="chat-user-name">{msg.username}</span>
+      )}
+      <div className="chatbox-container">
+        <div
+          className={msg.user_id === decodedUser.id ? "mychat" : "otherchat"}
+          key={msg.i}
+        >
+          <span>{msg.content}</span>
         </div>
+      </div>
+      <div
+        className={
+          currentUserData.user.username === msg.username
+            ? "date-time-indicator-right"
+            : "date-time-indicator-left"
+        }
+      >
+        <span className="msg-time">
+          {Moment(msg.created_at).format("h:mm a")}
+        </span>
       </div>
     </div>
   );
