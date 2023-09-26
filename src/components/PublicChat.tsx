@@ -91,9 +91,10 @@ export default function PublicChat() {
     }
   };
 
-  const createNewPrivateMsg = () => {
-    setPrivateMsgFormStatus((current) => !current);
-  };
+  const groupMsgByDate = () => {
+    msgData.map((msg) => {})
+  }
+  groupMsgByDate()
 
   return (
     <>
