@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ActionCableConsumer } from "react-actioncable-provider";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import Chat from "./Chat";
 import CreatePrivateMsg from "./CreatePrivateMsg";
 import SendArrow from "./images/send.svg";
-import { current } from "@reduxjs/toolkit";
+import moment from 'moment';
 import chatIcon from "./images/chat.svg";
 
 export default function PublicChat() {
@@ -92,9 +92,16 @@ export default function PublicChat() {
   };
 
   const groupMsgByDate = () => {
-    msgData.map((msg) => {})
+    msgData.reduce((acc, el) => {
+      const messageDay = moment(el.created_at).format('YYYY-MM-DD');
+      console.log(el)
+      console.log(messageDay)
+      
+    })
   }
-  groupMsgByDate()
+  // groupMsgByDate()
+ 
+  
 
   return (
     <>
