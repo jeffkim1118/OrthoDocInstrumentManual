@@ -1,4 +1,4 @@
-import { selectUser } from "../../features/userSlice";
+import { selectUser, updateUser, deleteUser } from "../../features/userSlice";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ export default function Update() {
   const [newBio, setNewBio] = useState('');
 
 
-  const handleUpdate = (e:any) => {
+  const handleUpdate = async (e:any) => {
     e.preventDefault();
 
     const updatedUserData = {
@@ -30,40 +30,30 @@ export default function Update() {
       bio: newBio || user.bio,
     }
 
-    const token = localStorage.getItem('token');
-    fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/users/${user.id}`, {
-      method:'PATCH',
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        'Authorization': `${token}`
-      },
-      body: JSON.stringify({ user: updatedUserData })
-    })
-    .then(res => res.json())
-    .then(data => {
-      dispatch(login(data))
-      navigate('/')
-    })
+    try{
+      const response = await dispatch(updateUser(updatedUserData));
+      if(!response.payload.error){
+        dispatch(login(response.payload))
+        navigate('/')
+      }else{
+        console.log("update failed")
+      }
+    } catch(error){
+      console.log("Update Error:", error);
+    }
+
   }
 
-  const handleDelete = () => {
-    if(!!localStorage.getItem('token')){
-      const token = localStorage.getItem('token');
-      fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/api/users/${user.id}`, {
-      method:'DELETE',
-      headers: {
-        'Authorization': `${token}`
-      },
-    })
-    .then(res => res.json())
-    .then(data => {
-      localStorage.removeItem('token')
-      console.log(data)
-      dispatch(logout())
-      navigate('/login')
-    })
-    .catch(error => console.log(error))
+  const handleDelete = async () => {
+    try{
+      const response = await dispatch(deleteUser());
+      if(!response){
+        localStorage.removeItem('token')
+        dispatch(logout())
+        navigate('/login')
+      }
+    }catch(error){
+      console.log(error)
     }
   }
 

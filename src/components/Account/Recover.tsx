@@ -10,9 +10,10 @@ export default function Recover() {
 
   return (
     <div className="background">
+      <div className="recover-form-background">
       <div
-        className="form-container"
-        style={{ width: "1000px", margin: "auto" }}
+        className="recover-form-container"
+        
       >
         <Form
           onSubmit={onSubmit}
@@ -32,16 +33,16 @@ export default function Recover() {
             values,
           }) => (
             <form className="recover-password-form">
-              <h1 className="recover-label">Recover Password</h1>
+              <h3 className="recover-label">Forgot Your Password?</h3>
+              <p className="recover-label">Don't fret! Just type in your email and we will <br/><span>send you a code to reset your password!</span></p>
               <Field name="email">
                 {({ input, meta }) => (
-                  <div>
-                    <h4>Email</h4>
+                  <div className="recover-form">
                     <input
                       {...input}
                       type="email"
                       placeholder="Enter your email"
-                      className={meta.touched && meta.error ? "error" : ""}
+                      className={meta.touched && meta.error ? "error" : "recover-input"}
                     ></input>
                     <br />
                     {(meta.error || meta.submitError) && meta.touched && (
@@ -67,6 +68,7 @@ export default function Recover() {
             </form>
           )}
         ></Form>
+      </div>
       </div>
     </div>
   );

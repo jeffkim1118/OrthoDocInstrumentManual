@@ -1,18 +1,16 @@
 import { Button } from "react-bootstrap";
 import BForm from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../../features/userSlice";
+
 import accountIcon from "../../components/images/account/account.png";
 import padLock from "../../components/images/account/padlock.png";
 import emailIcon from "../../components/images/account/email.png";
 import { Form, Field } from "react-final-form";
-import { AppContext } from "../../App";
-import RegisterSuccess from "./RegisterSuccess";
+import { registerUser } from "../../features/userSlice";
 
 export default function SignUp() {
-  const { newUser, setNewUser } = useContext<any>(AppContext);
   const [avatar, setAvatar] = useState<File | any>(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,20 +28,14 @@ export default function SignUp() {
   };
 
   const submitToApi = async (data: any) => {
-    await fetch("https://orthodoc-backend-88937012f308.herokuapp.com/api/users", {
-      method: "POST",
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setNewUser(data.image_url);
-        navigate("/verify");
-      })
-      .catch((error) => console.log(error));
+    try{
+      const response = await dispatch(registerUser(data));
+      console.log(response)
+      navigate("/verify")
+    }catch(error){console.log(error)}
   };
+
   let registerFormRef = useRef<any>(null);
- 
 
   return (
     <div className="background">

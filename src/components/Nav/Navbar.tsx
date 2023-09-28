@@ -14,12 +14,6 @@ export default function Navb(){
 
   const handleLogout = () => {
     dispatch(logout())
-    fetch(`https://orthodoc-backend-88937012f308.herokuapp.com/logout`,{
-      method: "DELETE",
-      headers: {
-        "Content-Type" : 'application/json'
-      }
-    });
     localStorage.removeItem('token')
     navigate('/login')
   }
