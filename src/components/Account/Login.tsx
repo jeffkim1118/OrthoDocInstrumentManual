@@ -10,7 +10,7 @@ import padLock from "../../components/images/account/padlock.png";
 import { Form, Field } from "react-final-form";
 
 export default function Login() {
-  const [invalidAccount, setInvalidAccount] = useState(true);
+  const [invalidAccount, setInvalidAccount] = useState(false);
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,10 +18,12 @@ export default function Login() {
   const handleSubmit = async (values: any) => {
     try {
       const response = await dispatch(handleLogin(values));
-      if (response.payload) {
+      if (!response.payload.error) {
         dispatch(login(response.payload));
         navigate("/profile");
-      } 
+      } else {
+        setInvalidAccount(true);
+      }
     } catch (error) {
       console.log("Login error:", error);
     }
@@ -41,7 +43,7 @@ export default function Login() {
       <div className="form-container">
         <Form
           onSubmit={handleSubmit}
-          render={({ handleSubmit, submitting, pristine, values }) => (
+          render={({ handleSubmit, submitError, submitting, pristine }) => (
             <div className="form d-md-flex align-items-center justify-content-between">
               <div className="box-1 mt-md-0 mt-5">
                 <img
@@ -56,7 +58,7 @@ export default function Login() {
                   <h1 className="login-title">
                     <em>Login</em>
                   </h1>
-                  {!invalidAccount ? (
+                  {invalidAccount ? (
                     <span className="error-msg">
                       Login failed. Please check your username or password
                       again.
@@ -111,7 +113,7 @@ export default function Login() {
                               meta.touched && meta.error ? "error" : ""
                             }
                             type="password"
-                            placeholder="Password"                          
+                            placeholder="Password"
                           />
                         </div>
                         {meta.error && meta.touched && (
