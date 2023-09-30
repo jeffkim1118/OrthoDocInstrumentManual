@@ -11,7 +11,7 @@ import { Form, Field } from "react-final-form";
 
 export default function Login() {
   const [invalidAccount, setInvalidAccount] = useState(false);
-  const user = useSelector(selectUser);
+ 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
