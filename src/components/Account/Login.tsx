@@ -59,12 +59,12 @@ export default function Login() {
                     <em>Login</em>
                   </h1>
                   {invalidAccount ? (
-                    <span className="error-msg">
+                    <span className="error-msg" >
                       Login failed. Please check your username or password
                       again.
                     </span>
                   ) : null}
-                  <Field name="username" validate={requiredUsername}>
+                  <Field name="username" validate={requiredUsername} >
                     {({ input, meta }) => (
                       <div>
                         <label>Username</label>
@@ -85,6 +85,7 @@ export default function Login() {
                             }
                             type="text"
                             placeholder="Username"
+                            data-testid="content-input1"
                           />
                         </div>
                         {meta.error && meta.touched && (
@@ -114,6 +115,7 @@ export default function Login() {
                             }
                             type="password"
                             placeholder="Password"
+                            
                           />
                         </div>
                         {meta.error && meta.touched && (

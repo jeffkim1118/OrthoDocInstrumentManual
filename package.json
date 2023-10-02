@@ -39,7 +39,7 @@
     "start": "react-scripts start",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest)/)'",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build",
     "postinstall": "tsc"

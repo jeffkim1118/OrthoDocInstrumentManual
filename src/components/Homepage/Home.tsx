@@ -11,8 +11,8 @@ export default function Home(){
         <div className="main-page">
             <div className="hero-background">
             <div className="hero-msg" >
-                <h1 className="hero">Welcome to Orthodontic Harmony!</h1>
-                <h4 className="hero">Explore instrument set ups for Orthodontist.</h4>
+                <h1 className="hero" title="heroMSG1">Welcome to Orthodontic Harmony!</h1>
+                <h4 className="hero" title="heroMSG2">Explore instrument set ups for Orthodontist.</h4>
                 <div className="arrow-container">
                     <div className="arrow" onClick={handleClickScroll}>
                         <span></span>

@@ -13,7 +13,6 @@ export default function Recover() {
       <div className="recover-form-background">
       <div
         className="recover-form-container"
-        
       >
         <Form
           onSubmit={onSubmit}
