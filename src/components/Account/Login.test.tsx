@@ -10,7 +10,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { render, fireEvent, screen } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect'; // You can extend the expect function with jest-dom
 import { configureStore } from "@reduxjs/toolkit";
-
+import SignUp from "./SignUp";
+import Recover from "./Recover";
+import { MemoryRouter, Route } from 'react-router-dom';
 
 
 
@@ -63,8 +65,40 @@ describe('<Login />', () => {
     expect(loginBtn).toBeDisabled();
   })
 
-  
+  it("Inputs display error messages that the inputs are empty", () => {
+    renderLogin();
+    const usernameplaceholder = screen.getByPlaceholderText('Username');
+    const passwordplaceholder = screen.getByPlaceholderText('Password');
 
+    fireEvent.focusIn(usernameplaceholder);
+    fireEvent.focusOut(usernameplaceholder);
+    fireEvent.focusIn(passwordplaceholder);
+    fireEvent.focusOut(passwordplaceholder);
+
+    const usernameErrorMsg = screen.queryByTestId('custom-error-username');
+    const passwordErrorMsg = screen.queryByTestId('custom-error-password');
+    
+    expect(usernameErrorMsg).toBeInTheDocument();
+    expect(passwordErrorMsg).toBeInTheDocument()
+  })
+
+
+  it("should take user to register component when 'Don't have an account?'" , () => {
+    renderLogin();
+    const linkToRegister = screen.getByText("Don't have an account?");
+    fireEvent.click(linkToRegister);
+    expect(render(<BrowserRouter><SignUp/></BrowserRouter>))
+  })
+
+  // it("should take user to recover component when 'Forgot your password?' is clicked", () => {
+  //   renderLogin();
+  //   const linkToRecover = screen.getByText("Forgot your password?");
+  //   fireEvent.click(linkToRecover);
+  //   expect(render(<Recover/>))
+    
+  // })
+
+  
   // it('should display error messages when username or password is wrong', async ()=>{
   //   const setState = jest.fn();
   // jest

@@ -1,5 +1,4 @@
 import { Form, Field } from "react-final-form";
-import { FORM_ERROR } from "final-form";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

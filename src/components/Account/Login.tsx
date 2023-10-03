@@ -89,7 +89,7 @@ export default function Login() {
                           />
                         </div>
                         {meta.error && meta.touched && (
-                          <span className="error-msg">{meta.error}</span>
+                          <span className="error-msg" data-testid="custom-error-username">{meta.error}</span>
                         )}
                       </div>
                     )}
@@ -119,7 +119,7 @@ export default function Login() {
                           />
                         </div>
                         {meta.error && meta.touched && (
-                          <span className="error-msg">{meta.error}</span>
+                          <span className="error-msg" data-testid="custom-error-password">{meta.error}</span>
                         )}
                       </div>
                     )}

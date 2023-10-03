@@ -34,7 +34,7 @@ export default function Navb(){
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href='/search'>Search</Nav.Link>
+            {/* <Nav.Link href='/search'>Search</Nav.Link> */}
             <NavDropdown title="Instrument Sets" id="basic-nav-dropdown">
               <NavDropdown.Item href="/adjustment">Adjustment Kit</NavDropdown.Item>
               <NavDropdown.Item href="/alignerband">Aligner Banding Kit</NavDropdown.Item>             
