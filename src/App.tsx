@@ -16,6 +16,8 @@ import Recover from './components/Account/Recover';
 import Verify from './components/Account/RegisterSuccess'
 import SetupSearchBar from './components/SetupSearchBar';
 
+import obj from './components/Instruments';
+
 
 export const AppContext = createContext<any>(null);
 
@@ -53,6 +55,9 @@ function App() {
       })
     }
   }, [dispatch])
+
+
+  const instrumentArr = Object.keys(obj);
   
   
 
@@ -71,6 +76,9 @@ function App() {
         </div>
         <Routes>
           <Route path="/" index element={<Home />}></Route>
+          {instrumentArr.map(curInstrument => (
+            <Route path={curInstrument} element={<Page instrumentObj={obj[curInstrument]} />}></Route>
+          ))}
           <Route path="/adjustment" element={<Page />}></Route>
           <Route path="/alignerband" element={<Page />}></Route>
           <Route path="/deband" element={<Page />}></Route>

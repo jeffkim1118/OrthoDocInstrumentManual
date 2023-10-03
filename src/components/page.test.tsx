@@ -1,14 +1,16 @@
 import Page from "./page";
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Button from "react-bootstrap/Button";
 import Adjustment from './images/adjustment/adjustmentKit.jpg';
 import { BrowserRouter } from "react-router-dom";
+import obj from "./Instruments";
 
 describe('The page component', () => {
     it('should render', () => {
-        render(<BrowserRouter><Page/></BrowserRouter>)
-        expect(render(<BrowserRouter><Page/></BrowserRouter>))
+        render(<BrowserRouter><Page instrument='/adjustment' instrumentObj={obj['/adjustment']}/></BrowserRouter>)   
+        expect(screen.getByText('Adjustment')).toBeInTheDocument();
     })
+   
     
 })

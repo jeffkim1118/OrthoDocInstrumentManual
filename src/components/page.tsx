@@ -1,9 +1,9 @@
-import obj from "./Instruments";
+// import obj from "./Instruments";
 import ModalP from "./ModalPopup/ModalP";
 
-function Page() {
-  const information = obj[window.location.pathname];
-  const { name, image, desc } = information;
+function Page({ instrumentObj }:any) {
+  
+  const { name, image, desc } = instrumentObj;
 
   return (
     <div id="kit-container">
