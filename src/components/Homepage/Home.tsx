@@ -18,7 +18,6 @@ export default function Home() {
               <div
                 className="arrow"
                 data-testid="arrow"
-              
               >
                 <span></span>
                 <span></span>

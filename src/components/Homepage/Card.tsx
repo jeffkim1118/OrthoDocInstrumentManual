@@ -20,6 +20,7 @@ export default function CardDisplay({ setUp }: any) {
               variant="primary"
               style={{ fontFamily: "Fira Sans, sans-serif" }}
               href={setUp["link"]}
+              data-testid="Card-btn"
             >
               Go
             </Button>

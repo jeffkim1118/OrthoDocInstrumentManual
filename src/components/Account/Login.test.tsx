@@ -16,6 +16,7 @@ import { MemoryRouter, Route } from 'react-router-dom';
 
 
 
+
 // make sure it render
 const mockedUsedNavigate = jest.fn();
 
@@ -128,14 +129,14 @@ describe('<Login />', () => {
   // })
 
   // it('should take user to profile page after clicking the submit.', () => {
-  //   renderLogin();
+  //   render(<BrowserRouter><Login/></BrowserRouter>);
   //   const loginBtn = screen.getByText("Submit");
-  //   const username = screen.getByText("Username");
-  //   const password = screen.getByText("Password");
+  //   const username = screen.getByPlaceholderText("Username");
+  //   const password = screen.getByPlaceholderText("Password");
   //   fireEvent.change(username, { target: { value: "first_user" } });
   //   fireEvent.change(password, { target: { value: "password" } });
   //   fireEvent.click(loginBtn)
-  //   expect(<Profile/>).toBeInTheDocument();
+  //   expect(render(<BrowserRouter><Profile/></BrowserRouter>)).toBeInTheDocument();
   // })
 });
 

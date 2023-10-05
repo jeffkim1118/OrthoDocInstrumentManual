@@ -35,8 +35,8 @@ export default function Navb(){
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             {/* <Nav.Link href='/search'>Search</Nav.Link> */}
-            <NavDropdown title="Instrument Sets" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/adjustment">Adjustment Kit</NavDropdown.Item>
+            <NavDropdown title="Instrument Sets" id="basic-nav-dropdown" role='dropdown-menu'>
+              <NavDropdown.Item href="/adjustment" role="dropdown-menu-test-example">Adjustment Kit</NavDropdown.Item>
               <NavDropdown.Item href="/alignerband">Aligner Banding Kit</NavDropdown.Item>             
               <NavDropdown.Item href="/deband">Debanding Kit</NavDropdown.Item>
               <NavDropdown.Item href="/hawley">Hawley Check</NavDropdown.Item>

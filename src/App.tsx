@@ -59,8 +59,6 @@ function App() {
 
   const instrumentArr = Object.keys(obj);
   
-  
-
   return (
     <AppContext.Provider value={{ newUser, setNewUser }}>
       <div className="App">
@@ -72,6 +70,7 @@ function App() {
           <button
             className={`scroll-to-top ${isVisible ? "display" : "notdisplay"}`}
             onClick={scrollToTop}
+            data-testid="scroll-to-top-button"
           ></button>
         </div>
         <Routes>

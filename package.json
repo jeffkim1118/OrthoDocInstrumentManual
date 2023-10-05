@@ -12,7 +12,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/actioncable": "^5.2.7",
-    "@types/jest": "^27.5.2",
     "@types/node": "^18.17",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
@@ -64,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.5",
     "@types/rails__actioncable": "^6.1.6",
     "@types/react-scroll": "^1.8.8",
     "jest": "^27.5.1",
