@@ -1,8 +1,8 @@
 import { Provider } from "react-redux";
-import App from "./App";
-import Home from "./components/Homepage/Home";
+import App from "../App";
+import Home from "../components/Homepage/Home";
 import { fireEvent, render } from "@testing-library/react";
-import { store } from "./app/Store";
+import { store } from "../app/Store";
 import { BrowserRouter } from "react-router-dom";
 
 function mockScrollToTop() {

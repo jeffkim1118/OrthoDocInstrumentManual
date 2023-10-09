@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Update from "./Update";
+import Update from "../components/Profile/Update";
 
 describe("The update component ", () => {
   it("should display all the inputs.", () => {

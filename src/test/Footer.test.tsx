@@ -1,5 +1,5 @@
 import { fireEvent, render,screen } from "@testing-library/react";
-import Footer from "./Footer";
+import Footer from "../components/Homepage/Footer";
 
 describe('Footer', () => {
     it("should display all the info.", ()=>{

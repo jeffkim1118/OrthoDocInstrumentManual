@@ -1,6 +1,5 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import Home from "./Home";
-import { BrowserRouter } from "react-router-dom";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import Home from "../components/Homepage/Home";
 
 describe("The homepage ", () => {
   it("should display hero message without error.", () => {

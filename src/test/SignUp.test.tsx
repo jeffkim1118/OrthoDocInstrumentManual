@@ -1,8 +1,8 @@
-import SignUp from "./SignUp";
+import SignUp from "../components/Account/SignUp";
 import { BrowserRouter } from "react-router-dom";
 import { render, fireEvent, screen} from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store } from "../../app/Store";
+import { store } from "../app/Store";
 
 const renderSignUp = () => { return render(<Provider store={store}><BrowserRouter><SignUp/></BrowserRouter></Provider>)}
 

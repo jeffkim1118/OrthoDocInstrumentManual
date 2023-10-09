@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import Recover from "./Recover";
+import Recover from "../components/Account/Recover";
 import { render, fireEvent, screen} from "@testing-library/react";
 
 describe("The recover component " , ()=>{

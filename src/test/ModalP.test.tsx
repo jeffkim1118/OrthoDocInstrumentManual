@@ -1,4 +1,4 @@
-import ModalP from "./ModalP";
+import ModalP from "../components/ModalPopup/ModalP";
 import { render } from "@testing-library/react";
 import Modal from 'react-bootstrap/Modal';
 import AdjustmentPic from '../images/adjustment/adjustmentKit.jpg';

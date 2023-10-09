@@ -1,9 +1,9 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import CardDisplay from "./Card";
-import Page from "../page";
-import obj from "../Instruments";
+import CardDisplay from "../components/Homepage/Card";
+import Page from "../components/page";
+import obj from "../components/Instruments";
 import Adjustment from '../images/adjustment/adjustmentKit.jpg'
 
 const setUp = {

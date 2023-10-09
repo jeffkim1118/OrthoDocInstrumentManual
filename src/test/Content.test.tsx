@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import Content from "./Content";
+import Content from "../components/Homepage/Content";
 
 describe("The content component", () => {
     it("renders", () => {

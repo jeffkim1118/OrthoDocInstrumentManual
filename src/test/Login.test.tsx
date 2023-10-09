@@ -1,17 +1,17 @@
-import Login from "./Login";
-import userSlice from "../../features/userSlice";
+import Login from "../components/Account/Login";
+import userSlice from "../features/userSlice";
 import { getByTestId, getByText, waitFor } from "@testing-library/react";
-import Profile from "../Profile/Profile";
+import Profile from "../components/Profile/Profile";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "../../app/Store";
+import { store } from "../app/Store";
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
 import { render, fireEvent, screen } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect'; // You can extend the expect function with jest-dom
 import { configureStore } from "@reduxjs/toolkit";
-import SignUp from "./SignUp";
-import Recover from "./Recover";
+import SignUp from "../components/Account/SignUp";
+import Recover from "../components/Account/Recover";
 import { MemoryRouter, Route } from 'react-router-dom';
 
 
