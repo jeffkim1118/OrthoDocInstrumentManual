@@ -32,6 +32,7 @@ describe("App component", () => {
     expect(scrollButton).toBeInTheDocument();
   });
 
+  // Testing if the scroll to top arrow appears and works.
   it("should scroll to the top when the scroll-to-top button is clicked", () => {
     const cleanupScrollTo = mockScrollToTop();
 

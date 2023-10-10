@@ -40,7 +40,7 @@ export default function Login() {
 
   return (
     <div className="background">
-      <div className="form-container">
+      <div className="form-container" data-testid="login-form">
         <Form
           onSubmit={handleSubmit}
           render={({ handleSubmit, submitError, submitting, pristine }) => (
@@ -115,7 +115,6 @@ export default function Login() {
                             }
                             type="password"
                             placeholder="Password"
-                            
                           />
                         </div>
                         {meta.error && meta.touched && (

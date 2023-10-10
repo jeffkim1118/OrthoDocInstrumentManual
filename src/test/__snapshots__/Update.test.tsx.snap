@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The update component  should render 1`] = `
+<div>
+  <div
+    class="update"
+  >
+    <div
+      class="update-form-container"
+    >
+      <h1>
+        Update
+      </h1>
+      <form>
+        <label>
+          Add bio
+        </label>
+        <br />
+        <textarea
+          placeholder="Type in your biography..."
+        />
+        <br />
+        <label />
+        <input
+          class="updateInput"
+          placeholder="Username"
+          type="text"
+          value=""
+        />
+        <br />
+        <label />
+        <input
+          class="updateInput"
+          placeholder="First Name"
+          type="text"
+          value=""
+        />
+        <br />
+        <label />
+        <input
+          class="updateInput"
+          placeholder="Last Name"
+          type="text"
+          value=""
+        />
+        <br />
+        <label />
+        <input
+          class="updateInput"
+          placeholder="Email"
+          type="email"
+          value=""
+        />
+        <br />
+        <label>
+          ************
+        </label>
+        <input
+          class="updateInput"
+          placeholder="Password"
+          type="current-password"
+          value=""
+        />
+        <br />
+        <button
+          type="submit"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+    <div
+      class="delete"
+    >
+      <h3>
+        Account Delete
+      </h3>
+      <p>
+        If you delete this account, you will not be able to recover this account and you need to create a new account.
+      </p>
+      <button
+        class="delete-account"
+      >
+        Delete Account
+      </button>
+    </div>
+  </div>
+</div>
+`;

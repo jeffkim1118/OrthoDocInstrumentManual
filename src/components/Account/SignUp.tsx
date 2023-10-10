@@ -31,7 +31,7 @@ export default function SignUp() {
     try{
       const response = await dispatch(registerUser(data));
       console.log(response)
-      navigate("/verify")
+      navigate("/registersuccess")
     }catch(error){console.log(error)}
   };
 
@@ -97,7 +97,7 @@ export default function SignUp() {
                         />
                       </div>
                       {meta.error && meta.touched && (
-                        <span className="error-msg">{meta.error}</span>
+                        <span className="error-msg" >{meta.error}</span>
                       )}
                     </BForm.Group>
                   )}
@@ -117,7 +117,7 @@ export default function SignUp() {
                         />
                       </div>
                       {meta.error && meta.touched && (
-                        <span className="error-msg">{meta.error}</span>
+                        <span className="error-msg" data-testid="register-first-name">{meta.error}</span>
                       )}
                     </BForm.Group>
                   )}
@@ -137,7 +137,7 @@ export default function SignUp() {
                         />
                       </div>
                       {meta.error && meta.touched && (
-                        <span className="error-msg">{meta.error}</span>
+                        <span className="error-msg" data-testid="register-last-name">{meta.error}</span>
                       )}
                     </BForm.Group>
                   )}
@@ -158,7 +158,7 @@ export default function SignUp() {
                         ></BForm.Control>
                       </div>
                       {meta.error && meta.touched && (
-                        <span className="error-msg">{meta.error}</span>
+                        <span className="error-msg" data-testid="register-username">{meta.error}</span>
                       )}
                     </BForm.Group>
                   )}
@@ -178,7 +178,7 @@ export default function SignUp() {
                         ></BForm.Control>
                       </div>
                       {meta.error && meta.touched && (
-                        <span className="error-msg">{meta.error}</span>
+                        <span className="error-msg" data-testid="register-email">{meta.error}</span>
                       )}
                     </BForm.Group>
                   )}
@@ -198,7 +198,7 @@ export default function SignUp() {
                         ></BForm.Control>
                       </div>
                       {meta.error && meta.touched && (
-                        <span className="error-msg">{meta.error}</span>
+                        <span className="error-msg" data-testid="register-password">{meta.error}</span>
                       )}
                     </BForm.Group>
                   )}

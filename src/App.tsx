@@ -13,7 +13,7 @@ import Profile from './components/Profile/Profile';
 import Update from './components/Profile/Update';
 import PublicChat from './components/PublicChat';
 import Recover from './components/Account/Recover';
-import Verify from './components/Account/RegisterSuccess'
+import RegisterSuccess from './components/Account/RegisterSuccess'
 import SetupSearchBar from './components/SetupSearchBar';
 
 import obj from './components/Instruments';
@@ -90,7 +90,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/recover" element={<Recover />}></Route>
-          <Route path="/verify" element={<Verify />}></Route>
+          <Route path="/registersuccess" element={<RegisterSuccess />}></Route>
           <Route path="/search" element={<SetupSearchBar/>}></Route>
           {user ? (
             <Route path="profile" element={<Profile />}>

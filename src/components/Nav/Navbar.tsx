@@ -36,15 +36,15 @@ export default function Navb(){
             <Nav.Link href="/">Home</Nav.Link>
             {/* <Nav.Link href='/search'>Search</Nav.Link> */}
             <NavDropdown title="Instrument Sets" id="basic-nav-dropdown" role='dropdown-menu'>
-              <NavDropdown.Item href="/adjustment" role="dropdown-menu-test-example">Adjustment Kit</NavDropdown.Item>
-              <NavDropdown.Item href="/alignerband">Aligner Banding Kit</NavDropdown.Item>             
-              <NavDropdown.Item href="/deband">Debanding Kit</NavDropdown.Item>
-              <NavDropdown.Item href="/hawley">Hawley Check</NavDropdown.Item>
-              <NavDropdown.Item href="/aligneripr">Aligner IPR</NavDropdown.Item>
-              <NavDropdown.Item href="/appliancecheck">Appliance Check</NavDropdown.Item>
-              <NavDropdown.Item href="/mse">MSE Check</NavDropdown.Item>
-              <NavDropdown.Item href="/scan">Scan</NavDropdown.Item>
-              <NavDropdown.Item href="/startrecord">Start Record</NavDropdown.Item>
+              <NavDropdown.Item href="/adjustment" data-testid="select-option">Adjustment Kit</NavDropdown.Item>
+              <NavDropdown.Item href="/alignerband" data-testid="select-option">Aligner Banding Kit</NavDropdown.Item>             
+              <NavDropdown.Item href="/deband" data-testid="select-option">Debanding Kit</NavDropdown.Item>
+              <NavDropdown.Item href="/hawley" data-testid="select-option">Hawley Check</NavDropdown.Item>
+              <NavDropdown.Item href="/aligneripr" data-testid="select-option">Aligner IPR</NavDropdown.Item>
+              <NavDropdown.Item href="/appliancecheck" data-testid="select-option">Appliance Check</NavDropdown.Item>
+              <NavDropdown.Item href="/mse" data-testid="select-option">MSE Check</NavDropdown.Item>
+              <NavDropdown.Item href="/scan" data-testid="select-option">Scan</NavDropdown.Item>
+              <NavDropdown.Item href="/startrecord" data-testid="select-option">Start Record</NavDropdown.Item>
             </NavDropdown>
             {user ? <Nav.Link href="/profile">{user.first_name} </Nav.Link>: null}
             {user ? <Nav.Link onClick={handleLogout}>Logout</Nav.Link>:<Nav.Link href="/login">Login</Nav.Link>}

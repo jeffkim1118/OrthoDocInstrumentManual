@@ -15,10 +15,9 @@ export default function CardDisplay({ setUp }: any) {
               <em>{setUp["desc"]}</em>
             </Card.Text>
           </div>
-          <div className="btn-right" style={{ textAlign: "right" }}>
+          <div className="btn-right" >
             <Button
               variant="primary"
-              style={{ fontFamily: "Fira Sans, sans-serif" }}
               href={setUp["link"]}
               data-testid="Card-btn"
             >
