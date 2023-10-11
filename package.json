@@ -19,6 +19,7 @@
     "bootstrap": "^5.3.0",
     "css-loader": "^6.8.1",
     "final-form": "^4.20.9",
+    "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-actioncable-provider": "^2.0.0",
@@ -64,6 +65,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.5",
+    "@types/jsonwebtoken": "^9.0.3",
     "@types/rails__actioncable": "^6.1.6",
     "@types/react-scroll": "^1.8.8",
     "@types/redux-mock-store": "^1.0.4",

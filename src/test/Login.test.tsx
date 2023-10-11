@@ -9,21 +9,6 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-// make sure it render
-// const mockedUsedNavigate = jest.fn();
-
-// jest.mock("react-router-dom", () => ({
-//   ...(jest.requireActual("react-router-dom") as any),
-//   useNavigate: () => mockedUsedNavigate
-// }));
-
-// const mockDispatch = jest.fn();
-
-// jest.mock('react-redux', () => ({
-//   useSelector: jest.fn(),
-//   useDispatch: () => mockDispatch
-// }));
-
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
