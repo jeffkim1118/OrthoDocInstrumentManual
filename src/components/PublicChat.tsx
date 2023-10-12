@@ -10,8 +10,16 @@ import chatIcon from "./images/chat.svg";
 
 export default function PublicChat() {
   const token = localStorage.getItem("token");
-  let decoded: any = token?.split(".")[1];
-  let decodedUser = JSON.parse(atob(decoded));
+  let decodedUser:any;
+  if (token) {
+    const base64String = token.split(".")[1];
+    try {
+      decodedUser = JSON.parse(atob(base64String));
+    } catch (error) {
+      console.error("Invalid base64 string or JSON format:", error);
+      // Handle the error appropriately, e.g., set decodedUser to a default value or show an error message.
+    }
+  }
   let user: any = useSelector(selectUser);
   const bottomRef = useRef<HTMLInputElement>(null);
 

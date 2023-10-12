@@ -14,8 +14,8 @@ const setUp = {
 
 describe("The card component ", () => {
     it("should render", ()=>{
-        render(<CardDisplay setUp={setUp}/>)
-        expect(render(<CardDisplay setUp={setUp}/>))
+        const {container} = render(<CardDisplay setUp={setUp}/>)
+        expect(container).toBeInTheDocument();
     })
     it("The go button should take to page component and display accordingly", () => {
         // Using adjustment kit as a testing case.
