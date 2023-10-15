@@ -1,13 +1,13 @@
-import { fireEvent, getByText, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Footer from "../components/Homepage/Footer";
 
 describe("Footer", () => {
   it("should display all the info.", () => {
-    const { container } = render(<Footer />);
-    const companyTitle = container.querySelector(".company-title");
-    const companyLink = container.querySelector(".company-link");
-    const companyPhone = container.querySelector(".company-phone");
-    const companyMap = container.querySelector(".company-map");
+    render(<Footer />);
+    const companyTitle = screen.getByText("Orthodontic Harmony");
+    const companyLink = screen.getByText("Website");
+    const companyPhone = screen.getByText("(914) 923-5089");
+    const companyMap = screen.getByText("449 N State Rd #101, Briarcliff Manor, NY 10510");
 
     expect(companyTitle).toBeInTheDocument();
     expect(companyLink).toBeInTheDocument();
@@ -17,11 +17,10 @@ describe("Footer", () => {
 
   it("should have correct display info", () => {
     render(<Footer />);
-    
-    expect(screen.getByText('Orthodontic Harmony')).toBeTruthy();
-    expect(screen.getByText('Website')).toBeTruthy();
-    expect(screen.getByText('(914) 923-5089')).toBeTruthy();
-    expect(screen.getByText('449 N State Rd #101, Briarcliff Manor, NY 10510')).toBeTruthy();
+    expect(screen.getByText('Orthodontic Harmony')).toBeInTheDocument();
+    expect(screen.getByText('Website')).toBeInTheDocument();
+    expect(screen.getByText('(914) 923-5089')).toBeInTheDocument();
+    expect(screen.getByText('449 N State Rd #101, Briarcliff Manor, NY 10510')).toBeInTheDocument();
   });
 
   it("should have a working website link", () => {
@@ -48,7 +47,7 @@ describe("Footer", () => {
     fireEvent.click(phoneLink);
 
     // Check if the window's location href has changed to the expected phone link
-    expect(screen.getByRole('link', { name: '(914) 923-5089' })).toHaveAttribute('href', 'tel:(914) 923-5089')
+    expect(phoneLink).toHaveAttribute('href', 'tel:(914) 923-5089')
   });
 
   it("should have a working map link", () => {
