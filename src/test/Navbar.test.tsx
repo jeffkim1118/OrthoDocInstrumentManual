@@ -9,31 +9,44 @@ import Page from "../components/page";
 
 describe("The navbar component", () => {
     it("should render", () => {
-        const {container} = render( <Provider store={store}><BrowserRouter><Navb/></BrowserRouter></Provider>)
-        expect(container).toBeInTheDocument();
+        render( <Provider store={store}><BrowserRouter><Navb/></BrowserRouter></Provider>)
+        const navbar = screen.getByTestId('navbar-test');
+        expect(navbar).toBeInTheDocument();
     })
-    it('clicking dropdown menu should display 9 items in total', async()=> {
+    it('clicking dropdown menu should have 9 items in total', ()=> {
         render(<Provider store={store}><BrowserRouter><Navb/></BrowserRouter></Provider>)
-    
         // use adjustment kit as an example.
         const instrumentsListOption = screen.getByRole('dropdown-menu');
         const optionbtn = within(instrumentsListOption).getByRole('button');
-        await userEvent.click(optionbtn)
+        fireEvent.click(optionbtn)
         let options = within(instrumentsListOption).getAllByTestId('select-option');
         // test to make sure there are 9 items
         expect(options.length).toBe(9);
         
     })
-    it('clicking one of the dropdown option takes user to a specific page accordingly', async() => {
+    // make sure that dropdown menu exists
+    it('dropdown menu exist', () => {
         render(<Provider store={store}><BrowserRouter><Navb/></BrowserRouter></Provider>)
-        const {container} = render(<BrowserRouter><Page instrument='/adjustment' instrumentObj={obj['/adjustment']}/></BrowserRouter>)
+        // use adjustment kit as an example.
+        const instrumentsListOption = screen.getByRole('dropdown-menu');
+        expect(instrumentsListOption).toBeInTheDocument();
+    })
+    // make sure that it is a link
+    it('the dropdown menu should be a link', () => {
+        render(<Provider store={store}><BrowserRouter><Navb/></BrowserRouter></Provider>)
+        const instrumentsListOption = screen.getByText('Instrument Sets');
+        expect(instrumentsListOption.nodeName.toLowerCase()).toBe('a')
+    })
+    
+    it('clicking one of the dropdown option takes user to a specific page accordingly', () => {
+        render(<Provider store={store}><BrowserRouter><Navb/></BrowserRouter></Provider>)
          // use adjustment kit as an example.
         const instrumentsListOption = screen.getByRole('dropdown-menu');
-        const optionbtn = within(instrumentsListOption).getByRole('button');
-        await userEvent.click(optionbtn)
+        const optionbtn = within(instrumentsListOption).getByRole('button'); 
+        fireEvent.click(optionbtn)
         let adjustmentKit = within(instrumentsListOption).getByText('Adjustment Kit');
         // first item in the array is adjustment kit, so use that to test out.
-        await userEvent.click(adjustmentKit);
-        expect(container).toBeInTheDocument();
+        fireEvent.click(adjustmentKit);
+        expect(adjustmentKit).toHaveAttribute('href', '/adjustment')
     })
 })

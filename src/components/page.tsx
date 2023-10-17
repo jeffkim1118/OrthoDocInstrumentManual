@@ -6,7 +6,7 @@ function Page({ instrumentObj }:any) {
   const { name, image, desc } = instrumentObj;
 
   return (
-    <div id="kit-container">
+    <div id="kit-container" >
       <div className="kit">
         <h1>{name}</h1>
         <div className="setup-picture-container">

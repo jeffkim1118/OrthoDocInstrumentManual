@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import App from "../App";
 import Home from "../components/Homepage/Home";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render,screen } from "@testing-library/react";
 import { store } from "../app/Store";
 import { BrowserRouter } from "react-router-dom";
 
@@ -63,4 +63,5 @@ describe("App component", () => {
     // Clean up the mock
     cleanupScrollTo();
   });
+
 });

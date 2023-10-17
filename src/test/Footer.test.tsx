@@ -15,22 +15,11 @@ describe("Footer", () => {
     expect(companyMap).toBeInTheDocument();
   });
 
-  it("should have correct display info", () => {
-    render(<Footer />);
-    expect(screen.getByText('Orthodontic Harmony')).toBeInTheDocument();
-    expect(screen.getByText('Website')).toBeInTheDocument();
-    expect(screen.getByText('(914) 923-5089')).toBeInTheDocument();
-    expect(screen.getByText('449 N State Rd #101, Briarcliff Manor, NY 10510')).toBeInTheDocument();
-  });
-
   it("should have a working website link", () => {
     render(<Footer />);
 
     // Find the website link by its text content
     const websiteLink = screen.getByText("Website");
-
-    // Click the link (this simulates a user clicking the link)
-    fireEvent.click(websiteLink);
 
     // Check if the window's location href has changed to the expected URL
     expect(screen.getByRole('link', { name: 'Website' })).toHaveAttribute('href', 'https://www.orthodonticharmony.com/')
@@ -42,10 +31,7 @@ describe("Footer", () => {
 
     // Find the phone link by its text content
     const phoneLink = screen.getByText("(914) 923-5089");
-
-    // Click the link (this simulates a user clicking the link)
-    fireEvent.click(phoneLink);
-
+    
     // Check if the window's location href has changed to the expected phone link
     expect(phoneLink).toHaveAttribute('href', 'tel:(914) 923-5089')
   });

@@ -19,7 +19,7 @@ export default function Navb(){
   }
 
     return(
-    <div className='Nav-bar'>
+    <div className='Nav-bar' data-testid="navbar-test">
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="/"><img
