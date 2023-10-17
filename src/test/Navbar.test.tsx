@@ -1,11 +1,8 @@
 import Navb from "../components/Nav/Navbar";
 import { fireEvent, render, screen, within} from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
 import { Provider } from "react-redux";
 import { store } from "../app/Store";
 import { BrowserRouter } from "react-router-dom";
-import obj from "../components/Instruments";
-import Page from "../components/page";
 
 describe("The navbar component", () => {
     it("should render", () => {

@@ -1,9 +1,14 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Footer from "../components/Homepage/Footer";
+
+const renderFooter = () => {
+  const footerComponent = render(<Footer/>)
+  return footerComponent;
+}
 
 describe("Footer", () => {
   it("should display all the info.", () => {
-    render(<Footer />);
+    renderFooter()
     const companyTitle = screen.getByText("Orthodontic Harmony");
     const companyLink = screen.getByText("Website");
     const companyPhone = screen.getByText("(914) 923-5089");
@@ -16,43 +21,38 @@ describe("Footer", () => {
   });
 
   it("should have a working website link", () => {
-    render(<Footer />);
-
+    renderFooter();
     // Find the website link by its text content
     const websiteLink = screen.getByText("Website");
 
-    // Check if the window's location href has changed to the expected URL
-    expect(screen.getByRole('link', { name: 'Website' })).toHaveAttribute('href', 'https://www.orthodonticharmony.com/')
-    // expect(window.location.href).toBe("https://www.orthodonticharmony.com/");
+    // Check if the window's location href has the expected URL
+    expect(websiteLink).toHaveAttribute('href', 'https://www.orthodonticharmony.com/')
   });
 
   it("should have a working phone link", () => {
-    render(<Footer />);
+    renderFooter();
 
     // Find the phone link by its text content
     const phoneLink = screen.getByText("(914) 923-5089");
     
-    // Check if the window's location href has changed to the expected phone link
+    // Check if the window's location href has the expected phone link
     expect(phoneLink).toHaveAttribute('href', 'tel:(914) 923-5089')
   });
 
   it("should have a working map link", () => {
-    render(<Footer />);
+    renderFooter();
 
     // Find the map link by its text content
     const mapLink = screen.getByText(
       "449 N State Rd #101, Briarcliff Manor, NY 10510"
     );
 
-    // Click the link (this simulates a user clicking the link)
-    fireEvent.click(mapLink);
-
-    // Check if the window's location href has changed to the expected map link
-    expect(screen.getByRole('link', { name: '449 N State Rd #101, Briarcliff Manor, NY 10510' })).toHaveAttribute('href', 'https://goo.gl/maps/wYrJmDbJmGzAPWTq8')
+    // Check if the window's location href has the expected map link
+    expect(mapLink).toHaveAttribute('href', 'https://goo.gl/maps/wYrJmDbJmGzAPWTq8')
   });
 
   it("should have a working website link that opens in a new tab", () => {
-    render(<Footer />);
+    renderFooter();
 
     // Find the website link by its text content
     const websiteLink = screen.getByText("Website");
@@ -62,7 +62,7 @@ describe("Footer", () => {
   });
 
   it("should have a working phone link", () => {
-    render(<Footer />);
+    renderFooter();
 
     // Find the phone link by its text content
     const phoneLink = screen.getByText("(914) 923-5089");
@@ -72,7 +72,7 @@ describe("Footer", () => {
   });
 
   it("should have a working map link that opens in a new tab", () => {
-    render(<Footer />);
+    renderFooter();
 
     // Find the map link by its text content
     const mapLink = screen.getByText(

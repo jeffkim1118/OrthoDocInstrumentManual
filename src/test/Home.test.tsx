@@ -1,19 +1,28 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import Home from "../components/Homepage/Home";
+
+const renderHome = () => {
+  const homeComponent = render(<Home/>);
+  return homeComponent;
+}
 
 describe("The homepage ", () => {
   it("should display hero message without error.", () => {
-    const { container } = render(<Home />);
-    const hero1 = container.querySelector(".hero");
-    const hero2 = container.querySelector(".hero");
-    // const heroMSG1 = screen.getByTitle("heroMSG1");
-    // const heroMSG2 = screen.getByTitle("heroMSG2");
+    renderHome();
+    const hero1 = screen.getByText("Welcome to Orthodontic Harmony!");
+    const hero2 = screen.getByText("Explore instrument set ups for Orthodontist.");
     expect(hero1).toBeInTheDocument();
     expect(hero2).toBeInTheDocument();
   });
 
+  it("should display content component", () => {
+    renderHome();
+    const contentComponent = screen.getByTestId('content-container');
+    expect(contentComponent).toBeInTheDocument();
+  })
+
   it("should scroll down to table content section when the down arrow is clicked", async () => {
-    const { getByTestId } = render(<Home />);
+    const { getByTestId } = renderHome();
 
     // Find the arrow element by its test ID
     const arrowElement = getByTestId("arrow");

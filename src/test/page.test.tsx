@@ -11,6 +11,4 @@ describe('The page component', () => {
         render(<BrowserRouter><Page instrument='/adjustment' instrumentObj={obj['/adjustment']}/></BrowserRouter>)   
         expect(screen.getByText('Adjustment')).toBeInTheDocument();
     })
-   
-    
 })

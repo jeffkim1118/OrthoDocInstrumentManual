@@ -23,7 +23,6 @@ describe("The modal popup component", () => {
         render(<ModalP image={testSample}/>)
         const imageElement = screen.getByAltText('instrument-pic');
         fireEvent.click(imageElement);
-
         const closeBtn = screen.getByText('Close');
         expect(closeBtn).toBeInTheDocument();
     })

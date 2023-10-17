@@ -60,8 +60,5 @@ describe("The signup component", () => {
         expect(emailError).toBeInTheDocument();
         expect(passwordError).toBeInTheDocument();
     })
-    // it("should display register success page after successful registration", () => {
-    //     renderSignUp();
-
-    // })
+    
 })

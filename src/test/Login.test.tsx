@@ -17,7 +17,7 @@ const initialState = {
 };
 const store = mockStore(initialState);
 
-const renderLogin = (props = {}) => {
+const renderLogin = () => {
   const loginPage = render(
     <Provider store={store}>
     <BrowserRouter>
@@ -30,14 +30,17 @@ const renderLogin = (props = {}) => {
 
 describe("<Login />", () => {
   it("should render without error", () => {
-    const { container } = render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <Login />
-        </BrowserRouter>
-      </Provider>
-    );
-    expect(container).toBeInTheDocument();
+    // const { container } = render(
+    //   <Provider store={store}>
+    //     <BrowserRouter>
+    //       <Login />
+    //     </BrowserRouter>
+    //   </Provider>
+    // );
+    // expect(container).toBeInTheDocument();
+    renderLogin();
+    const loginPage = screen.getByTestId('login-form')
+    expect(loginPage).toBeInTheDocument();
   });
 
   // expecting disabled button
@@ -82,19 +85,15 @@ describe("<Login />", () => {
     expect(passwordErrorMsg).toBeInTheDocument();
   });
 
-  it("should take user to register component when 'Don't have an account?'", () => {
+  it("'Don't have an account?' link should take to signup page", () => {
     renderLogin();
-    const {container} = render(<Provider store={store}><BrowserRouter><SignUp /></BrowserRouter></Provider>)
     const linkToRegister = screen.getByText("Don't have an account?");
-    fireEvent.click(linkToRegister);
-    expect(container).toBeInTheDocument();
+    expect(linkToRegister).toHaveAttribute('href', '/signup');
   });
 
-  it("should take user to recover component when 'Forgot your password?' is clicked", () => {
+  it("'Forgot your password?' link should take to recover page", () => {
     renderLogin();
-    const {container} = render(<Provider store={store}><BrowserRouter><Recover/></BrowserRouter></Provider>)
     const linkToRecover = screen.getByText("Forgot your password?");
-    fireEvent.click(linkToRecover);
-    expect(container).toBeInTheDocument();
+    expect(linkToRecover).toHaveAttribute('href', '/recover');
   });
 });
