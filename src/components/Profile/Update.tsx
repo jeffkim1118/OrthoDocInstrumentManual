@@ -67,19 +67,19 @@ export default function Update() {
           <textarea value={newBio} onChange={(e) => setNewBio(e.target.value)} placeholder="Type in your biography..."></textarea>
           <br/>
           <label>{user.username}</label>
-          <input placeholder="Username" type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
+          <input className="updateInput" placeholder="Username" type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
           <br />
           <label>{user.first_name}</label>
-          <input placeholder="First Name" type="text" value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
+          <input className="updateInput" placeholder="First Name" type="text" value={newFirstName} onChange={(e) => setNewFirstName(e.target.value)}></input>
           <br />
           <label>{user.last_name}</label>
-          <input placeholder="Last Name" type="text" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
+          <input className="updateInput" placeholder="Last Name" type="text" value={newLastName} onChange={(e) => setNewLastName(e.target.value)}></input>
           <br />
           <label>{user.email}</label>
-          <input placeholder="Email" type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
+          <input className="updateInput" placeholder="Email" type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input>
           <br />
           <label>************</label>
-          <input placeholder="Password" type="current-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+          <input className="updateInput" placeholder="Password" type="current-password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
           <br />
           <button type="submit">Update</button>
         </form>  

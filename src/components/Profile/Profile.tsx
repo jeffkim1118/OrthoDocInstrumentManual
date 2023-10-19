@@ -18,7 +18,7 @@ export default function Profile() {
   }
   return (
     <div className="grid-line">
-      <div className="user-section">
+      <div className="user-section" data-testId="profile-display">
         <Tabs
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"

@@ -89,6 +89,12 @@ body {
   background-image: linear-gradient(#5f43b2, #804fb3, #b589d6);
 }
 
+.table-content-title {
+  color: whitesmoke;
+  text-align: center;
+  padding: 70px;
+}
+
 .content {
   display: flex;
   flex-direction: row;
@@ -149,6 +155,14 @@ body {
   min-height: 100px;
 }
 
+.btn-right{
+  text-align: right;
+}
+
+.btn-right button{
+  font-family: "Fira Sans, sans-serif";
+}
+
 .card {
   width: 18rem;
 }
@@ -205,6 +219,11 @@ body {
   text-decoration: none;
   text-align: center;
   height: fit-content;
+}
+
+.footer a{
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 /* Account */

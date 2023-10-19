@@ -13,8 +13,10 @@ import Profile from './components/Profile/Profile';
 import Update from './components/Profile/Update';
 import PublicChat from './components/PublicChat';
 import Recover from './components/Account/Recover';
-import Verify from './components/Account/RegisterSuccess'
+import RegisterSuccess from './components/Account/RegisterSuccess'
 import SetupSearchBar from './components/SetupSearchBar';
+
+import obj from './components/Instruments';
 
 
 export const AppContext = createContext<any>(null);
@@ -53,9 +55,10 @@ function App() {
       })
     }
   }, [dispatch])
-  
-  
 
+
+  const instrumentArr = Object.keys(obj);
+  
   return (
     <AppContext.Provider value={{ newUser, setNewUser }}>
       <div className="App">
@@ -67,10 +70,14 @@ function App() {
           <button
             className={`scroll-to-top ${isVisible ? "display" : "notdisplay"}`}
             onClick={scrollToTop}
+            data-testid="scroll-to-top-button"
           ></button>
         </div>
         <Routes>
           <Route path="/" index element={<Home />}></Route>
+          {instrumentArr.map(curInstrument => (
+            <Route path={curInstrument} element={<Page instrumentObj={obj[curInstrument]} />}></Route>
+          ))}
           <Route path="/adjustment" element={<Page />}></Route>
           <Route path="/alignerband" element={<Page />}></Route>
           <Route path="/deband" element={<Page />}></Route>
@@ -83,7 +90,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/recover" element={<Recover />}></Route>
-          <Route path="/verify" element={<Verify />}></Route>
+          <Route path="/registersuccess" element={<RegisterSuccess />}></Route>
           <Route path="/search" element={<SetupSearchBar/>}></Route>
           {user ? (
             <Route path="profile" element={<Profile />}>

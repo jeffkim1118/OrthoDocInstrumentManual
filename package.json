@@ -12,7 +12,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/actioncable": "^5.2.7",
-    "@types/jest": "^27.5.2",
     "@types/node": "^18.17",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
@@ -20,6 +19,7 @@
     "bootstrap": "^5.3.0",
     "css-loader": "^6.8.1",
     "final-form": "^4.20.9",
+    "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-actioncable-provider": "^2.0.0",
@@ -29,6 +29,7 @@
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.2",
     "react-scripts": "^5.0.1",
+    "react-scroll": "^1.8.9",
     "sass": "^1.64.1",
     "serve": "^14.2.0",
     "style-loader": "^3.3.3",
@@ -39,7 +40,7 @@
     "start": "react-scripts start",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest)/)'",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build",
     "postinstall": "tsc"
@@ -63,7 +64,13 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/jsonwebtoken": "^9.0.3",
     "@types/rails__actioncable": "^6.1.6",
-    "jest": "^27.5.1"
+    "@types/react-scroll": "^1.8.8",
+    "@types/redux-mock-store": "^1.0.4",
+    "jest": "^27.5.1",
+    "redux-mock-store": "^1.5.4",
+    "ts-node": "^10.9.1"
   }
 }

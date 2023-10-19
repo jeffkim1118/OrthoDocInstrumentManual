@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The recover component   should render 1`] = `
+<div>
+  <div
+    class="background"
+  >
+    <div
+      class="recover-form-background"
+    >
+      <div
+        class="recover-form-container"
+      >
+        <form
+          class="recover-password-form"
+        >
+          <h3
+            class="recover-label"
+          >
+            Forgot Your Password?
+          </h3>
+          <p
+            class="recover-label"
+          >
+            Don't fret! Just type in your email and we will 
+            <br />
+            <span>
+              send you a code to reset your password!
+            </span>
+          </p>
+          <div
+            class="recover-form"
+          >
+            <input
+              class="recover-input"
+              name="email"
+              placeholder="Enter your email"
+              type="email"
+              value=""
+            />
+            <br />
+          </div>
+          <button
+            class="recover-btn btn btn-primary"
+            disabled=""
+            type="submit"
+          >
+            Submit
+          </button>
+          <div
+            style="text-align: center;"
+          >
+            <a
+              href="/login"
+            >
+              Go back
+            </a>
+            <br />
+            <a
+              href="/signup"
+            >
+              Don't have an account?
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

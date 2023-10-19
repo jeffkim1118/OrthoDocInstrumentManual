@@ -3,8 +3,8 @@ import { Button } from "react-bootstrap";
 import BForm from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { handleLogin, login, selectUser } from "../../features/userSlice";
+import { useDispatch } from "react-redux";
+import { handleLogin, login } from "../../features/userSlice";
 import accountIcon from "../../components/images/account/account.png";
 import padLock from "../../components/images/account/padlock.png";
 import { Form, Field } from "react-final-form";
@@ -40,7 +40,7 @@ export default function Login() {
 
   return (
     <div className="background">
-      <div className="form-container">
+      <div className="form-container" data-testid="login-form">
         <Form
           onSubmit={handleSubmit}
           render={({ handleSubmit, submitError, submitting, pristine }) => (
@@ -59,12 +59,12 @@ export default function Login() {
                     <em>Login</em>
                   </h1>
                   {invalidAccount ? (
-                    <span className="error-msg">
+                    <span className="error-msg" >
                       Login failed. Please check your username or password
                       again.
                     </span>
                   ) : null}
-                  <Field name="username" validate={requiredUsername}>
+                  <Field name="username" validate={requiredUsername} >
                     {({ input, meta }) => (
                       <div>
                         <label>Username</label>
@@ -85,10 +85,11 @@ export default function Login() {
                             }
                             type="text"
                             placeholder="Username"
+                            data-testid="content-input1"
                           />
                         </div>
                         {meta.error && meta.touched && (
-                          <span className="error-msg">{meta.error}</span>
+                          <span className="error-msg" data-testid="custom-error-username">{meta.error}</span>
                         )}
                       </div>
                     )}
@@ -117,7 +118,7 @@ export default function Login() {
                           />
                         </div>
                         {meta.error && meta.touched && (
-                          <span className="error-msg">{meta.error}</span>
+                          <span className="error-msg" data-testid="custom-error-password">{meta.error}</span>
                         )}
                       </div>
                     )}
